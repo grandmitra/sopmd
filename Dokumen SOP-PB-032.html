@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-PB-032 - Manajemen E-Procurement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">MANAJEMEN E-PROCUREMENT</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-032</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan manajemen e-procurement guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Optimalisasi proses pengadaan melalui platform digital yang terintegrasi</td>
+                    </tr>
+                    <tr>
+                        <td>Transparansi dan akuntabilitas dalam seluruh tahapan e-procurement</td>
+                    </tr>
+                    <tr>
+                        <td>Efisiensi biaya dan waktu melalui otomatisasi proses pengadaan</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap regulasi e-procurement dan standar industri</td>
+                    </tr>
+                    <tr>
+                        <td>Peningkatan kompetitifitas melalui sistem tender elektronik yang fair</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Implementasi e-procurement yang efektif dapat mengurangi biaya administrasi hingga 70% dan mempercepat proses pengadaan hingga 80% melalui digitalisasi dan otomatisasi.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh aspek manajemen e-procurement melalui berbagai platform digital:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-gavel"></i>
+                                <h3>E-Tendering</h3>
+                                <p>Proses tender elektronik dan lelang online</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h3>E-Purchasing</h3>
+                                <p>Pengadaan langsung melalui katalog elektronik</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>E-Auction</h3>
+                                <p>Lelang reverse dan forward auction elektronik</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-network"></i>
+                                <h3>Marketplace</h3>
+                                <p>Platform e-commerce untuk pengadaan korporat</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>E-Procurement Manager:</strong> Koordinasi overall sistem e-procurement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Digital Procurement Specialist:</strong> Implementasi dan optimasi platform digital</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vendor Management Officer:</strong> Onboarding dan management vendor digital</td>
+                    </tr>
+                    <tr>
+                        <td><strong>System Administrator:</strong> Pengelolaan teknis platform e-procurement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance Officer:</strong> Memastikan kepatuhan regulasi e-procurement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Analyst:</strong> Analisis data dan performance e-procurement</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>E-Tendering</h3>
+                                <p>Proses tender melalui platform elektronik terintegrasi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-arrow-down-wide-short"></i>
+                                <h3>Reverse Auction</h3>
+                                <p>Lelang elektronik dimana harga turun selama proses</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-fingerprint"></i>
+                                <h3>Digital Signature</h3>
+                                <p>Tanda tangan elektronik yang memiliki kekuatan hukum</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>PKI (Public Key Infrastructure)</h3>
+                                <p>Infrastruktur kunci publik untuk keamanan digital</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-info-circle"></i> <strong>Istilah Teknis E-Procurement:</strong></p>
+                    <ul>
+                        <li><strong>LPSE:</strong> Layanan Pengadaan Secara Elektronik</li>
+                        <li><strong>SPSE:</strong> Sistem Pengadaan Secara Elektronik</li>
+                        <li><strong>KBLI:</strong> Klasifikasi Baku Lapangan Usaha Indonesia</li>
+                        <li><strong>E-Catalog:</strong> Katalog produk elektronik terstandarisasi</li>
+                        <li><strong>E-Invoice:</strong> Faktur elektronik yang terintegrasi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES MANAJEMEN E-PROCUREMENT</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Perencanaan Pengadaan Elektronik</div>
+                    </div>
+                    <p>Menyusun rencana pengadaan elektronik berdasarkan kebutuhan dan budget</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Aspek perencanaan:</strong> Pemilihan metode e-procurement, penentuan jadwal, penyiapan dokumen elektronik, alokasi budget</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Penyiapan Dokumen Elektronik</div>
+                    </div>
+                    <p>Mempersiapkan dokumen pengadaan dalam format elektronik yang standar</p>
+                    <ul>
+                        <li>RKS (Rencana Kerja dan Syarat) elektronik</li>
+                        <li>Dokumen kualifikasi digital</li>
+                        <li>BOQ (Bill of Quantity) elektronik</li>
+                        <li>HPS (Harga Perkiraan Sendiri) digital</li>
+                        <li>Template dokumen pendukung</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Pengumuman dan Publikasi Pengadaan</div>
+                    </div>
+                    <p>Memublikasikan pengadaan melalui platform e-procurement yang ditetapkan</p>
+                    <div class="content-box">
+                        <p><strong>Platform publikasi:</strong> LPSE, e-procurement portal, supplier marketplace, website perusahaan</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Registrasi dan Kualifikasi Penyedia</div>
+                    </div>
+                    <p>Proses registrasi dan verifikasi kualifikasi penyedia secara elektronik</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Proses verifikasi:</strong> Validasi dokumen, cek legalitas, verifikasi pengalaman, assessment kapabilitas</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Pengambilan Dokumen dan Penawaran</div>
+                    </div>
+                    <p>Penyedia mengambil dokumen dan mengirimkan penawaran melalui sistem</p>
+                    <ul>
+                        <li>Download dokumen elektronik</li>
+                        <li>Upload penawaran terenkripsi</li>
+                        <li>Digital signature</li>
+                        <li>Time-stamped submission</li>
+                        <li>Auto-acknowledgement</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Evaluasi dan Penilaian Elektronik</div>
+                    </div>
+                    <p>Proses evaluasi penawaran menggunakan sistem scoring otomatis</p>
+                    <div class="content-box">
+                        <p><strong>Metode evaluasi:</strong> Automated scoring, weighted criteria, compliance check, price analysis</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">E-Auction dan Negosiasi Elektronik</div>
+                    </div>
+                    <p>Melaksanakan lelang elektronik dan negosiasi melalui platform digital</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Jenis e-auction:</strong> Reverse auction, forward auction, Dutch auction, Japanese auction</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Penetapan Pemenang dan Pengumuman</div>
+                    </div>
+                    <p>Menetapkan pemenang dan mengumumkan hasil melalui sistem elektronik</p>
+                    <div class="content-box">
+                        <p><strong>Proses penetapan:</strong> System-generated result, approval workflow, digital announcement, auto-notification</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">9</div>
+                        <div class="step-title">Kontrak Elektronik dan E-Signature</div>
+                    </div>
+                    <p>Pembuatan dan penandatanganan kontrak elektronik dengan digital signature</p>
+                    <div class="content-box">
+                        <p><strong>E-contract features:</strong> Digital signature, smart contract, auto-reminder, version control</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">10</div>
+                        <div class="step-title">Monitoring dan Evaluasi Kinerja</div>
+                    </div>
+                    <p>Memantau pelaksanaan dan mengevaluasi kinerja e-procurement</p>
+                    <div class="content-box">
+                        <p><strong>Monitoring tools:</strong> Real-time dashboard, performance metrics, supplier rating, compliance tracking</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PLATFORM DIGITAL SECTION -->
+        <div class="section">
+            <div class="section-title">## PLATFORM DIGITAL DAN TEKNOLOGI E-PROCUREMENT</div>
+            <div class="section-content">
+                <p>Klasifikasi platform e-procurement berdasarkan fungsi dan teknologi:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Platform/Teknologi</th>
+                            <th>Fungsi Utama</th>
+                            <th>Tingkat Kompleksitas</th>
+                            <th>Integrasi Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>LPSE (Pemerintah)</strong></td>
+                            <td>E-tendering untuk pengadaan pemerintah</td>
+                            <td><span class="score score-high">Tinggi</span></td>
+                            <td>Sistem Keuangan Negara</td>
+                        </tr>
+                        <tr>
+                            <td><strong>E-Catalog System</strong></td>
+                            <td>Purchasing melalui katalog terstandar</td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>ERP & Inventory System</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reverse Auction Platform</strong></td>
+                            <td>Lelang elektronik kompetitif</td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Supplier Database</td>
+                        </tr>
+                        <tr>
+                            <td><strong>B2B Marketplace</strong></td>
+                            <td>Pengadaan melalui marketplace korporat</td>
+                            <td><span class="score score-low">Rendah</span></td>
+                            <td>Payment Gateway</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Blockchain Procurement</strong></td>
+                            <td>Smart contract dan traceability</td>
+                            <td><span class="score score-high">Sangat Tinggi</span></td>
+                            <td>Multiple Systems</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Critical Success Factors E-Procurement:</strong></p>
+                    <ul>
+                        <li><strong>Digital Infrastructure:</strong> Ketersediaan infrastruktur digital yang memadai</li>
+                        <li><strong>User Adoption:</strong> Tingkat adopsi pengguna terhadap sistem digital</li>
+                        <li><strong>Data Security:</strong> Keamanan data dan transaksi elektronik</li>
+                        <li><strong>Regulatory Compliance:</strong> Kepatuhan terhadap regulasi e-procurement</li>
+                        <li><strong>Vendor Readiness:</strong> Kesiapan vendor dalam berpartisipasi digital</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Teknologi Pendukung E-Procurement:</h3>
+                <div class="content-box">
+                    <p><strong>AI & Machine Learning:</strong> Predictive analytics, automated evaluation, fraud detection</p>
+                    <p><strong>Blockchain Technology:</strong> Smart contracts, immutable records, supply chain transparency</p>
+                    <p><strong>Cloud Computing:</strong> Scalable infrastructure, real-time collaboration, data accessibility</p>
+                    <p><strong>IoT Integration:</strong> Real-time tracking, automated replenishment, condition monitoring</p>
+                    <p><strong>Big Data Analytics:</strong> Spend analysis, supplier performance, market intelligence</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses manajemen e-procurement:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-laptop-code"></i>
+                                <h3>FORM-PB-3201</h3>
+                                <p>E-Procurement Platform Selection Matrix</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-user-check"></i>
+                                <h3>FORM-PB-3202</h3>
+                                <p>Vendor Digital Onboarding Form</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>FORM-PB-3203</h3>
+                                <p>E-Procurement Security Checklist</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-network"></i>
+                                <h3>FORM-PB-3204</h3>
+                                <p>Digital Procurement Performance Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen E-Procurement:</strong></p>
+                    <ul>
+                        <li><strong>Electronic Bids:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Digital Contracts:</strong> Disimpan 15 tahun</li>
+                        <li><strong>Audit Trail:</strong> Disimpan permanen</li>
+                        <li><strong>System Logs:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Compliance Records:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Performance Data:</strong> Disimpan 5 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>E-Procurement Adoption Rate:</strong> ≥ 85%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Process Cycle Time Reduction:</strong> ≥ 70%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost Savings:</strong> ≥ 15% dari total spend</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Participation Rate:</strong> ≥ 90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>System Uptime:</strong> ≥ 99.8%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Accuracy:</strong> ≥ 99%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User Satisfaction:</strong> ≥ 4.5/5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance Rate:</strong> 100%</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">E-Procurement Manager</th>
+                        <th width="25%">IT Manager</th>
+                        <th width="25%">Compliance Officer</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-032 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Negosiasi Harga dan Persyaratan - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">NEGOSIASI HARGA DAN PERSYARATAN - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-009</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses negosiasi harga dan persyaratan dengan supplier guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Pencapaian harga yang kompetitif dan nilai terbaik untuk perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Kesepakatan persyaratan yang saling menguntungkan dan berkelanjutan</td>
+                    </tr>
+                    <tr>
+                        <td>Pengelolaan risiko yang efektif dalam hubungan kemitraan dengan supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap kebijakan perusahaan dan regulasi yang berlaku</td>
+                    </tr>
+                    <tr>
+                        <td>Peningkatan posisi tawar dan competitive advantage perusahaan</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Negosiasi yang efektif dapat menghasilkan penghematan biaya hingga 15-30% dan meningkatkan kualitas layanan supplier hingga 25%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses negosiasi untuk berbagai aspek pembelian bahan bangunan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <h3>Negosiasi Harga</h3>
+                                <p>Penawaran harga, diskon, dan terms pembayaran</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-truck"></i>
+                                <h3>Negosiasi Pengiriman</h3>
+                                <p>Lead time, delivery terms, dan incoterms</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>Negosiasi Kualitas</h3>
+                                <p>Standar kualitas, warranty, dan garansi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>Negosiasi Kontrak</h3>
+                                <p>Terms and conditions, SLA, dan penalty</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Purchasing Manager:</strong> Lead negotiator dan penanggung jawab akhir</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Senior Buyer:</strong> Co-negotiator dan technical advisor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Representative:</strong> Analisis financial impact dan payment terms</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technical Specialist:</strong> Evaluasi spesifikasi teknis dan kualitas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal Advisor:</strong> Review kontrak dan legal compliance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Department Head:</strong> Final approval untuk kesepakatan besar</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>BATNA</h3>
+                                <p>Best Alternative To Negotiated Agreement - Alternatif terbaik jika negosiasi gagal</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chess-board"></i>
+                                <h3>ZOPA</h3>
+                                <p>Zone Of Possible Agreement - Rentang kesepakatan yang mungkin dicapai</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Anchor Price</h3>
+                                <p>Harga patokan yang menjadi dasar negosiasi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-exchange-alt"></i>
+                                <h3>Trade-off</h3>
+                                <p>Pertukaran konsesi antara kedua belah pihak</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES NEGOSIASI HARGA DAN PERSYARATAN</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Preparation and Research</div>
+                    </div>
+                    <p>Melakukan persiapan menyeluruh sebelum negosiasi dimulai</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Data persiapan:</strong> Market price analysis, supplier cost structure, competitor pricing, BATNA identification, negotiation strategy</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Setting Negotiation Objectives</div>
+                    </div>
+                    <p>Menetapkan target dan batasan negosiasi yang jelas</p>
+                    <ul>
+                        <li>Target price (ideal, acceptable, walk-away)</li>
+                        <li>Non-price objectives (delivery, quality, terms)</li>
+                        <li>Concession strategy</li>
+                        <li>Timeframe and deadlines</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Opening Position and Anchor Setting</div>
+                    </div>
+                    <p>Menetapkan posisi awal dan anchor price yang strategis</p>
+                    <div class="content-box">
+                        <p><strong>Strategi opening:</strong> Reasonable but ambitious opening offer, justification preparation, relationship building approach</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Information Exchange and Exploration</div>
+                    </div>
+                    <p>Bertukar informasi dan mengeksplorasi kepentingan kedua belah pihak</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Teknik eksplorasi:</strong> Active listening, probing questions, interest identification, value discovery</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Bargaining and Concession Management</div>
+                    </div>
+                    <p>Melakukan tawar-menawar dan mengelola konsesi secara strategis</p>
+                    <ul>
+                        <li>Package deal offering</li>
+                        <li>Conditional concessions</li>
+                        <li>Trade-off identification</li>
+                        <li>Value creation opportunities</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Closing and Agreement Finalization</div>
+                    </div>
+                    <p>Menutup negosiasi dan memfinalisasi kesepakatan</p>
+                    <div class="content-box">
+                        <p><strong>Teknik closing:</strong> Summary of agreement, confirmation of understanding, documentation preparation, next steps clarification</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Documentation and Internal Approval</div>
+                    </div>
+                    <p>Mendokumentasikan hasil negosiasi dan mendapatkan approval internal</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Dokumentasi:</strong> Negotiation minutes, agreed terms summary, cost-benefit analysis, management approval request</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Implementation and Relationship Management</div>
+                    </div>
+                    <p>Mengimplementasikan kesepakatan dan mengelola hubungan dengan supplier</p>
+                    <div class="content-box">
+                        <p><strong>Follow-up actions:</strong> Contract signing, performance monitoring, relationship building, continuous improvement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STRATEGI NEGOSIASI SECTION -->
+        <div class="section">
+            <div class="section-title">## STRATEGI DAN TEKNIK NEGOSIASI</div>
+            <div class="section-content">
+                <p>Berbagai strategi negosiasi berdasarkan situasi dan tipe supplier:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Strategi Negosiasi</th>
+                            <th>Situasi Aplikasi</th>
+                            <th>Target Saving</th>
+                            <th>Risiko</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Collaborative Win-Win</strong></td>
+                            <td>Strategic suppliers, long-term partnership</td>
+                            <td><span class="score score-medium">10-15%</span></td>
+                            <td>Rendah</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Competitive Bargaining</strong></td>
+                            <td>Commodity items, multiple suppliers</td>
+                            <td><span class="score score-high">15-25%</span></td>
+                            <td>Sedang</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integrative Problem-Solving</strong></td>
+                            <td>Complex requirements, innovation needed</td>
+                            <td><span class="score score-medium">8-12%</span></td>
+                            <td>Rendah</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Distributive Zero-Sum</strong></td>
+                            <td>One-time purchase, price-sensitive</td>
+                            <td><span class="score score-high">20-30%</span></td>
+                            <td>Tinggi</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-calculator"></i> <strong>Negotiation Leverage Points:</strong></p>
+                    <ul>
+                        <li><strong>Volume Commitment:</strong> 5-15% discount untuk volume tinggi</li>
+                        <li><strong>Payment Terms:</strong> 2-5% discount untuk pembayaran cepat</li>
+                        <li><strong>Long-term Contract:</strong> 3-8% discount untuk kontrak jangka panjang</li>
+                        <li><strong>Bundling Purchase:</strong> 5-12% discount untuk paket pembelian</li>
+                        <li><strong>Early Payment:</strong> 2-4% discount untuk pembayaran di muka</li>
+                    </ul>
+                </div>
+
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Concession Strategy Matrix:</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>High Value - Low Cost (Give First):</strong> Extended payment terms, technical support</p>
+                        <p><strong>High Value - High Cost (Trade Carefully):</strong> Price reduction, additional services</p>
+                        <p><strong>Low Value - Low Cost (Give Freely):</strong> Minor delivery adjustments, documentation</p>
+                        <p><strong>Low Value - High Cost (Avoid):</strong> Major price cuts, warranty extensions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses negosiasi harga dan persyaratan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-901</h3>
+                                <p>Negotiation Preparation Worksheet</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>FORM-PB-902</h3>
+                                <p>Negotiation Minutes Template</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-signature"></i>
+                                <h3>FORM-PB-903</h3>
+                                <p>Term Sheet Agreement</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-904</h3>
+                                <p>Cost-Benefit Analysis Template</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-balance-scale"></i> <strong>Ethical Guidelines dalam Negosiasi:</strong></p>
+                    <ul>
+                        <li><strong>Transparency:</strong> Jujur dalam informasi dan intention</li>
+                        <li><strong>Fairness:</strong> Menghormati kepentingan kedua belah pihak</li>
+                        <li><strong>Confidentiality:</strong> Melindungi informasi sensitif</li>
+                        <li><strong>No Bribery:</strong> Tidak menerima/memberi suap</li>
+                        <li><strong>Compliance:</strong> Mematuhi hukum dan regulasi</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Cost Savings Achievement:</strong> ≥15% dari initial quote</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Negotiation Success Rate:</strong> ≥85%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Time to Agreement:</strong> ≤10 hari kerja</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Satisfaction Score:</strong> ≥80%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contract Compliance Rate:</strong> ≥95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Value Creation Index:</strong> ≥20%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relationship Quality Score:</strong> ≥85%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Risk Mitigation Effectiveness:</strong> ≥90%</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-009 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

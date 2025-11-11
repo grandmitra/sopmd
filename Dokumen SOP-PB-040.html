@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Kepatuhan Hukum dan Perpajakan - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        .content-box.danger {
+            border-left-color: var(--danger);
+            background: #ffe6e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.danger {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">KEPATUHAN HUKUM DAN PERPAJAKAN - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-040</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses kepatuhan hukum dan perpajakan guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Kepatuhan terhadap seluruh peraturan perundang-undangan yang berlaku</td>
+                    </tr>
+                    <tr>
+                        <td>Pemenuhan kewajiban perpajakan secara tepat waktu dan akurat</td>
+                    </tr>
+                    <tr>
+                        <td>Minimalisasi risiko hukum dan perpajakan bagi perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Optimalisasi manfaat insentif dan fasilitas perpajakan</td>
+                    </tr>
+                    <tr>
+                        <td>Transparansi dan akuntabilitas dalam pelaporan hukum dan perpajakan</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Implementasi sistem kepatuhan hukum dan perpajakan yang efektif dapat mengurangi risiko denda hingga 95% dan mengoptimalkan penghematan pajak hingga 25% melalui pemanfaatan insentif yang tepat.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh aspek kepatuhan hukum dan perpajakan di perusahaan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Kepatuhan Hukum</h3>
+                                <p>Kepatuhan terhadap UU Perseroan, Perdagangan, Perlindungan Konsumen, dll</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-receipt"></i>
+                                <h3>Pajak Penghasilan</h3>
+                                <p>PPh Badan, PPh Pasal 21, 22, 23, 25, 26, dan 4(2)</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <h3>Pajak Pertambahan Nilai</h3>
+                                <p>PPN Masukan dan Keluaran, Faktur Pajak, dan pelaporan SPT Masa PPN</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-landmark"></i>
+                                <h3>Pajak Daerah & Retribusi</h3>
+                                <p>Pajak Reklame, Hotel, Restoran, Hiburan, dan retribusi daerah</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Finance & Tax Director:</strong> Penanggung jawab ultimate kepatuhan perpajakan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tax Manager:</strong> Koordinasi dan pengawasan implementasi kebijakan perpajakan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal Counsel:</strong> Pemastian kepatuhan hukum dan review kontrak</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accounting Supervisor:</strong> Penyiapan data dan dokumen perpajakan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tax Officer:</strong> Pelaksanaan administrasi dan pelaporan perpajakan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance Officer:</strong> Monitoring kepatuhan regulasi dan internal audit</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-gavel"></i>
+                                <h3>Kepatuhan Hukum</h3>
+                                <p>Pemenuhan terhadap seluruh ketentuan peraturan perundang-undangan yang berlaku</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>Tax Compliance</h3>
+                                <p>Pemenuhan kewajiban perpajakan sesuai dengan ketentuan perpajakan</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-search-dollar"></i>
+                                <h3>Tax Audit</h3>
+                                <p>Pemeriksaan oleh otoritas pajak untuk memverifikasi kepatuhan perpajakan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>Tax Risk Management</h3>
+                                <p>Proses identifikasi, assessment, dan mitigasi risiko perpajakan</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES KEPATUHAN HUKUM DAN PERPAJAKAN</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Identifikasi Regulasi</div>
+                    </div>
+                    <p>Memetakan seluruh regulasi hukum dan perpajakan yang berlaku untuk perusahaan</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Sumber regulasi:</strong> UU Perpajakan, UU Perseroan, UU Perlindungan Konsumen, Peraturan Pemerintah, Peraturan Daerah, SE Dirjen Pajak</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Risk Assessment</div>
+                    </div>
+                    <p>Melakukan penilaian risiko kepatuhan hukum dan perpajakan</p>
+                    <ul>
+                        <li>Identifikasi exposure risiko</li>
+                        <li>Probability assessment</li>
+                        <li>Impact analysis</li>
+                        <li>Risk prioritization</li>
+                        <li>Control gap analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Kebijakan & Prosedur</div>
+                    </div>
+                    <p>Menyusun kebijakan dan prosedur internal untuk memastikan kepatuhan</p>
+                    <div class="content-box">
+                        <p><strong>Dokumen kebijakan:</strong> Tax Policy Manual, Compliance Handbook, SOP Perpajakan, Code of Conduct, Whistleblowing Policy</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Implementasi & Training</div>
+                    </div>
+                    <p>Melaksanakan kebijakan dan memberikan training kepada seluruh stakeholder</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Training modules:</strong> Tax awareness, legal compliance, anti-bribery, data privacy, contract management, regulatory updates</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Monitoring & Pelaporan</div>
+                    </div>
+                    <p>Memantau kepatuhan dan menyiapkan pelaporan periodik</p>
+                    <ul>
+                        <li>Monthly tax compliance checklist</li>
+                        <li>Quarterly legal compliance report</li>
+                        <li>Annual tax planning review</li>
+                        <li>Regulatory change monitoring</li>
+                        <li>Compliance dashboard</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Review & Improvement</div>
+                    </div>
+                    <p>Melakukan review berkala dan perbaikan berkelanjutan</p>
+                    <div class="content-box">
+                        <p><strong>Review activities:</strong> Internal audit, process optimization, control enhancement, policy update, benchmark comparison</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">External Communication</div>
+                    </div>
+                    <p>Berinteraksi dengan otoritas pajak dan regulator lainnya</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Interaksi dengan regulator:</strong> Tax consultation, ruling application, objection & appeal, regulatory hearing, compliance certification</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Documentation & Retention</div>
+                    </div>
+                    <p>Mendokumentasikan seluruh proses dan menyimpan dokumen sesuai retensi</p>
+                    <div class="content-box">
+                        <p><strong>Documentation requirements:</strong> Tax returns, supporting documents, legal opinions, compliance reports, audit findings, training records</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KEWAJIBAN PAJAK SECTION -->
+        <div class="section">
+            <div class="section-title">## KEWAJIBAN PERPAJAKAN DAN TIMELINE</div>
+            <div class="section-content">
+                <p>Jadwal dan timeline kewajiban perpajakan perusahaan:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Jenis Kewajiban</th>
+                            <th>Periode</th>
+                            <th>Batas Waktu</th>
+                            <th>Penanggung Jawab</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SPT Masa PPN</strong></td>
+                            <td>Bulanan</td>
+                            <td><span class="score score-low">Akhir bulan berikutnya</span></td>
+                            <td>Tax Officer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SPT Masa PPh 21</strong></td>
+                            <td>Bulanan</td>
+                            <td><span class="score score-low">Tanggal 20 bulan berikutnya</span></td>
+                            <td>Tax Officer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SPT Masa PPh 23/26</strong></td>
+                            <td>Bulanan</td>
+                            <td><span class="score score-low">Tanggal 20 bulan berikutnya</span></td>
+                            <td>Tax Officer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SPT Masa PPh 25</strong></td>
+                            <td>Bulanan</td>
+                            <td><span class="score score-low">Tanggal 15 bulan berikutnya</span></td>
+                            <td>Tax Officer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SPT Tahunan Badan</strong></td>
+                            <td>Tahunan</td>
+                            <td><span class="score score-medium">4 bulan setelah tahun berakhir</span></td>
+                            <td>Tax Manager</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pelaporan CBCR</strong></td>
+                            <td>Tahunan</td>
+                            <td><span class="score score-medium">12 bulan setelah tahun berakhir</span></td>
+                            <td>Tax Director</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box danger">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Konsekuensi Pelanggaran:</strong></p>
+                    <ul>
+                        <li><strong>Keterlambatan Penyampaian SPT:</strong> Denda Rp 1.000.000 per SPT</li>
+                        <li><strong>Keterlambatan Pembayaran Pajak:</strong> Bunga 2% per bulan</li>
+                        <li><strong>Penerbitan Faktur Pajak Tidak Sesuai:</strong> Denda 2% dari DPP</li>
+                        <li><strong>Pembetulan SPT Kurang Bayar:</strong> Bunga 2% per bulan dari kurang bayar</li>
+                        <li><strong>Pelanggaran Berat:</strong> Sanksi pidana penjara dan denda administratif</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Insentif dan Fasilitas Perpajakan:</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>Tax Allowance:</strong> Pengurangan penghasilan neto sampai dengan 30% dari investasi</p>
+                        <p><strong>Tax Holiday:</strong> Pembebasan PPh Badan untuk 5-20 tahun</p>
+                        <p><strong>PPnBM Ditanggung Pemerintah:</strong> Untuk industri tertentu</p>
+                        <p><strong>Pengurangan PPh 22 Impor:</strong> Untuk importir tertentu</p>
+                        <p><strong>Restitusi PPN:</strong> Pengembalian kelebihan pembayaran PPN</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses kepatuhan hukum dan perpajakan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>FORM-PB-4001</h3>
+                                <p>Tax Compliance Checklist</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>FORM-PB-4002</h3>
+                                <p>Legal Compliance Assessment</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-4003</h3>
+                                <p>Tax Risk Register</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-4004</h3>
+                                <p>Regulatory Change Log</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Hukum dan Perpajakan:</strong></p>
+                    <ul>
+                        <li><strong>SPT dan Lampiran:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Faktur Pajak:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Dokumen Pembukuan:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Kontrak dan Perjanjian:</strong> Disimpan 10 tahun setelah berakhir</li>
+                        <li><strong>Dokumen Legal:</strong> Disimpan permanen</li>
+                        <li><strong>Izin dan Lisensi:</strong> Disimpan 10 tahun setelah berakhir</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">KPI (Key Performance Indicator):</h3>
+                    <ul>
+                        <li><strong>Tax Compliance Rate:</strong> 100%</li>
+                        <li><strong>On-time Submission Rate:</strong> ≥ 98%</li>
+                        <li><strong>Tax Audit Findings:</strong> ≤ 5% dari total koreksi</li>
+                        <li><strong>Legal Compliance Score:</strong> ≥ 95%</li>
+                        <li><strong>Tax Saving Realization:</strong> ≥ 90% dari target</li>
+                        <li><strong>Regulatory Update Implementation:</strong> ≤ 30 hari setelah efektif</li>
+                        <li><strong>Training Completion Rate:</strong> 100%</li>
+                        <li><strong>Penalty Avoidance:</strong> 100%</li>
+                    </ul>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-040 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

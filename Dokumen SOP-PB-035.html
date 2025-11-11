@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-PB-035 - Pembelian Darurat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PEMBELIAN DARURAT</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-035</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses pembelian darurat guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Respon cepat terhadap kebutuhan mendesak yang mengancam operasional</td>
+                    </tr>
+                    <tr>
+                        <td>Minimalisasi dampak gangguan operasional akibat keterlambatan pengadaan</td>
+                    </tr>
+                    <tr>
+                        <td>Pengelolaan risiko yang efektif dalam situasi darurat</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap kebijakan perusahaan meskipun dalam kondisi darurat</td>
+                    </tr>
+                    <tr>
+                        <td>Dokumentasi yang lengkap untuk audit dan evaluasi pasca-darurat</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Proses pembelian darurat yang terstruktur dapat mengurangi downtime operasional hingga 80% dan meminimalisasi kerugian finansial hingga 60% melalui respon yang cepat dan terkoordinasi.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh jenis pembelian darurat dalam berbagai skenario:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-hard-hat"></i>
+                                <h3>Breakdown Equipment</h3>
+                                <p>Kerusakan equipment kritis yang menghentikan produksi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h3>Safety Emergency</h3>
+                                <p>Kebutuhan keselamatan yang mendesak dan kritis</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-truck"></i>
+                                <h3>Supply Chain Disruption</h3>
+                                <p>Gangguan rantai pasok yang tidak terduga</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>Regulatory Compliance</h3>
+                                <p>Kebutuhan mendesak untuk kepatuhan regulasi</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Emergency Response Manager:</strong> Koordinasi overall situasi darurat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Manager:</strong> Approval pembelian darurat dan budget</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Emergency Purchasing Officer:</strong> Eksekusi pembelian darurat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Department Head:</strong> Identifikasi kebutuhan darurat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Controller:</strong> Pengendalian budget darurat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal Advisor:</strong> Review aspek legal pembelian darurat</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clock"></i>
+                                <h3>Emergency Purchase</h3>
+                                <p>Pembelian yang dilakukan di luar proses normal karena urgensi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bolt"></i>
+                                <h3>Expedited Process</h3>
+                                <p>Proses yang dipercepat untuk memenuhi kebutuhan darurat</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice"></i>
+                                <h3>Post-Facto Approval</h3>
+                                <p>Approval yang diberikan setelah pembelian dilakukan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Emergency Justification</h3>
+                                <p>Dokumen justifikasi untuk pembelian darurat</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-info-circle"></i> <strong>Istilah Penting Lainnya:</strong></p>
+                    <ul>
+                        <li><strong>Force Majeure:</strong> Keadaan kahar yang tidak terduga</li>
+                        <li><strong>Business Continuity:</strong> Kelangsungan operasi bisnis</li>
+                        <li><strong>Critical Spare Parts:</strong> Spare part kritis untuk operasional</li>
+                        <li><strong>Emergency Budget:</strong> Alokasi budget untuk situasi darurat</li>
+                        <li><strong>Rush Delivery:</strong> Pengiriman dengan prioritas tertinggi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PEMBELIAN DARURAT</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Identifikasi dan Deklarasi Situasi Darurat</div>
+                    </div>
+                    <p>Mengidentifikasi situasi darurat dan mendeklarasikan status emergency</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Kriteria darurat:</strong> Ancaman keselamatan, gangguan operasional > 4 jam, kerugian > Rp 100 juta, pelanggaran regulasi</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Emergency Request dan Justifikasi</div>
+                    </div>
+                    <p>Mengajukan permintaan darurat dengan justifikasi yang jelas dan dokumentasi</p>
+                    <ul>
+                        <li>Emergency description dan impact analysis</li>
+                        <li>Business impact assessment</li>
+                        <li>Required timeline</li>
+                        <li>Budget estimation</li>
+                        <li>Alternative solutions considered</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Emergency Approval Process</div>
+                    </div>
+                    <p>Proses approval yang dipercepat dengan eskalasi otomatis</p>
+                    <div class="content-box">
+                        <p><strong>Approval path:</strong> Department Head → Purchasing Manager → Director (jika diperlukan) → Emergency Response Manager</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Supplier Identification dan Quick Quote</div>
+                    </div>
+                    <p>Identifikasi supplier dan permintaan penawaran cepat</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Supplier criteria:</strong> Availability, delivery capability, reliability, emergency response capability</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Expedited PO Processing</div>
+                    </div>
+                    <p>Pemrosesan PO dengan prioritas tertinggi dan bypass normal workflow</p>
+                    <ul>
+                        <li>Emergency PO numbering</li>
+                        <li>Auto-approval untuk amount tertentu</li>
+                        <li>Simplified documentation</li>
+                        <li>Real-time tracking</li>
+                        <li>Automatic notification</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Rush Delivery Coordination</div>
+                    </div>
+                    <p>Koordinasi pengiriman dengan prioritas tertinggi</p>
+                    <div class="content-box">
+                        <p><strong>Delivery options:</strong> Same-day delivery, express courier, dedicated transport, on-site pickup</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Emergency Receipt dan Deployment</div>
+                    </div>
+                    <p>Penerimaan barang darurat dan deployment langsung ke lokasi kebutuhan</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Receipt process:</strong> Simplified GRN, immediate quality check, direct to site delivery, minimal documentation</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Post-Emergency Documentation</div>
+                    </div>
+                    <p>Penyelesaian dokumentasi setelah situasi darurat teratasi</p>
+                    <div class="content-box">
+                        <p><strong>Required documentation:</strong> Emergency justification, approval records, delivery proof, payment documents, incident report</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">9</div>
+                        <div class="step-title">Review dan Analysis</div>
+                    </div>
+                    <p>Review proses pembelian darurat dan analisis untuk improvement</p>
+                    <div class="content-box">
+                        <p><strong>Review aspects:</strong> Process effectiveness, cost analysis, supplier performance, timeline achievement, lesson learned</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">10</div>
+                        <div class="step-title">Process Improvement</div>
+                    </div>
+                    <p>Implementasi improvement berdasarkan learning dari situasi darurat</p>
+                    <div class="content-box">
+                        <p><strong>Improvement actions:</strong> Process optimization, supplier development, inventory strategy, contingency planning</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KATEGORI DARURAT SECTION -->
+        <div class="section">
+            <div class="section-title">## KATEGORI DARURAT DAN RESPONSE TIME</div>
+            <div class="section-content">
+                <p>Klasifikasi situasi darurat berdasarkan tingkat urgensi dan response time:</p>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Kategori Darurat</th>
+                            <th>Response Time</th>
+                            <th>Approval Level</th>
+                            <th>Budget Limit</th>
+                            <th>Documentation Requirement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Level 1 - Critical</strong></td>
+                            <td><span class="score score-low">≤ 2 jam</span></td>
+                            <td>Director</td>
+                            <td>Unlimited</td>
+                            <td>Post-facto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level 2 - High</strong></td>
+                            <td><span class="score score-low">≤ 4 jam</span></td>
+                            <td>Purchasing Manager</td>
+                            <td>Rp 500 juta</td>
+                            <td>Simplified</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level 3 - Medium</strong></td>
+                            <td><span class="score score-medium">≤ 8 jam</span></td>
+                            <td>Department Head</td>
+                            <td>Rp 100 juta</td>
+                            <td>Standard</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level 4 - Low</strong></td>
+                            <td><span class="score score-high">≤ 24 jam</span></td>
+                            <td>Supervisor</td>
+                            <td>Rp 50 juta</td>
+                            <td>Full</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Critical Emergency Scenarios:</strong></p>
+                    <ul>
+                        <li><strong>Safety Hazard:</strong> Kondisi yang mengancam keselamatan personel</li>
+                        <li><strong>Production Stoppage:</strong> Penghentian produksi > 8 jam</li>
+                        <li><strong>Regulatory Violation:</strong> Pelanggaran regulasi yang berdampak hukum</li>
+                        <li><strong>Environmental Incident:</strong> Insiden lingkungan yang memerlukan respon cepat</li>
+                        <li><strong>Major Equipment Failure:</strong> Kerusakan equipment kritis</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Emergency Budget Allocation:</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>Annual Emergency Budget:</strong> 5% dari total purchasing budget</p>
+                        <p><strong>Monthly Allocation:</strong> Distributed based on risk assessment</p>
+                        <p><strong>Contingency Fund:</strong> Additional 2% for unexpected emergencies</p>
+                        <p><strong>Department Quota:</strong> Allocated based on operational criticality</p>
+                        <p><strong>Overspend Approval:</strong> Required for emergency budget exceeding allocation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses pembelian darurat:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-medical"></i>
+                                <h3>FORM-PB-3501</h3>
+                                <p>Emergency Purchase Justification Form</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bolt"></i>
+                                <h3>FORM-PB-3502</h3>
+                                <p>Expedited PO Template</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>FORM-PB-3503</h3>
+                                <p>Emergency Approval Checklist</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-3504</h3>
+                                <p>Emergency Response Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Darurat:</strong></p>
+                    <ul>
+                        <li><strong>Emergency Justifications:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Expedited POs:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Approval Records:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Incident Reports:</strong> Disimpan 15 tahun</li>
+                        <li><strong>Post-Emergency Reviews:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Budget Documentation:</strong> Disimpan 7 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Emergency Response Time:</strong> ≤ target + 10%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Emergency Resolution Rate:</strong> ≥ 95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Budget Compliance:</strong> ≥ 90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Emergency Performance:</strong> ≥ 4/5 rating</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Documentation Completion:</strong> 100% within 48 jam</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Process Compliance:</strong> ≥ 98%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost Savings in Normal Process:</strong> ≥ 15% vs emergency cost</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stakeholder Satisfaction:</strong> ≥ 4.5/5</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Emergency Response Manager</th>
+                        <th width="25%">Purchasing Manager</th>
+                        <th width="25%">Finance Controller</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-035 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

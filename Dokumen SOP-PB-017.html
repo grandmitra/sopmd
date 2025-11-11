@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Evaluasi Kinerja Supplier Berkala - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">EVALUASI KINERJA SUPPLIER BERKALA - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-017</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses evaluasi kinerja supplier secara berkala guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Kinerja supplier yang konsisten dan sesuai dengan standar yang ditetapkan</td>
+                    </tr>
+                    <tr>
+                        <td>Identifikasi dini terhadap potensi risiko dalam supply chain</td>
+                    </tr>
+                    <tr>
+                        <td>Pengambilan keputusan yang objektif dalam pengembangan hubungan supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Peningkatan berkelanjutan melalui feedback yang konstruktif</td>
+                    </tr>
+                    <tr>
+                        <td>Optimasi biaya dan kualitas melalui continuous improvement</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Evaluasi berkala yang efektif dapat meningkatkan kinerja supplier hingga 25% dan mengurangi risiko supply chain disruption hingga 40%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses evaluasi kinerja untuk berbagai kategori supplier aktif:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-star"></i>
+                                <h3>Strategic Suppliers</h3>
+                                <p>Supplier dengan volume tinggi dan dampak bisnis signifikan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-medal"></i>
+                                <h3>Preferred Suppliers</h3>
+                                <p>Supplier dengan kinerja baik dan potensi pengembangan</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-check-circle"></i>
+                                <h3>Approved Suppliers</h3>
+                                <p>Supplier yang memenuhi standar minimum</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h3>Critical Suppliers</h3>
+                                <p>Supplier dengan komponen kritis atau single source</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Supplier Relationship Manager:</strong> Koordinasi overall evaluation process</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Officer:</strong> Data collection dan performance analysis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality Assurance Team:</strong> Quality performance assessment</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Logistics Coordinator:</strong> Delivery performance evaluation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Analyst:</strong> Cost and financial compliance review</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technical Specialist:</strong> Technical capability assessment</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Performance Dashboard</h3>
+                                <p>Dashboard monitoring kinerja supplier real-time</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>Evaluation Report</h3>
+                                <p>Laporan hasil evaluasi kinerja periodik</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tasks"></i>
+                                <h3>Improvement Plan</h3>
+                                <p>Rencana perbaikan berdasarkan hasil evaluasi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>Business Review</h3>
+                                <p>Meeting review kinerja dengan supplier</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES EVALUASI KINERJA SUPPLIER BERKALA</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Perencanaan Evaluasi</div>
+                    </div>
+                    <p>Menyusun jadwal dan scope evaluasi berdasarkan kategori supplier</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Frekuensi evaluasi:</strong> Strategic (Monthly), Preferred (Quarterly), Approved (Semi-annual), Others (Annual)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Pengumpulan Data Kinerja</div>
+                    </div>
+                    <p>Mengumpulkan data kinerja dari berbagai sistem dan departemen</p>
+                    <ul>
+                        <li>Quality performance data</li>
+                        <li>Delivery performance records</li>
+                        <li>Cost and pricing analysis</li>
+                        <li>Responsiveness metrics</li>
+                        <li>Documentation accuracy</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Analisis dan Scoring</div>
+                    </div>
+                    <p>Menganalisis data dan memberikan score berdasarkan kriteria yang ditetapkan</p>
+                    <div class="content-box">
+                        <p><strong>Metode scoring:</strong> Weighted scoring system, trend analysis, benchmarking, risk assessment</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Penyusunan Evaluation Report</div>
+                    </div>
+                    <p>Menyusun laporan evaluasi komprehensif dengan rekomendasi</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Komponen laporan:</strong> Executive summary, performance analysis, improvement areas, risk assessment, recommendations</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Internal Review dan Approval</div>
+                    </div>
+                    <p>Melakukan review internal dan mendapatkan approval dari management</p>
+                    <ul>
+                        <li>Cross-functional team review</li>
+                        <li>Management approval</li>
+                        <li>Action plan finalization</li>
+                        <li>Communication strategy</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Supplier Business Review Meeting</div>
+                    </div>
+                    <p>Mengadakan meeting review dengan supplier untuk membahas hasil evaluasi</p>
+                    <div class="content-box">
+                        <p><strong>Agenda meeting:</strong> Performance presentation, gap analysis, improvement discussion, target setting, relationship development</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Penyusunan Improvement Plan</div>
+                    </div>
+                    <p>Menyusun rencana perbaikan bersama supplier berdasarkan hasil evaluasi</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Elemen improvement plan:</strong> Action items, timeline, responsibilities, success metrics, follow-up schedule</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Monitoring dan Follow-up</div>
+                    </div>
+                    <p>Memantau implementasi improvement plan dan melakukan follow-up berkala</p>
+                    <div class="content-box">
+                        <p><strong>Monitoring activities:</strong> Progress tracking, performance monitoring, issue resolution, continuous improvement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- METODE EVALUASI SECTION -->
+        <div class="section">
+            <div class="section-title">## METODE DAN KRITERIA EVALUASI</div>
+            <div class="section-content">
+                <p>Parameter evaluasi kinerja supplier dengan bobot dan standar performa:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Kriteria Evaluasi</th>
+                            <th>Bobot</th>
+                            <th>Excellent (91-100)</th>
+                            <th>Good (81-90)</th>
+                            <th>Needs Improvement (<80)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Kualitas Produk</strong></td>
+                            <td>30%</td>
+                            <td><span class="score score-high">≥ 99%</span></td>
+                            <td><span class="score score-medium">95-98%</span></td>
+                            <td><span class="score score-low">< 95%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ketepatan Pengiriman</strong></td>
+                            <td>25%</td>
+                            <td><span class="score score-high">≥ 98%</span></td>
+                            <td><span class="score score-medium">95-97%</span></td>
+                            <td><span class="score score-low">< 95%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Responsiveness</strong></td>
+                            <td>15%</td>
+                            <td><span class="score score-high">≤ 2 jam</span></td>
+                            <td><span class="score score-medium">2-8 jam</span></td>
+                            <td><span class="score score-low">> 8 jam</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost Performance</strong></td>
+                            <td>15%</td>
+                            <td><span class="score score-high">Competitive + Value Add</span></td>
+                            <td><span class="score score-medium">Competitive</span></td>
+                            <td><span class="score score-low">Above Market</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Technical Support</strong></td>
+                            <td>10%</td>
+                            <td><span class="score score-high">Proactive & Innovative</span></td>
+                            <td><span class="score score-medium">Responsive</span></td>
+                            <td><span class="score score-low">Reactive Only</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Documentation</strong></td>
+                            <td>5%</td>
+                            <td><span class="score score-high">100% Accurate & Timely</span></td>
+                            <td><span class="score score-medium">≥ 98% Accurate</span></td>
+                            <td><span class="score score-low">< 98% Accurate</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-chart-bar"></i> <strong>Klasifikasi Hasil Evaluasi:</strong></p>
+                    <ul>
+                        <li><strong>Score 91-100 (Excellent):</strong> Strategic partner, volume increase consideration, innovation collaboration</li>
+                        <li><strong>Score 81-90 (Good):</strong> Preferred supplier, maintain relationship, targeted development</li>
+                        <li><strong>Score 71-80 (Satisfactory):</strong> Approved supplier, monitor closely, improvement required</li>
+                        <li><strong>Score 61-70 (Marginal):</strong> Conditional status, formal improvement plan, volume reduction</li>
+                        <li><strong>Score ≤ 60 (Unsatisfactory):</strong> Under review, potential suspension, replacement process initiated</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Frekuensi dan Scope Evaluasi:</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>Evaluasi Bulanan:</strong> Key performance metrics untuk strategic suppliers (Top 20%)</p>
+                        <p><strong>Review Triwulan:</strong> Comprehensive evaluation untuk preferred suppliers (Next 30%)</p>
+                        <p><strong>Assesment Semester:</strong> Full evaluation untuk approved suppliers (Remaining 50%)</p>
+                        <p><strong>Business Review Tahunan:</strong> Strategic review dengan semua strategic dan preferred suppliers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses evaluasi kinerja supplier berkala:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>FORM-PB-1701</h3>
+                                <p>Supplier Performance Evaluation Report</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-1702</h3>
+                                <p>Performance Dashboard Template</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tasks"></i>
+                                <h3>FORM-PB-1703</h3>
+                                <p>Supplier Improvement Plan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>FORM-PB-1704</h3>
+                                <p>Business Review Meeting Minutes</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-database"></i> <strong>Retensi Dokumen Evaluasi:</strong></p>
+                    <ul>
+                        <li><strong>Performance Evaluation Reports:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Improvement Plans:</strong> Disimpan 3 tahun setelah selesai</li>
+                        <li><strong>Business Review Minutes:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Performance Dashboards:</strong> Disimpan 3 tahun</li>
+                        <li><strong>Supplier Communication Records:</strong> Disimpan 3 tahun</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                    <table class="content-table">
+                        <tr>
+                            <td><strong>Evaluation Completion Rate:</strong> 100% sesuai jadwal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supplier Performance Improvement:</strong> ≥ 10% year-over-year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Business Review Meeting Attendance:</strong> ≥ 95%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Improvement Plan Implementation:</strong> ≥ 90% on-time completion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supplier Satisfaction Score:</strong> ≥ 85%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Strategic Supplier Ratio:</strong> ≥ 40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Risk Mitigation Actions:</strong> 100% implemented for high-risk suppliers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost Savings from Supplier Development:</strong> ≥ 8% per tahun</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-017 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

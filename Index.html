@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Management System - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            height: 80px;
+            margin-bottom: 15px;
+        }
+
+        .logo h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .login-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .password-input {
+            position: relative;
+        }
+
+        .password-input input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .password-input input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #7f8c8d;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .toggle-password:hover {
+            color: var(--secondary);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--secondary), #2980b9);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .login-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .error-message {
+            background-color: #ffeaea;
+            color: var(--danger);
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 4px solid var(--danger);
+            display: none;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .main-content {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .search-container {
+            background-color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .search-container input {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 1rem;
+        }
+
+        .search-container button {
+            background: none;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            transition: var(--transition);
+        }
+
+        .search-container button:hover {
+            color: var(--primary);
+        }
+
+        .reset-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-left: 10px;
+        }
+
+        .reset-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .logout-btn {
+            background-color: var(--warning);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-left: 10px;
+        }
+
+        .logout-btn:hover {
+            background-color: #e67e22;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--secondary), #2980b9);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .card-header i {
+            transition: var(--transition);
+        }
+
+        .card-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .card-content.active {
+            max-height: 1000px;
+        }
+
+        .sop-list {
+            padding: 15px 20px;
+        }
+
+        .sop-category {
+            margin-bottom: 15px;
+        }
+
+        .sop-category-header {
+            background-color: var(--light);
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .sop-category-header i {
+            transition: var(--transition);
+        }
+
+        .sop-category-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .sop-items {
+            padding-left: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .sop-items.active {
+            max-height: 1000px;
+        }
+
+        .sop-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .sop-item:last-child {
+            border-bottom: none;
+        }
+
+        .sop-code {
+            background-color: var(--primary);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 10px;
+            min-width: 100px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sop-code:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .sop-name {
+            flex: 1;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        .sop-name:hover {
+            background-color: var(--light);
+            color: var(--secondary);
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            background-color: var(--dark);
+            color: white;
+            border-radius: 10px;
+        }
+
+        footer img {
+            height: 40px;
+            margin-top: 10px;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: #bdc3c7;
+            margin-bottom: 15px;
+        }
+
+        .session-timeout {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--warning);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+
+            .search-container {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .session-timeout {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="logo">
+            <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="Company Logo">
+            <h1>SOP Management System</h1>
+            <p style="color: #7f8c8d; margin-top: 10px; font-size: 0.9rem;">Masukkan password untuk mengakses sistem</p>
+        </div>
+        
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="password">Password Akses:</label>
+                <div class="password-input">
+                    <input type="password" id="password" placeholder="Masukkan password..." required autocomplete="current-password">
+                    <button type="button" class="toggle-password" id="togglePassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <button type="submit" class="login-btn" id="loginBtn">
+                <span id="loginText">Masuk ke Sistem</span>
+            </button>
+            
+            <div class="error-message" id="errorMessage">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorText">Password salah. Silakan coba lagi.</span>
+            </div>
+        </form>
+
+        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 0.8rem; color: #6c757d;">
+            <i class="fas fa-info-circle"></i> 
+            Hubungi administrator untuk mendapatkan password akses
+        </div>
+    </div>
+
+    <!-- Session Timeout Warning -->
+    <div class="session-timeout" id="sessionTimeout">
+        <i class="fas fa-clock"></i>
+        <span id="timeoutMessage">Sesi akan berakhir dalam 1 menit</span>
+        <button onclick="extendSession()" style="margin-left: 10px; background: white; color: var(--warning); border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+            Perpanjang
+        </button>
+    </div>
+
+    <!-- Main Content (Hidden until login) -->
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <header>
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="Company Logo">
+                        <h1>SOP Management System</h1>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <div class="search-container">
+                            <input type="text" id="searchInput" placeholder="Cari SOP...">
+                            <button id="searchBtn"><i class="fas fa-search"></i></button>
+                        </div>
+                        <button class="reset-btn" id="resetBtn">Reset</button>
+                        <button class="logout-btn" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="main-grid" id="sopContainer">
+                <!-- SOP cards will be generated here -->
+            </div>
+
+            <footer>
+                <p>&copy; 2024 SOP Management System. All rights reserved.</p>
+                <p style="font-size: 0.8rem; margin-top: 5px; opacity: 0.8;">
+                    Sesi aktif hingga: <span id="sessionTimer">--:--</span>
+                </p>
+                 <a href="https://sofyanmujid.web.app/" class="footer-link" target="_blank">https://sofyanmujid.web.app/</a>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // ===============================
+        // KONFIGURASI PASSWORD
+        // ===============================
+        const PASSWORD_CONFIG = {
+            // Password default (bisa diubah sesuai kebutuhan)
+            mainPassword: "gmb123",
+            
+            // Durasi sesi dalam menit (120 menit = 2 jam)
+            sessionDuration: 120,
+            
+            // Warning sebelum timeout (dalam menit)
+            timeoutWarning: 1
+        };
+
+        // ===============================
+        // MANAJEMEN STATE
+        // ===============================
+        let sessionTimer = null;
+        let sessionEndTime = null;
+
+        // ===============================
+        // ELEMENTS DOM
+        // ===============================
+        const loginContainer = document.getElementById('loginContainer');
+        const mainContent = document.getElementById('mainContent');
+        const loginForm = document.getElementById('loginForm');
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.getElementById('togglePassword');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginText = document.getElementById('loginText');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const sessionTimeout = document.getElementById('sessionTimeout');
+        const timeoutMessage = document.getElementById('timeoutMessage');
+        const sessionTimerDisplay = document.getElementById('sessionTimer');
+
+        // ===============================
+        // EVENT LISTENERS
+        // ===============================
+        togglePassword.addEventListener('click', togglePasswordVisibility);
+        loginForm.addEventListener('submit', handleLogin);
+        logoutBtn.addEventListener('click', handleLogout);
+        passwordInput.addEventListener('keypress', handleEnterKey);
+
+        // ===============================
+        // FUNGSI UTAMA
+        // ===============================
+        function togglePasswordVisibility() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.innerHTML = type === 'password' 
+                ? '<i class="fas fa-eye"></i>' 
+                : '<i class="fas fa-eye-slash"></i>';
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            authenticateUser();
+        }
+
+        function handleLogout() {
+            logoutUser();
+        }
+
+        function handleEnterKey(e) {
+            if (e.key === 'Enter') {
+                authenticateUser();
+            }
+        }
+
+        // ===============================
+        // AUTHENTIKASI
+        // ===============================
+        function authenticateUser() {
+            const password = passwordInput.value.trim();
+            
+            if (!password) {
+                showError('Silakan masukkan password');
+                return;
+            }
+
+            showLoadingState();
+
+            // Simulasi proses autentikasi
+            setTimeout(() => {
+                if (password === PASSWORD_CONFIG.mainPassword) {
+                    loginSuccess();
+                } else {
+                    loginFailed();
+                }
+            }, 800);
+        }
+
+        function loginSuccess() {
+            hideLoginShowMain();
+            initializeSOPSystem();
+            startSessionTimer();
+            resetLoginForm();
+        }
+
+        function loginFailed() {
+            showError('Password salah. Silakan coba lagi.');
+            passwordInput.value = '';
+            passwordInput.focus();
+            resetLoginButton();
+        }
+
+        function logoutUser() {
+            clearSessionTimer();
+            hideMainShowLogin();
+            resetSOPView();
+        }
+
+        // ===============================
+        // MANAJEMEN SESSION
+        // ===============================
+        function startSessionTimer() {
+            const sessionMs = PASSWORD_CONFIG.sessionDuration * 60 * 1000;
+            const warningMs = PASSWORD_CONFIG.timeoutWarning * 60 * 1000;
+            
+            sessionEndTime = Date.now() + sessionMs;
+            updateSessionTimerDisplay();
+
+            sessionTimer = setInterval(() => {
+                const timeLeft = sessionEndTime - Date.now();
+                
+                if (timeLeft <= 0) {
+                    sessionExpired();
+                } else if (timeLeft <= warningMs) {
+                    showTimeoutWarning(timeLeft);
+                }
+                
+                updateSessionTimerDisplay();
+            }, 1000);
+        }
+
+        function updateSessionTimerDisplay() {
+            if (sessionEndTime) {
+                const timeLeft = sessionEndTime - Date.now();
+                if (timeLeft > 0) {
+                    const minutes = Math.floor(timeLeft / 60000);
+                    const seconds = Math.floor((timeLeft % 60000) / 1000);
+                    sessionTimerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }
+        }
+
+        function showTimeoutWarning(timeLeft) {
+            const minutesLeft = Math.ceil(timeLeft / 60000);
+            timeoutMessage.textContent = `Sesi akan berakhir dalam ${minutesLeft} menit`;
+            sessionTimeout.style.display = 'block';
+        }
+
+        function extendSession() {
+            sessionEndTime = Date.now() + (PASSWORD_CONFIG.sessionDuration * 60 * 1000);
+            sessionTimeout.style.display = 'none';
+            updateSessionTimerDisplay();
+        }
+
+        function sessionExpired() {
+            clearSessionTimer();
+            alert('Sesi telah berakhir. Silakan login kembali.');
+            logoutUser();
+        }
+
+        function clearSessionTimer() {
+            if (sessionTimer) {
+                clearInterval(sessionTimer);
+                sessionTimer = null;
+            }
+            sessionEndTime = null;
+            sessionTimeout.style.display = 'none';
+        }
+
+        // ===============================
+        // UI HELPERS
+        // ===============================
+        function showLoadingState() {
+            loginBtn.disabled = true;
+            loginText.innerHTML = '<div class="loading"></div>Memeriksa...';
+        }
+
+        function resetLoginButton() {
+            loginBtn.disabled = false;
+            loginText.textContent = 'Masuk ke Sistem';
+        }
+
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        function hideLoginShowMain() {
+            loginContainer.style.display = 'none';
+            mainContent.style.display = 'block';
+        }
+
+        function hideMainShowLogin() {
+            mainContent.style.display = 'none';
+            loginContainer.style.display = 'block';
+            passwordInput.focus();
+        }
+
+        function resetLoginForm() {
+            passwordInput.value = '';
+            resetLoginButton();
+            errorMessage.style.display = 'none';
+        }
+
+        // ===============================
+        // INISIALISASI SISTEM
+        // ===============================
+        window.addEventListener('load', function() {
+            passwordInput.focus();
+        });
+
+        // ===============================
+        // SOP SYSTEM
+        // ===============================
+        const sopData = [
+            {
+                bidang: "HUMAN RESOURCES DEVELOPMENT (HRD)",
+                categories: [
+                    {
+                        name: "Recruitment & Planning",
+                        code: "SOP-HRD-R",
+                        items: [
+                            "SOP-HRD-R001 - Perencanaan Tenaga Kerja (Manpower Planning)",
+                            "SOP-HRD-R002 - Analisis & Evaluasi Jabatan (Job Analysis & Evaluation)",
+                            "SOP-HRD-R003 - Permintaan & Pembukaan Lowongan Pekerjaan (Job Opening Request)",
+                            "SOP-HRD-R004 - Proses Rekrutmen & Seleksi Eksternal",
+                            "SOP-HRD-R005 - Proses Rekrutmen & Seleksi Internal (Promosi & Mutasi)",
+                            "SOP-HRD-R006 - Pemeriksaan Latar Belakang (Background Check)",
+                            "SOP-HRD-R007 - Pemberian Surat Penawaran Kerja (Offer Letter)"
+                        ]
+                    },
+                    {
+                        name: "Onboarding & Orientation",
+                        code: "SOP-HRD-O",
+                        items: [
+                            "SOP-HRD-O001 - Pemeriksaan Kesehatan Awal (Pre-Employment Medical Check-Up)",
+                            "SOP-HRD-O002 - Pendaftaran & Pengurusan BPJS Ketenagakerjaan dan Kesehatan",
+                            "SOP-HRD-O003 - Pembuatan Kartu Tanda Karyawan, Email, dan Akses Sistem",
+                            "SOP-HRD-O004 - Program Orientasi Karyawan Baru (Employee Orientation)",
+                            "SOP-HRD-O005 - Penandatanganan Perjanjian Kerja (PKWTT/PKWT) dan Pakta Integritas",
+                            "SOP-HRD-O006 - Penyerahan dan Pemeriksaan Dokumen Awal Karyawan"
+                        ]
+                    },
+                    {
+                        name: "Performance & Talent Management",
+                        code: "SOP-HRD-P",
+                        items: [
+                            "SOP-HRD-P001 - Sosialisasi & Penetapan Key Performance Indicator (KPI)",
+                            "SOP-HRD-P002 - Pelaksanaan Penilaian Kinerja (Performance Appraisal)",
+                            "SOP-HRD-P003 - Proses Feedback dan Performance Review",
+                            "SOP-HRD-P004 - Pembuatan Rencana Pengembangan Karyawan (Individual Development Plan)",
+                            "SOP-HRD-P005 - Manajemen Talenta & Suksesi (Talent & Succession Management)"
+                        ]
+                    },
+                    {
+                        name: "Training & Development",
+                        code: "SOP-HRD-T",
+                        items: [
+                            "SOP-HRD-T001 - Identifikasi Kebutuhan Pelatihan (Training Needs Analysis)",
+                            "SOP-HRD-T002 - Perencanaan & Penganggaran Program Pelatihan",
+                            "SOP-HRD-T003 - Pelaksanaan Program Pelatihan (Internal/Eksternal)",
+                            "SOP-HRD-T004 - Evaluasi & Tindak Lanjut Hasil Pelatihan",
+                            "SOP-HRD-T005 - Pengelolaan Database Pelatihan dan Sertifikasi Karyawan"
+                        ]
+                    },
+                    {
+                        name: "Compensation & Benefit",
+                        code: "SOP-HRD-CB",
+                        items: [
+                            "SOP-HRD-CB001 - Perhitungan & Penggajian (Payroll Processing)",
+                            "SOP-HRD-CB002 - Penghitungan & Pembayaran Tunjangan Hari Raya (THR)",
+                            "SOP-HRD-CB003 - Penghitungan & Pembayaran Bonus Tahunan",
+                            "SOP-HRD-CB004 - Pengajuan & Pencairan Klaim Medical",
+                            "SOP-HRD-CB005 - Administrasi Pesangon (Pension & Severance Pay)",
+                            "SOP-HRD-CB006 - Administrasi Pinjaman Karyawan (Employee Loan)"
+                        ]
+                    },
+                    {
+                        name: "Employee Relations & Administration",
+                        code: "SOP-HRD-ER",
+                        items: [
+                            "SOP-HRD-ER001 - Pengelolaan Data & Administrasi Karyawan (Master File)",
+                            "SOP-HRD-ER002 - Proses Mutasi, Promosi, dan Demosi",
+                            "SOP-HRD-ER003 - Pengajuan & Persetujuan Cuti (Annual Leave, Sick Leave, dll.)",
+                            "SOP-HRD-ER004 - Pengajuan Lembur (Overtime Request)",
+                            "SOP-HRD-ER005 - Penanganan Pelanggaran Disiplin & Pemberian Sanksi",
+                            "SOP-HRD-ER006 - Penanganan Keluhan & Pengaduan Karyawan (Grievance Handling)",
+                            "SOP-HRD-ER007 - Proses Pengunduran Diri & Pemberhentian (Resignation & Termination)",
+                            "SOP-HRD-ER008 - Pelaksanaan Exit Interview",
+                            "SOP-HRD-ER009 - Administrasi Dinas Luar (Business Trip)"
+                        ]
+                    }
+                ]
+            },
+            {
+                bidang: "GENERAL AFFAIRS (GA)",
+                categories: [
+                    {
+                        name: "Facility Management",
+                        code: "SOP-GA-F",
+                        items: [
+                            "SOP-GA-F001 - Perawatan & Pemeliharaan Gedung dan Kantor",
+                            "SOP-GA-F002 - Pengelolaan & Perawatan Kendaraan Perusahaan (Pool)",
+                            "SOP-GA-F003 - Pengajuan & Penggunaan Kendaraan Operasional",
+                            "SOP-GA-F004 - Manajemen Pengadaan & Pemeliharaan AC",
+                            "SOP-GA-F005 - Manajemen Keamanan Gedung dan Area Parkir",
+                            "SOP-GA-F006 - Manajemen Kebersihan dan Housekeeping",
+                            "SOP-GA-F007 - Pengelolaan Limbah Kantor"
+                        ]
+                    },
+                    {
+                        name: "Asset Management",
+                        code: "SOP-GA-A",
+                        items: [
+                            "SOP-GA-A001 - Pengadaan & Penerimaan Aset/Inventaris",
+                            "SOP-GA-A002 - Pencatatan & Penomoran Aset/Inventaris",
+                            "SOP-GA-A003 - Pemeliharaan & Kalibrasi Aset (contoh: forklift, timbangan)",
+                            "SOP-GA-A004 - Sirkulasi & Peminjaman Aset/Inventaris",
+                            "SOP-GA-A005 - Stock Opname & Audit Aset/Inventaris",
+                            "SOP-GA-A006 - Pemusnahan & Penghapusan Aset/Inventaris"
+                        ]
+                    },
+                    {
+                        name: "Office Operations & Procurement",
+                        code: "SOP-GA-O",
+                        items: [
+                            "SOP-GA-O001 - Pengadaan Barang & Jasa Non-Inventaris (ATK, dll.)",
+                            "SOP-GA-O002 - Manajemen Pengeluaran Kas Kecil (Petty Cash)",
+                            "SOP-GA-O003 - Pengelolaan Konsumsi & Catering untuk Meeting/Rapat",
+                            "SOP-GA-O004 - Pengurusan Perizinan Perusahaan (IMB, SIUP, dll.)",
+                            "SOP-GA-O005 - Manajemen Dokumen & Arsip Perusahaan",
+                            "SOP-GA-O006 - Penanganan Keadaan Darurat (Kebakaran, Kecelakaan, dll.)"
+                        ]
+                    },
+                    {
+                        name: "Information Technology",
+                        code: "SOP-GA-IT",
+                        items: [
+                            "SOP-GA-IT001 - Pengajuan & Perbaikan Gangguan IT (Hardware & Software)",
+                            "SOP-GA-IT002 - Pemberian & Penonaktifan Akun serta Akses Sistem",
+                            "SOP-GA-IT003 - Backup Data & Pemulihan Bencana (Data Recovery)",
+                            "SOP-GA-IT004 - Keamanan Siber & Penggunaan Sistem secara Aman"
+                        ]
+                    }
+                ]
+            },
+            {
+                bidang: "FINANCE AND ACCOUNTING",
+                categories: [
+                    {
+                        name: "Accounting Transaction",
+                        code: "SOP-FA-ACT",
+                        items: [
+                            "SOP-FA-ACT001 - Pencatatan Transaksi Penjualan (Cash & Credit)",
+                            "SOP-FA-ACT002 - Pencatatan Transaksi Pembelian (Inventory & Fixed Assets)",
+                            "SOP-FA-ACT003 - Pencatatan Transaksi Kas & Bank (Setoran & Penarikan)",
+                            "SOP-FA-ACT004 - Pencatatan Transaksi Biaya Operasional (Opex)",
+                            "SOP-FA-ACT005 - Pencatatan & Penyusutan Aset Tetap (Fixed Asset Depreciation)",
+                            "SOP-FA-ACT006 - Pencatatan & Amortisasi Aset Tidak Berwujud",
+                            "SOP-FA-ACT007 - Proses Akrual & Deferral Jurnal Penyesuaian (Adjusting Entries)",
+                            "SOP-FA-ACT008 - Rekonsiliasi Transaksi Antar Perusahaan (Intercompany)"
+                        ]
+                    },
+                    {
+                        name: "General Ledger & Reporting",
+                        code: "SOP-FA-GL",
+                        items: [
+                            "SOP-FA-GL001 - Penutupan Buku Bulanan (Monthly Closing)",
+                            "SOP-FA-GL002 - Penutupan Buku Tahunan (Year-End Closing)",
+                            "SOP-FA-GL003 - Penyusunan Laporan Laba Rugi (Income Statement)",
+                            "SOP-FA-GL004 - Penyusunan Laporan Posisi Keuangan (Balance Sheet)",
+                            "SOP-FA-GL005 - Penyusunan Laporan Arus Kas (Cash Flow Statement)",
+                            "SOP-FA-GL006 - Rekonsiliasi Bank (Bank Reconciliation)",
+                            "SOP-FA-GL007 - Rekonsiliasi Buku Besar (General Ledger Reconciliation)",
+                            "SOP-FA-GL008 - Penyusunan Laporan Keuangan Internal Manajemen (Management Report)"
+                        ]
+                    },
+                    {
+                        name: "Taxation",
+                        code: "SOP-FA-TX",
+                        items: [
+                            "SOP-FA-TX001 - Perhitungan, Penyetoran, dan Pelaporan PPN (VAT)",
+                            "SOP-FA-TX002 - Perhitungan, Penyetoran, dan Pelaporan PPh 21 (Employee Income Tax)",
+                            "SOP-FA-TX003 - Perhitungan, Penyetoran, dan Pelaporan PPh 23 (Withholding Tax on Services)",
+                            "SOP-FA-TX004 - Perhitungan, Penyetoran, dan Pelaporan PPh 4(2) (Final Tax on Rent)",
+                            "SOP-FA-TX005 - Perhitungan & Pelaporan PPh Badan (Corporate Income Tax)",
+                            "SOP-FA-TX006 - Administrasi Dokumen e-Faktur (Keluaran & Masukan)",
+                            "SOP-FA-TX007 - Proses Audit & Pemeriksaan Pajak (Tax Audit)"
+                        ]
+                    },
+                    {
+                        name: "Treasury & Cash Management",
+                        code: "SOP-FA-TRY",
+                        items: [
+                            "SOP-FA-TRY001 - Peramalan & Manajemen Arus Kas (Cash Flow Forecasting)",
+                            "SOP-FA-TRY002 - Pengelolaan Transfer dan Setoran Bank",
+                            "SOP-FA-TRY003 - Pengajuan & Pencairan Dana (Fund Disbursement)",
+                            "SOP-FA-TRY004 - Manajemen Investasi Likuid Jangka Pendek (Short Term Investment)",
+                            "SOP-FA-TRY005 - Pengelolaan Kartu Kredit Perusahaan (Corporate Credit Card)",
+                            "SOP-FA-TRY006 - Proses Pengajuan & Administrasi Pinjaman/Kredit Bank"
+                        ]
+                    },
+                    {
+                        name: "Accounts Payable",
+                        code: "SOP-FA-AP",
+                        items: [
+                            "SOP-FA-AP001 - Verifikasi & Pencocokan Faktur Pembelian (3-Way Matching: PO, GR, Invoice)",
+                            "SOP-FA-AP002 - Pengajuan & Persetujuan Pembayaran ke Supplier/Pemasok",
+                            "SOP-FA-AP003 - Pembayaran dengan Cek, Transfer, atau GIRO",
+                            "SOP-FA-AP004 - Penanganan Faktur Pajak Masukan (Input VAT)",
+                            "SOP-FA-AP005 - Rekonsiliasi Hutang Usaha (Accounts Payable Reconciliation)",
+                            "SOP-FA-AP006 - Pengelolaan Utang Lancar Lainnya (Other Current Liabilities)"
+                        ]
+                    },
+                    {
+                        name: "Accounts Receivable & Credit",
+                        code: "SOP-FA-AR",
+                        items: [
+                            "SOP-FA-AR001 - Penagihan Piutang Usaha (Customer Collection)",
+                            "SOP-FA-AR002 - Penerimaan & Pencatatan Pembayaran dari Pelanggan (Cash/Transfer)",
+                            "SOP-FA-AR003 - Pemberian & Review Limit Kredit Pelanggan (Credit Limit Review)",
+                            "SOP-FA-AR004 - Monitoring Usia Piutang (Accounts Receivable Aging Analysis)",
+                            "SOP-FA-AR005 - Penanganan Cek & GIRO Tagih",
+                            "SOP-FA-AR006 - Proses Penghapusan Piutang Tak Tertagih (Bad Debt Write-Off)",
+                            "SOP-FA-AR007 - Rekonsiliasi Piutang Usaha (Accounts Receivable Reconciliation)"
+                        ]
+                    },
+                    {
+                        name: "Budgeting",
+                        code: "SOP-FA-BUD",
+                        items: [
+                            "SOP-FA-BUD001 - Penyusunan Rencana Anggaran Perusahaan (Annual Budgeting)",
+                            "SOP-FA-BUD002 - Pengawasan & Monitoring Realisasi vs Anggaran (Budget vs Actual)",
+                            "SOP-FA-BUD003 - Proses Revisi & Perubahan Anggaran (Budget Revision)",
+                            "SOP-FA-BUD004 - Analisis Varians Anggaran (Budget Variance Analysis)"
+                        ]
+                    },
+                    {
+                        name: "Costing & Inventory Accounting",
+                        code: "SOP-FA-CST",
+                        items: [
+                            "SOP-FA-CST001 - Perhitungan & Pencatatan Harga Pokok Penjualan (HPP/COGS)",
+                            "SOP-FA-CST002 - Alokasi & Perhitungan Biaya Overhead",
+                            "SOP-FA-CST003 - Penilaian & Pencatatan Persediaan Barang (Inventory Valuation - FIFO, Average)",
+                            "SOP-FA-CST004 - Proses Stock Opname & Penyesuaian Persediaan (Stock Adjustment)",
+                            "SOP-FA-CST005 - Analisis Margin & Profitabilitas per Produk/Kategori"
+                        ]
+                    },
+                    {
+                        name: "Internal Control",
+                        code: "SOP-FA-IC",
+                        items: [
+                            "SOP-FA-IC001 - Pengendalian & Rekonsiliasi Kas di Kasir (Cashier Float)",
+                            "SOP-FA-IC002 - Pengelolaan & Pengawasan Cek dan GIRO Kosong",
+                            "SOP-FA-IC003 - Pengesahan & Otorisasi Transaksi Keuangan (Authorization Matrix)",
+                            "SOP-FA-IC004 - Pemantauan & Pengawasan Pengeluaran Biaya (Expense Control)",
+                            "SOP-FA-IC005 - Siklus Pembelian hingga Pembayaran (Procure-to-Pay Cycle)",
+                            "SOP-FA-IC006 - Siklus Penjualan hingga Penerimaan Kas (Order-to-Cash Cycle)"
+                        ]
+                    },
+                    {
+                        name: "Internal Audit",
+                        code: "SOP-FA-IA",
+                        items: [
+                            "SOP-FA-IA001 - Perencanaan & Pelaksanaan Audit Internal Rutin",
+                            "SOP-FA-IA002 - Proses Investigasi Kecurangan (Fraud Investigation)",
+                            "SOP-FA-IA003 - Penyusunan Laporan Temuan Audit & Tindak Lanjut"
+                        ]
+                    }
+                ]
+            },
+            {
+                bidang: "MANAJEMEN TOKO",
+                categories: [
+                    {
+                        name: "Management",
+                        code: "SOP-STORE-MGT",
+                        items: [
+                            "SOP-STORE-MGT001 - Pembukaan Toko (Store Opening)",
+                            "SOP-STORE-MGT002 - Penutupan Toko (Store Closing)",
+                            "SOP-STORE-MGT003 - Pengecekan & Pengawasan Keamanan Toko (Security & Safety Check)",
+                            "SOP-STORE-MGT004 - Rapat Pagi Staf (Morning Briefing)",
+                            "SOP-STORE-MGT005 - Pengelolaan & Penjadwalan Staf (Staff Scheduling)",
+                            "SOP-STORE-MGT006 - Laporan Harian Aktivitas Toko (Daily Store Activity Report)",
+                            "SOP-STORE-MGT007 - Penanganan Keadaan Darurat di Toko (Emergency Procedure)"
+                        ]
+                    },
+                    {
+                        name: "Sales",
+                        code: "SOP-STORE-SLS",
+                        items: [
+                            "SOP-STORE-SLS001 - Proses Penjualan Tunai (Cash Sales)",
+                            "SOP-STORE-SLS002 - Proses Penjualan Kredit (Credit Sales)",
+                            "SOP-STORE-SLS003 - Proses Penjualan dengan Kartu Kredit/Debit",
+                            "SOP-STORE-SLS004 - Penerimaan & Pemenuhan Pesanan via Telepon/Online (Phone/Online Order)",
+                            "SOP-STORE-SLS005 - Teknik Pendekatan & Penjualan kepada Pelanggan (Customer Approach)",
+                            "SOP-STORE-SLS006 - Proses Pemesanan Barang Indent (Special Order)",
+                            "SOP-STORE-SLS007 - Penerbitan & Pengendalian Nota Manual Penjualan (Manual Invoice)"
+                        ]
+                    },
+                    {
+                        name: "Customer Service",
+                        code: "SOP-STORE-CS",
+                        items: [
+                            "SOP-STORE-CS001 - Proses Penanganan Keluhan Pelanggan (Customer Complaint Handling)",
+                            "SOP-STORE-CS002 - Proses Pengembalian & Penukaran Barang (Return & Exchange Goods)",
+                            "SOP-STORE-CS003 - Proses Pemberian Informasi Harga, Ketersediaan Stok, & Spesifikasi Barang",
+                            "SOP-STORE-CS004 - Penanganan Pelanggan di Area Layanan Pelanggan (Customer Service Desk)"
+                        ]
+                    },
+                    {
+                        name: "Cashier",
+                        code: "SOP-STORE-CSH",
+                        items: [
+                            "SOP-STORE-CSH001 - Proses Setoran Harian Kasir (Cashier Daily Deposit)",
+                            "SOP-STORE-CSH002 - Pengelolaan & Pengisian Uang Kembalian (Float Management)",
+                            "SOP-STORE-CSH003 - Pengecekan & Validitas Uang Tunai (Cash Validation)",
+                            "SOP-STORE-CSH004 - Rekonsiliasi Harian Transaksi Kasir (Cashier Daily Reconciliation)",
+                            "SOP-STORE-CSH005 - Penanganan Voucher, Diskon, & Promosi di Kasir",
+                            "SOP-STORE-CSH006 - Proses Void & Koreksi Transaksi"
+                        ]
+                    },
+                    {
+                        name: "Warehouse",
+                        code: "SOP-STORE-WHS",
+                        items: [
+                            "SOP-STORE-WHS001 - Penerimaan Barang dari Pusat/Pemasok (Goods Receiving)",
+                            "SOP-STORE-WHS002 - Pengecekan Kuantitas & Kualitas Barang Masuk (Inbound Quality Control)",
+                            "SOP-STORE-WHS003 - Penempatan & Penyimpanan Barang di Rak Gudang (Put Away)",
+                            "SOP-STORE-WHS004 - Proses Picking & Pengambilan Barang untuk Penjualan (Order Picking)",
+                            "SOP-STORE-WHS005 - Penanganan & Pemilahan Barang Rusak (Damaged Goods Handling)",
+                            "SOP-STORE-WHS006 - Penyimpanan & Isolasi Barang Return dari Pelanggan",
+                            "SOP-STORE-WHS007 - Pengemasan Barang untuk Penjualan & Pengiriman (Packing)"
+                        ]
+                    },
+                    {
+                        name: "Inventory",
+                        code: "SOP-STORE-INV",
+                        items: [
+                            "SOP-STORE-INV001 - Pelaksanaan Stock Opname Tahunan/Bulanan (Physical Inventory Count)",
+                            "SOP-STORE-INV002 - Pelaksanaan Cycle Count Harian/Mingguan (Cycle Counting)",
+                            "SOP-STORE-INV003 - Proses Penyesuaian Persediaan (Stock Adjustment)",
+                            "SOP-STORE-INV004 - Pemantauan & Pelaporan Stok Minimum & Usulan Pengadaan (Stock Reordering)",
+                            "SOP-STORE-INV005 - Pengelolaan & Pemantauan Barang Kadaluarsa/Expired (jika ada)"
+                        ]
+                    },
+                    {
+                        name: "Delivery",
+                        code: "SOP-STORE-DLV",
+                        items: [
+                            "SOP-STORE-DLV001 - Penjadwalan & Perencanaan Rute Pengiriman (Delivery Scheduling)",
+                            "SOP-STORE-DLV002 - Pengepakan & Pembuatan Dokumen Muatan (Packing List & Delivery Order)",
+                            "SOP-STORE-DLV003 - Loading & Penataan Barang ke Kendaraan (Loading Procedure)",
+                            "SOP-STORE-DLV004 - Serah Terima Barang ke Pelanggan (Goods Handover to Customer)",
+                            "SOP-STORE-DLV005 - Penanganan & Pelaporan Barang Hilang/Rusak dalam Pengiriman",
+                            "SOP-STORE-DLV006 - Pengembalian Barang yang Gagal Kirim (Failed Delivery Return)"
+                        ]
+                    },
+                    {
+                        name: "Merchandising",
+                        code: "SOP-STORE-MCH",
+                        items: [
+                            "SOP-STORE-MCH001 - Penataan & Perawatan Display Produk (Product Display & Maintenance)",
+                            "SOP-STORE-MCH002 - Pemasangan Materi Promosi & Harga (Promotional Material & Price Tagging)",
+                            "SOP-STORE-MCH003 - Prosedur Kerja SPG/SPB (Promotion Girl/Boy)",
+                            "SOP-STORE-MCH004 - Pendekatan & Penawaran Produk kepada Pelanggan oleh SPG/SPB",
+                            "SOP-STORE-MCH005 - Pelaporan Aktivitas & Hasil Penjualan Harian SPG/SPB"
+                        ]
+                    }
+                ]
+            },
+            {
+                bidang: "MERCHANDISER",
+                categories: [
+                    {
+                        name: "SOP STRATEGIS & PERENCANAAN",
+                        code: "SOP-PB",
+                        items: [
+                            "SOP-PB-001 - Perencanaan dan Budgeting Pembelian",
+                            "SOP-PB-002 - Analisis Kebutuhan Barang Dagangan",
+                            "SOP-PB-003 - Forecasting dan Peramalan Stok",
+                            "SOP-PB-004 - Penyusunan Rencana Pembelian Tahunan/Bulanan",
+                            "SOP-PB-005 - Manajemen Kategori Produk"
+                        ]
+                    },
+                    {
+                        name: "SOP PROSES PENGADAAN",
+                        code: "SOP-PB",
+                        items: [
+                            "SOP-PB-006 - Seleksi dan Evaluasi Supplier",
+                            "SOP-PB-007 - Proses Purchasing dan Purchase Order",
+                            "SOP-PB-008 - Permintaan Penawaran (RFQ/RFP)",
+                            "SOP-PB-009 - Negosiasi Harga dan Persyaratan",
+                            "SOP-PB-010 - Kontrak dan Perjanjian Pembelian"
+                        ]
+                    },
+                    {
+                        name: "SOP OPERASIONAL HARIAN",
+                        code: "SOP-PB",
+                        items: [
+                            "SOP-PB-011 - Penerimaan Barang Dagangan",
+                            "SOP-PB-012 - Pemeriksaan Kualitas Barang (QC)",
+                            "SOP-PB-013 - Retur dan Penolakan Barang",
+                            "SOP-PB-014 - Pembayaran dan Administrasi Keuangan",
+                            "SOP-PB-015 - Pemantauan Kinerja Supplier"
+                        ]
+                    },
+                    {
+                        name: "SOP MANAJEMEN SUPPLIER",
+                        code: "SOP-PB",
+                        items: [
+                            "SOP-PB-016 - Registrasi dan Kualifikasi Supplier Baru",
+                            "SOP-PB-017 - Evaluasi Kinerja Supplier Berkala",
+                            "SOP-PB-018 - Pengembangan dan Relasi Supplier",
+                            "SOP-PB-019 - Penyelesaian Sengketa dengan Supplier",
+                            "SOP-PB-020 - Manajemen Database Supplier"
+                        ]
+                    },
+                    {
+                        name: "SOP PENGENDALIAN & AUDIT",
+                        code: "SOP-PB",
+                        items: [
+                            "SOP-PB-021 - Pengendalian Budget Pembelian",
+                            "SOP-PB-022 - Audit Proses Pembelian Internal",
+                            "SOP-PB-023 - Rekonsiliasi Pembelian vs Penerimaan",
+                            "SOP-PB-024 - Pelaporan dan Analisis Kinerja Pembelian",
+                            "SOP-PB-025 - Complain Handling dan Resolusi Masalah"
+                        ]
+                    },
+                    {
+                        name: "SOP KHUSUS MATERIAL BANGUNAN",
+                        code: "SOP-PB",
+                        items: [
+                            "SOP-PB-026 - Pembelian Material Berat (Semen, Besi, Keramik)",
+                            "SOP-PB-027 - Pengadaan Material Import",
+                            "SOP-PB-028 - Pembelian Proyek Khusus",
+                            "SOP-PB-029 - Manajemen Stok Material Musiman",
+                            "SOP-PB-030 - Pengadaan Barang Promosi dan Diskon"
+                        ]
+                    },
+                    {
+                        name: "SOP SISTEM & TEKNOLOGI",
+                        code: "SOP-PB",
+                        items: [
+                            "SOP-PB-031 - Penggunaan Sistem Purchasing Software",
+                            "SOP-PB-032 - Manajemen E-Procurement",
+                            "SOP-PB-033 - Backup dan Keamanan Data Pembelian",
+                            "SOP-PB-034 - Integrasi dengan Sistem Inventory"
+                        ]
+                    },
+                    {
+                        name: "SOP KEDARURATAN",
+                        code: "SOP-PB",
+                        items: [
+                            "SOP-PB-035 - Pembelian Darurat",
+                            "SOP-PB-036 - Penanganan Kekurangan Stok Mendadak",
+                            "SOP-PB-037 - Proses Pembelian Cepat (Fast Track)"
+                        ]
+                    },
+                    {
+                        name: "SOP KEPATUHAN & ETIKA",
+                        code: "SOP-PB",
+                        items: [
+                            "SOP-PB-038 - Kode Etik Pembelian",
+                            "SOP-PB-039 - Pencegahan Fraud dalam Pembelian",
+                            "SOP-PB-040 - Kepatuhan Hukum dan Perpajakan"
+                        ]
+                    }
+                ]
+            },
+            // Dalam array sopData, ganti bagian PROYEK dengan yang ini:
+{
+    bidang: "PROYEK",
+    categories: [
+        {
+            name: "Prospecting",
+            code: "SOP-PS-PRO",
+            items: [
+                "SOP-PS-PRO001 - Identifikasi Sumber & Pencarian Lead Proyek (Lead Generation)",
+                "SOP-PS-PRO002 - Kualifikasi & Klasifikasi Lead Proyek (Lead Qualification)",
+                "SOP-PS-PRO003 - Pendaftaran & Input Data Lead ke dalam Sistem (CRM Entry)",
+                "SOP-PS-PRO004 - Penjaringan Informasi Proyek (Project Mapping & Intelligence Gathering)",
+                "SOP-PS-PRO005 - Pembuatan & Pengelolaan Database Kontraktor, Developer, dan Konsultan"
+            ]
+        },
+        {
+            name: "Approach & Negotiation",
+            code: "SOP-PS-APP",
+            items: [
+                "SOP-PS-APP001 - Inisiasi Kontak Awal & Penjajakan (First Contact & Cold Calling)",
+                "SOP-PS-APP002 - Perjanjian & Pelaksanaan Kunjungan Lapangan (Site Visit)",
+                "SOP-PS-APP003 - Penyusunan & Presentasi Proposal Penawaran (Project Quotation)",
+                "SOP-PS-APP004 - Proses Negosiasi Harga & Syarat Pembayaran (Price & Payment Term Negotiation)",
+                "SOP-PS-APP005 - Pengajuan & Persetujuan Harga Khusus (Special Price Request/Approval)",
+                "SOP-PS-APP006 - Penandatanganan Perjanjian Kerjasama (MoU) atau Purchase Order (PO)"
+            ]
+        },
+        {
+            name: "Administration",
+            code: "SOP-PS-ADM",
+            items: [
+                "SOP-PS-ADM001 - Pembuatan & Pengesahan Sales Order (SO) Proyek",
+                "SOP-PS-ADM002 - Pengajuan & Pengecekan Kredit Limit Pelanggan Proyek (Credit Application)",
+                "SOP-PS-ADM003 - Administrasi Dokumen Pendukung (SIUP, TDP, NPWP, dll.)",
+                "SOP-PS-ADM004 - Perhitungan & Pemberian Diskon/Retrospective",
+                "SOP-PS-ADM005 - Pembuatan Laporan Kunjungan & Aktivitas Sales Harian/Mingguan (Sales Activity Report)",
+                "SOP-PS-ADM006 - Alur Kerja Koordinasi Stok Antara Divisi Project Dan Purchasing",
+                "SOP-PS-ADM007 - Alur Pengadaan Barang Proyek Dari Toko Lain (Emergency Procurement)",
+                "SOP-PS-ADM008 - Alur Pengadaan Sample Produk Untuk Customer Project"
+            ]
+        },
+        {
+            name: "Operations & Logistics",
+            code: "SOP-PS-OPS",
+            items: [
+                "SOP-PS-OPS001 - Koordinasi Perencanaan & Penjadwalan Pengiriman ke Proyek (Delivery Scheduling)",
+                "SOP-PS-OPS002 - Proses Picking & Persiapan Barang di Gudang untuk Proyek",
+                "SOP-PS-OPS003 - Pembuatan & Pengecekan Dokumen Pengiriman (Delivery Order, Surat Jalan)",
+                "SOP-PS-OPS004 - Monitoring Status Pengiriman hingga Barang Diterima di Site",
+                "SOP-PS-OPS005 - Serah Terima Barang & Tanda Terima di Lokasi Proyek (Goods Receipt Acknowledgment)"
+            ]
+        },
+        {
+            name: "Invoicing & Collection",
+            code: "SOP-PS-INV",
+            items: [
+                "SOP-PS-INV001 - Penerbitan Faktur Penjualan (Invoice) dan Faktur Pajak",
+                "SOP-PS-INV002 - Penyerahan Faktur & Dokumen Tagihan ke Pelanggan",
+                "SOP-PS-INV003 - Proses Penagihan Piutang (Collection & Follow-up)",
+                "SOP-PS-INV004 - Monitoring Usia Piutang Proyek (Project Receivable Aging)",
+                "SOP-PS-INV005 - Penerimaan & Pencatatan Pembayaran dari Pelanggan Proyek",
+                "SOP-PS-INV006 - Penanganan Keterlambatan Pembayaran (Overdue Payment Handling)"
+            ]
+        },
+        {
+            name: "After Sales",
+            code: "SOP-PS-AFT",
+            items: [
+                "SOP-PS-AFT001 - Penanganan Komplain & Klaim Garansi Proyek (Project Complaint Handling)",
+                "SOP-PS-AFT002 - Proses Pengembalian & Penukaran Barang Proyek (Project Return Goods)",
+                "SOP-PS-AFT003 - Pengajuan & Pengiriman Barang Pengganti (Replacement Goods)",
+                "SOP-PS-AFT004 - Kunjungan Rutin & Pemantauan Kepuasan Pelanggan (Customer Retention Visit)",
+                "SOP-PS-AFT005 - Pengumpulan Dokumen Lengkap Penutupan Proyek (Project Closing Documentation)"
+            ]
+        },
+        {
+            name: "Support",
+            code: "SOP-PS-SUP",
+            items: [
+                "SOP-PS-SUP001 - Koordinasi dengan Divisi Gudang & Logistik untuk Kebutuhan Proyek",
+                "SOP-PS-SUP002 - Koordinasi dengan Divisi Akuntansi & Keuangan untuk Penagihan dan Pencairan",
+                "SOP-PS-SUP003 - Pengajuan & Pertanggungjawaban Biaya Operasional Sales (Uang Saku, Transport)",
+                "SOP-PS-SUP004 - Briefing & Koordinasi Tim Sales Proyek Harian/Mingguan"
+            ]
+        }
+    ]
+},
+            {
+                bidang: "MARKETING",
+                categories: [
+                    {
+                        name: "Strategy",
+                        code: "SOP-MKT-STR",
+                        items: [
+                            "SOP-MKT-STR001 - Penyusunan Rencana Pemasaran Tahunan (Annual Marketing Plan)",
+                            "SOP-MKT-STR002 - Analisis Pasar, Kompetitor, dan Konsumen (Market & Competitor Analysis)",
+                            "SOP-MKT-STR003 - Perencanaan & Penganggaran Pemasaran (Marketing Budget Planning)",
+                            "SOP-MKT-STR004 - Penetapan Target Pasar & Posisi Pasar (Market Targeting & Positioning)",
+                            "SOP-MKT-STR005 - Pengukuran Kinerja & Evaluasi Program Pemasaran (Marketing Performance Review)"
+                        ]
+                    },
+                    {
+                        name: "Brand Management & Communication",
+                        code: "SOP-MKT-BRD",
+                        items: [
+                            "SOP-MKT-BRD001 - Pengelolaan & Pemantauan Ekuitas Merek (Brand Equity Management)",
+                            "SOP-MKT-BRD002 - Penyusunan Pedoman & Standar Penggunaan Merek (Brand Guideline)",
+                            "SOP-MKT-BRD003 - Perencanaan & Produksi Materi Katalog & Brosur",
+                            "SOP-MKT-BRD004 - Perencanaan & Produksi Materi Promosi Penjualan (Sales Promotion Tools)",
+                            "SOP-MKT-BRD005 - Koordinasi & Briefing Agen Kreatif/ATL (Iklan TV, Radio, Koran)"
+                        ]
+                    },
+                    {
+                        name: "Activation & Sales Promotion",
+                        code: "SOP-MKT-PRM",
+                        items: [
+                            "SOP-MKT-PRM001 - Perencanaan & Pelaksanaan Program Diskon & Penawaran Khusus",
+                            "SOP-MKT-PRM002 - Perencanaan & Pelaksanaan Program Loyalitas Pelanggan (Loyalty Program)",
+                            "SOP-MKT-PRM003 - Perencanaan & Eksekusi Event & Pameran (Exhibition & Event)",
+                            "SOP-MKT-PRM004 - Pengajuan & Pengelolaan Izin Event/Promosi (Event Permit Management)",
+                            "SOP-MKT-PRM005 - Pengelolaan & Distribusi Merchandise dan Hadiah (Giveaway Management)",
+                            "SOP-MKT-PRM006 - Koordinasi & Dukungan Promosi untuk Proyek (Project Sales Promotion Support)"
+                        ]
+                    },
+                    {
+                        name: "Digital & Online Marketing",
+                        code: "SOP-MKT-DIG",
+                        items: [
+                            "SOP-MKT-DIG001 - Pengelolaan & Update Konten Media Sosial (Instagram, Facebook, TikTok, dll)",
+                            "SOP-MKT-DIG002 - Pengelolaan & Optimasi Website Perusahaan (Website Management & SEO)",
+                            "SOP-MKT-DIG003 - Perencanaan & Eksekusi Iklan Berbayar Online (Google Ads, Social Media Ads)",
+                            "SOP-MKT-DIG004 - Pengiriman Newsletter & Email Marketing",
+                            "SOP-MKT-DIG005 - Monitoring & Engagement dengan Pelanggan di Platform Online",
+                            "SOP-MKT-DIG006 - Kolaborasi dengan Key Opinion Leader (KOL) & Endorser"
+                        ]
+                    },
+                    {
+                        name: "Public Relations & Community",
+                        code: "SOP-MKT-PRL",
+                        items: [
+                            "SOP-MKT-PRL001 - Perencanaan & Pembuatan Siaran Pers (Press Release)",
+                            "SOP-MKT-PRL002 - Pengelolaan Hubungan dengan Media (Media Relation)",
+                            "SOP-MKT-PRL003 - Penanganan Wawancara & Kehadiran Media",
+                            "SOP-MKT-PRL004 - Pembangunan & Pengelolaan Komunitas (Community Management - e.g., Komunitas Tukang, Kontraktor)",
+                            "SOP-MKT-PRL005 - Pelaksanaan Program Corporate Social Responsibility (CSR)"
+                        ]
+                    },
+                    {
+                        name: "Marketing Research",
+                        code: "SOP-MKT-RES",
+                        items: [
+                            "SOP-MKT-RES001 - Perencanaan & Pelaksanaan Riset Pasar (Survei, FGD, Interview)",
+                            "SOP-MKT-RES002 - Analisis Data & Penyusunan Laporan Riset",
+                            "SOP-MKT-RES003 - Pengukuran Kepuasan & Loyalitas Pelanggan (Customer Satisfaction Survey)",
+                            "SOP-MKT-RES004 - Riset Efektivitas Iklan & Kampanye (Campaign Effectiveness Research)"
+                        ]
+                    },
+                    {
+                        name: "Marketing Administration & Support",
+                        code: "SOP-MKT-ADM",
+                        items: [
+                            "SOP-MKT-ADM001 - Pengajuan & Pertanggungjawaban Biaya Pemasaran (Marketing Expense Report)",
+                            "SOP-MKT-ADM002 - Pengelolaan Database Pelanggan untuk Kebutuhan Marketing (CRM)",
+                            "SOP-MKT-ADM003 - Koordinasi dengan Divisi Penjualan & Toko untuk Program Marketing",
+                            "SOP-MKT-ADM004 - Pengelolaan & Pemeliharaan Aset Kreatif & Pemasaran (Bank Materi Iklan)",
+                            "SOP-MKT-ADM005 - Pembuatan Laporan Aktivitas & Kinerja Pemasaran Berkala"
+                        ]
+                    }
+                ]
+            },
+            {
+                bidang: "VISUAL MERCHANDISING (VM)",
+                categories: [
+                    {
+                        name: "Planning",
+                        code: "SOP-VM-PLN",
+                        items: [
+                            "SOP-VM-PLN001 - Penyusunan Kalender & Rencana Visual Merchandising Tahunan/Bulanan",
+                            "SOP-VM-PLN002 - Perencanaan Tema & Konsep Visual untuk Kampanye Promosi",
+                            "SOP-VM-PLN003 - Analisis Denah Toko & Perencanaan Layout Zona Produk (Product Zoning)",
+                            "SOP-VM-PLN004 - Perencanaan & Penganggaran untuk Props dan Display Baru",
+                            "SOP-VM-PLN005 - Benchmarking & Riset Trend Visual Merchandising Retail"
+                        ]
+                    },
+                    {
+                        name: "Design",
+                        code: "SOP-VM-DGN",
+                        items: [
+                            "SOP-VM-DGN001 - Briefing & Permintaan Pekerjaan Desain (Design Request Form)",
+                            "SOP-VM-DGN002 - Perancangan & Produksi Materi Signage & Price Tag",
+                            "SOP-VM-DGN003 - Desain Banner, Poster, & Backdrop Promosi untuk In-Store & Digital",
+                            "SOP-VM-DGN004 - Desain Katalog, Brosur, & Flyer",
+                            "SOP-VM-DGN005 - Desain Kemasan & Label Produk Private Label",
+                            "SOP-VM-DGN006 - Desain Uniform & Atribut Karyawan",
+                            "SOP-VM-DGN007 - Proses Review & Approval Karya Desain (Design Approval Workflow)",
+                            "SOP-VM-DGN008 - Pengelolaan & Penyimpanan Aset Digital (Digital Asset Management)"
+                        ]
+                    },
+                    {
+                        name: "Execution",
+                        code: "SOP-VM-EXE",
+                        items: [
+                            "SOP-VM-EXE001 - Pemasangan & Rotasi Signage & Promosi Visual",
+                            "SOP-VM-EXE002 - Penataan & Perawatan Display Produk (Window & In-Store Display)",
+                            "SOP-VM-EXE003 - Standarisasi Penataan Rak & Gondola (Planogram Execution)",
+                            "SOP-VM-EXE004 - Pemasangan & Perawatan Dekorasi & Props",
+                            "SOP-VM-EXE005 - Instalasi & Pemeliharaan Display Lighting"
+                        ]
+                    },
+                    {
+                        name: "Operations",
+                        code: "SOP-VM-OPS",
+                        items: [
+                            "SOP-VM-OPS001 - Pengadaan & Pengelolaan Inventory Props & Display",
+                            "SOP-VM-OPS002 - Perawatan, Perbaikan, & Penyimpanan Props",
+                            "SOP-VM-OPS003 - Distribusi & Instalasi Materi Visual ke Semua Cabang",
+                            "SOP-VM-OPS004 - Koordinasi dengan Tim Toko untuk Implementasi VM",
+                            "SOP-VM-OPS005 - Pengelolaan & Pemasangan Instore Radio & Audio Visual"
+                        ]
+                    },
+                    {
+                        name: "Evaluation",
+                        code: "SOP-VM-EVL",
+                        items: [
+                            "SOP-VM-EVL001 - Audit & Evaluasi Kepatuhan VM di Semua Cabang (VM Audit Checklist)",
+                            "SOP-VM-EVL002 - Pengukuran Dampak Visual Merchandising terhadap Penjualan",
+                            "SOP-VM-EVL003 - Pelaporan & Dokumentasi Hasil Implementasi VM",
+                            "SOP-VM-EVL004 - Feedback Loop & Perbaikan Berkelanjutan untuk Desain & Implementasi"
+                        ]
+                    }
+                ]
+            },
+            {
+                bidang: "SECURITY",
+                categories: [
+                    {
+                        name: "Operations",
+                        code: "SOP-SEC-OPS",
+                        items: [
+                            "SOP-SEC-OPS001 - Serah Terima Jabatan (Sergap) Antar Petugas Sekuriti",
+                            "SOP-SEC-OPS002 - Patroli Berkala di Area Dalam dan Luar Gedung",
+                            "SOP-SEC-OPS003 - Pengawasan melalui CCTV dan Peralatan Monitoring Lainnya",
+                            "SOP-SEC-OPS004 - Pengelolaan & Operasional Posko Sekuriti",
+                            "SOP-SEC-OPS005 - Pengawasan & Pencatatan Kegiatan Kebersihan dan Tenaga Kerja Kontraktor"
+                        ]
+                    },
+                    {
+                        name: "Access Control",
+                        code: "SOP-SEC-ACC",
+                        items: [
+                            "SOP-SEC-ACC001 - Pengendalian Akses Keluar Masuk Karyawan dan Tamu",
+                            "SOP-SEC-ACC002 - Pencatatan & Pengawasan Keluar Masuk Kendaraan",
+                            "SOP-SEC-ACC003 - Pemeriksaan & Pengeluaran Barang (Barang Bawa Keluar/Pass System)",
+                            "SOP-SEC-ACC004 - Pengelolaan & Distribusi Kunci Akses Area Tertentu",
+                            "SOP-SEC-ACC005 - Penanganan & Pencatatan Tamu dan Vendors"
+                        ]
+                    },
+                    {
+                        name: "Asset & Inventory Security",
+                        code: "SOP-SEC-AST",
+                        items: [
+                            "SOP-SEC-AST001 - Pengamanan Fisik Gedung, Perimeter, dan Area Parkir",
+                            "SOP-SEC-AST002 - Pengawasan & Pengamanan Area Penyimpanan Barang (Gudang)",
+                            "SOP-SEC-AST003 - Pengamanan & Monitoring Aset Bernilai Tinggi",
+                            "SOP-SEC-AST004 - Pengawasan & Pencegahan Kehilangan Barang (Loss Prevention)",
+                            "SOP-SEC-AST005 - Pengamanan Kendaraan Karyawan dan Konsumen di Area Parkir"
+                        ]
+                    },
+                    {
+                        name: "Emergency Response",
+                        code: "SOP-SEC-EMG",
+                        items: [
+                            "SOP-SEC-EMG001 - Prosedur Tanggap Darurat Kebakaran",
+                            "SOP-SEC-EMG002 - Penanganan Keadaan Darurat Medis (P3K & Evakuasi)",
+                            "SOP-SEC-EMG003 - Penanganan Ancaman & Gangguan Keamanan (Pencurian, Perkelahian, Unjuk Rasa)",
+                            "SOP-SEC-EMG004 - Prosedur Evakuasi Gedung",
+                            "SOP-SEC-EMG005 - Koordinasi dengan Aparat Keamanan (Kepolisian, Pemadam)"
+                        ]
+                    },
+                    {
+                        name: "Administration & Reporting",
+                        code: "SOP-SEC-ADM",
+                        items: [
+                            "SOP-SEC-ADM001 - Pembuatan & Pengisian Laporan Harian (Security Daily Report)",
+                            "SOP-SEC-ADM002 - Pembuatan Laporan Insiden & Pelanggaran Keamanan (Incident Report)",
+                            "SOP-SEC-ADM003 - Pencatatan & Pelaporan Kondisi Peralatan Sekuriti",
+                            "SOP-SEC-ADM004 - Administrasi & Pengarsipan Dokumen Keamanan",
+                            "SOP-SEC-ADM005 - Briefing & Koordinasi Harian/Mingguan Tim Sekuriti"
+                        ]
+                    },
+                    {
+                        name: "Violation Handling",
+                        code: "SOP-SEC-VIO",
+                        items: [
+                            "SOP-SEC-VIO001 - Penanganan & Pencatatan Pelanggaran Prosedur oleh Karyawan",
+                            "SOP-SEC-VIO002 - Penanganan & Pencatatan Pelanggaran oleh Tamu dan Pihak Luar",
+                            "SOP-SEC-VIO003 - Proses Pemeriksaan & Penanganan Dugaan Kecurangan (Fraud)",
+                            "SOP-SEC-VIO004 - Pengawasan & Pencegahan Mark Up Harga oleh Oknum"
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // ===============================
+        // FUNGSI KONVERSI NAMA FILE - DIPERBAIKI
+        // ===============================
+        function convertToFileName(sopCode) {
+            // Format: "SOP-PB-001" → "Dokumen SOP-PB-001.html"
+            // Hapus spasi dan ambil bagian kode SOP saja
+            const codeOnly = sopCode.split(' ')[0];
+            return `Dokumen ${codeOnly}.html`;
+        }
+
+        // ===============================
+        // FUNGSI OPEN SOP DETAIL - DIPERBAIKI
+        // ===============================
+        function openSOPDetail(fileName) {
+            // Cek apakah file tersedia
+            const fileExists = checkFileExists(fileName);
+            
+            if (fileExists) {
+                // Buka file di tab baru
+                const newTab = window.open(fileName, '_blank');
+                if (newTab) {
+                    newTab.focus();
+                } else {
+                    // Fallback jika popup diblokir
+                    alert(`Popup diblokir. Silakan izinkan popup untuk membuka file: ${fileName}`);
+                    window.location.href = fileName;
+                }
+            } else {
+                // File tidak ditemukan
+                alert(`File ${fileName} tidak ditemukan. Hubungi administrator.`);
+                
+                // Fallback: Coba buka dengan format alternatif
+                const alternativeName = fileName.replace('Dokumen ', '');
+                const fallbackTab = window.open(alternativeName, '_blank');
+                if (fallbackTab) {
+                    fallbackTab.focus();
+                }
+            }
+        }
+
+        // ===============================
+        // FUNGSI CEK KETERSEDIAAN FILE
+        // ===============================
+        function checkFileExists(fileName) {
+            // Daftar file yang tersedia berdasarkan DaftarFile.txt
+            const availableFiles = [
+                "Dokumen SOP-PB-001.html",
+                "Dokumen SOP-PB-002.html",
+                "Dokumen SOP-PB-003.html",
+                "Dokumen SOP-PB-004.html",
+                "Dokumen SOP-PB-005.html",
+                "Dokumen SOP-PB-006.html",
+                "Dokumen SOP-PB-007.html",
+                "Dokumen SOP-PB-008.html",
+                "Dokumen SOP-PB-009.html",
+                "Dokumen SOP-PB-010.html",
+                "Dokumen SOP-PB-011.html",
+                "Dokumen SOP-PB-012.html",
+                "Dokumen SOP-PB-013.html",
+                "Dokumen SOP-PB-014.html",
+                "Dokumen SOP-PB-015.html",
+                "Dokumen SOP-PB-016.html",
+                "Dokumen SOP-PB-017.html",
+                "Dokumen SOP-PB-018.html",
+                "Dokumen SOP-PB-019.html",
+                "Dokumen SOP-PB-020.html",
+                "Dokumen SOP-PB-021.html",
+                "Dokumen SOP-PB-022.html",
+                "Dokumen SOP-PB-023.html",
+                "Dokumen SOP-PB-024.html",
+                "Dokumen SOP-PB-025.html",
+                "Dokumen SOP-PB-026.html",
+                "Dokumen SOP-PB-027.html",
+                "Dokumen SOP-PB-028.html",
+                "Dokumen SOP-PB-029.html",
+                "Dokumen SOP-PB-030.html",
+                "Dokumen SOP-PB-031.html",
+                "Dokumen SOP-PB-032.html",
+                "Dokumen SOP-PB-033.html",
+                "Dokumen SOP-PB-034.html",
+                "Dokumen SOP-PB-035.html",
+                "Dokumen SOP-PB-036.html",
+                "Dokumen SOP-PB-037.html",
+                "Dokumen SOP-PB-038.html",
+                "Dokumen SOP-PB-039.html",
+                "Dokumen SOP-PB-040.html",
+                "Dokumen SOP-PB-041.html",
+                "Dokumen SOP-PB-042.html"
+            ];
+            
+            return availableFiles.includes(fileName);
+        }
+
+        function generateSOPCards(data) {
+            const container = document.getElementById('sopContainer');
+            container.innerHTML = '';
+
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <h3>Tidak ada hasil yang ditemukan</h3>
+                        <p>Coba gunakan kata kunci lain atau reset pencarian</p>
+                    </div>
+                `;
+                return;
+            }
+
+            data.forEach((bidang, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header" data-index="${index}">
+                        <h2>${bidang.bidang}</h2>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="sop-list">
+                            ${bidang.categories.map(category => `
+                                <div class="sop-category">
+                                    <div class="sop-category-header">
+                                        <span>${category.name} (${category.code})</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="sop-items">
+                                        ${category.items.map(item => {
+                                            const sopCode = item.split(' - ')[0];
+                                            const sopName = item.split(' - ')[1];
+                                            const fileName = convertToFileName(sopCode);
+                                            return `
+                                                <div class="sop-item">
+                                                    <div class="sop-code" onclick="openSOPDetail('${fileName}')">
+                                                        ${sopCode}
+                                                    </div>
+                                                    <div class="sop-name" onclick="openSOPDetail('${fileName}')">
+                                                        ${sopName}
+                                                    </div>
+                                                </div>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Add event listeners to card headers
+            document.querySelectorAll('.card-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Close all other cards
+                    document.querySelectorAll('.card-content').forEach(item => {
+                        if (item !== content) {
+                            item.classList.remove('active');
+                            item.previousElementSibling.classList.remove('active');
+                            item.previousElementSibling.querySelector('i').classList.remove('fa-chevron-up');
+                            item.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
+                        }
+                    });
+                    
+                    // Toggle current card
+                    content.classList.toggle('active');
+                    this.classList.toggle('active');
+                    
+                    if (content.classList.contains('active')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+
+            // Add event listeners to category headers
+            document.querySelectorAll('.sop-category-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const items = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    items.classList.toggle('active');
+                    this.classList.toggle('active');
+                    
+                    if (items.classList.contains('active')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+        }
+
+        function filterSOPs(searchTerm) {
+            const filteredData = [];
+            
+            sopData.forEach(bidang => {
+                const filteredBidang = { ...bidang, categories: [] };
+                
+                bidang.categories.forEach(category => {
+                    const filteredCategory = { ...category, items: [] };
+                    
+                    // Check if category name matches
+                    const categoryMatch = category.name.toLowerCase().includes(searchTerm) || 
+                                          category.code.toLowerCase().includes(searchTerm);
+                    
+                    // Filter items
+                    category.items.forEach(item => {
+                        if (item.toLowerCase().includes(searchTerm)) {
+                            filteredCategory.items.push(item);
+                        }
+                    });
+                    
+                    // Add category if it has matching items or category name matches
+                    if (filteredCategory.items.length > 0 || categoryMatch) {
+                        filteredBidang.categories.push(filteredCategory);
+                    }
+                });
+                
+                // Add bidang if it has matching categories
+                if (filteredBidang.categories.length > 0) {
+                    filteredData.push(filteredBidang);
+                }
+            });
+            
+            return filteredData;
+        }
+
+        function resetSOPView() {
+            document.getElementById('searchInput').value = '';
+            generateSOPCards(sopData);
+        }
+
+        function initializeSOPSystem() {
+            generateSOPCards(sopData);
+            
+            document.getElementById('searchBtn').addEventListener('click', function() {
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+                if (searchTerm) {
+                    const filteredData = filterSOPs(searchTerm);
+                    generateSOPCards(filteredData);
+                }
+            });
+            
+            document.getElementById('searchInput').addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    document.getElementById('searchBtn').click();
+                }
+            });
+            
+            document.getElementById('resetBtn').addEventListener('click', resetSOPView);
+        }
+    </script>
+</body>
+</html>

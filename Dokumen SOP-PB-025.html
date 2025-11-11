@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Complain Handling dan Resolusi Masalah - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">COMPLAIN HANDLING DAN RESOLUSI MASALAH - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-025</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses penanganan complain dan resolusi masalah guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Penanganan complain yang cepat, efektif, dan konsisten dari semua pihak</td>
+                    </tr>
+                    <tr>
+                        <td>Kepuasan pelanggan melalui resolusi masalah yang memuaskan</td>
+                    </tr>
+                    <tr>
+                        <td>Peningkatan kualitas produk dan layanan melalui analisis akar masalah</td>
+                    </tr>
+                    <tr>
+                        <td>Pencegahan terulangnya masalah yang sama di masa depan</td>
+                    </tr>
+                    <tr>
+                        <td>Dokumentasi yang lengkap untuk analisis trend dan improvement</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Proses complain handling yang efektif dapat meningkatkan customer retention rate hingga 35% dan mengurangi biaya handling complain hingga 40% melalui sistem yang terstruktur.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh jenis complain dan masalah dari berbagai sumber:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-box-open"></i>
+                                <h3>Complain Kualitas</h3>
+                                <p>Masalah terkait kualitas produk dan spesifikasi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-truck"></i>
+                                <h3>Complain Pengiriman</h3>
+                                <p>Masalah keterlambatan dan kerusakan selama pengiriman</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice"></i>
+                                <h3>Complain Administratif</h3>
+                                <p>Masalah dokumen, invoice, dan proses administrasi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>Complain Layanan</h3>
+                                <p>Masalah pelayanan dan komunikasi dengan supplier</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Customer Service Manager:</strong> Koordinasi overall complain handling</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complain Handling Officer:</strong> Penanganan complain harian dan dokumentasi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality Assurance Team:</strong> Investigasi teknis complain kualitas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Logistics Coordinator:</strong> Penanganan complain pengiriman</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Officer:</strong> Koordinasi dengan supplier untuk resolusi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Relationship Manager:</strong> Eskalasi complain ke level management supplier</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-headset"></i>
+                                <h3>Complain Ticket</h3>
+                                <p>Dokumen resmi pencatatan complain dengan nomor unik</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-search"></i>
+                                <h3>Root Cause Analysis</h3>
+                                <p>Proses investigasi untuk menemukan penyebab utama masalah</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tasks"></i>
+                                <h3>Corrective Action</h3>
+                                <p>Tindakan perbaikan untuk mengatasi masalah yang terjadi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>Preventive Action</h3>
+                                <p>Tindakan pencegahan untuk menghindari terulangnya masalah</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES COMPLAIN HANDLING DAN RESOLUSI MASALAH</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Penerimaan dan Registrasi Complain</div>
+                    </div>
+                    <p>Menerima complain melalui berbagai channel dan melakukan registrasi dengan nomor ticket unik</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Channel penerimaan:</strong> Email, telepon, sistem online, WhatsApp, kunjungan langsung, social media</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Initial Assessment dan Klasifikasi</div>
+                    </div>
+                    <p>Melakukan assessment awal dan mengklasifikasikan complain berdasarkan urgensi dan kompleksitas</p>
+                    <ul>
+                        <li>Urgency level assessment</li>
+                        <li>Complexity evaluation</li>
+                        <li>Impact analysis</li>
+                        <li>Department assignment</li>
+                        <li>Priority setting</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Investigasi dan Data Collection</div>
+                    </div>
+                    <p>Melakukan investigasi mendalam dan mengumpulkan data pendukung</p>
+                    <div class="content-box">
+                        <p><strong>Data collection:</strong> Purchase documents, delivery records, quality reports, photos, witness statements, product samples</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Root Cause Analysis</div>
+                    </div>
+                    <p>Menganalisis akar penyebab masalah menggunakan metodologi yang terstruktur</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Analysis methods:</strong> 5-Why analysis, fishbone diagram, Pareto analysis, fault tree analysis, process mapping</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Development Resolution Plan</div>
+                    </div>
+                    <p>Menyusun rencana resolusi yang komprehensif dengan timeline yang jelas</p>
+                    <ul>
+                        <li>Immediate action items</li>
+                        <li>Short-term solutions</li>
+                        <li>Long-term improvements</li>
+                        <li>Resource requirements</li>
+                        <li>Success criteria</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Implementation dan Communication</div>
+                    </div>
+                    <p>Melaksanakan rencana resolusi dan mengkomunikasikan progress ke complainant</p>
+                    <div class="content-box">
+                        <p><strong>Communication protocol:</strong> Regular updates, progress reporting, expectation management, solution presentation, satisfaction confirmation</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Verification dan Closure</div>
+                    </div>
+                    <p>Memverifikasi efektivitas solusi dan menutup complain setelah konfirmasi complainant</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Verification criteria:</strong> Problem resolution confirmation, complainant satisfaction, quality standards compliance, process improvement implementation</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Analysis dan Preventive Action</div>
+                    </div>
+                    <p>Menganalisis data complain untuk identifikasi trend dan implementasi preventive action</p>
+                    <div class="content-box">
+                        <p><strong>Preventive actions:</strong> Process improvement, training enhancement, system modification, supplier development, quality standard revision</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KATEGORI COMPLAIN SECTION -->
+        <div class="section">
+            <div class="section-title">## KATEGORI COMPLAIN DAN RESOLUTION TIMELINE</div>
+            <div class="section-content">
+                <p>Klasifikasi complain berdasarkan tingkat urgensi dan kompleksitas:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Kategori Complain</th>
+                            <th>Response Time</th>
+                            <th>Resolution Time</th>
+                            <th>Escalation Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Critical (P1)</strong></td>
+                            <td><span class="score score-low">≤ 2 jam</span></td>
+                            <td><span class="score score-low">≤ 24 jam</span></td>
+                            <td>Director Level</td>
+                        </tr>
+                        <tr>
+                            <td><strong>High (P2)</strong></td>
+                            <td><span class="score score-medium">≤ 4 jam</span></td>
+                            <td><span class="score score-medium">≤ 3 hari</span></td>
+                            <td>Manager Level</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Medium (P3)</strong></td>
+                            <td><span class="score score-high">≤ 8 jam</span></td>
+                            <td><span class="score score-high">≤ 7 hari</span></td>
+                            <td>Supervisor Level</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Low (P4)</strong></td>
+                            <td><span class="score score-high">≤ 24 jam</span></td>
+                            <td><span class="score score-high">≤ 14 hari</span></td>
+                            <td>Officer Level</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Informational</strong></td>
+                            <td><span class="score score-high">≤ 48 jam</span></td>
+                            <td><span class="score score-high">N/A</span></td>
+                            <td>Staff Level</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Critical Complain Criteria (P1):</strong></p>
+                    <ul>
+                        <li><strong>Safety Hazard:</strong> Produk berpotensi menyebabkan bahaya keselamatan</li>
+                        <li><strong>Business Disruption:</strong> Menghentikan operasional bisnis utama</li>
+                        <li><strong>Major Financial Impact:</strong> Kerugian > Rp 100 juta</li>
+                        <li><strong>Regulatory Violation:</strong> Melanggar ketentuan regulasi pemerintah</li>
+                        <li><strong>Reputation Risk:</strong> Berpotensi merusak reputasi perusahaan secara signifikan</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Resolution Methods berdasarkan Jenis Complain:</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>Quality Issues:</strong> Product replacement, credit note, rework, quality improvement plan</p>
+                        <p><strong>Delivery Problems:</strong> Expedited delivery, compensation, logistics process improvement</p>
+                        <p><strong>Pricing Disputes:</strong> Price adjustment, contract review, negotiation, terms revision</p>
+                        <p><strong>Service Complaints:</strong> Service recovery, training, process standardization, communication improvement</p>
+                        <p><strong>Documentation Errors:</strong> Document correction, system update, procedure enhancement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses complain handling dan resolusi masalah:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-ticket-alt"></i>
+                                <h3>FORM-PB-2501</h3>
+                                <p>Complain Registration Form</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-search"></i>
+                                <h3>FORM-PB-2502</h3>
+                                <p>Root Cause Analysis Worksheet</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tasks"></i>
+                                <h3>FORM-PB-2503</h3>
+                                <p>Corrective Action Plan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-2504</h3>
+                                <p>Complain Trend Analysis Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Complain:</strong></p>
+                    <ul>
+                        <li><strong>Complain Tickets:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Investigation Reports:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Resolution Records:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Quality Incident Reports:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Legal Complaint Documents:</strong> Disimpan 10 tahun setelah selesai</li>
+                        <li><strong>Customer Satisfaction Surveys:</strong> Disimpan 3 tahun</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">KPI (Key Performance Indicator):</h3>
+                    <ul>
+                        <li><strong>First Contact Resolution:</strong> ≥ 70%</li>
+                        <li><strong>Average Resolution Time:</strong> ≤ 5 hari kerja</li>
+                        <li><strong>Complain Satisfaction Rate:</strong> ≥ 90%</li>
+                        <li><strong>Repeat Complain Rate:</strong> ≤ 5%</li>
+                        <li><strong>Complain Reduction Trend:</strong> ≥ 15% year-over-year</li>
+                        <li><strong>Response Time Compliance:</strong> ≥ 95%</li>
+                        <li><strong>Preventive Action Implementation:</strong> ≥ 80% on-time</li>
+                        <li><strong>Cost of Poor Quality Reduction:</strong> ≥ 20% annually</li>
+                    </ul>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Customer Service Manager</th>
+                        <th width="25%">Quality Assurance Manager</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-025 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

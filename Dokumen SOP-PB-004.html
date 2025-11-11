@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Penyusunan Rencana Pembelian - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PENYUSUNAN RENCANA PEMBELIAN TAHUNAN/BULANAN - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-004</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses penyusunan rencana pembelian tahunan dan bulanan guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Ketersediaan barang yang kontinu sesuai kebutuhan pasar</td>
+                    </tr>
+                    <tr>
+                        <td>Optimasi alokasi anggaran dan sumber daya perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Koordinasi yang efektif antar departemen terkait</td>
+                    </tr>
+                    <tr>
+                        <td>Minimalisasi risiko overstock dan stockout</td>
+                    </tr>
+                    <tr>
+                        <td>Pencapaian target penjualan dan profitabilitas</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Rencana pembelian yang baik dapat meningkatkan inventory turnover hingga 30% dan mengurangi biaya penyimpanan hingga 25%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses penyusunan rencana pembelian untuk semua kategori bahan bangunan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-calendar-alt"></i>
+                                <h3>Rencana Tahunan</h3>
+                                <p>Perencanaan strategis untuk 12 bulan ke depan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-calendar-week"></i>
+                                <h3>Rencana Bulanan</h3>
+                                <p>Perencanaan operasional bulanan</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-sync-alt"></i>
+                                <h3>Rolling Forecast</h3>
+                                <p>Update rencana 3 bulan berjalan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-adjust"></i>
+                                <h3>Plan vs Actual</h3>
+                                <p>Monitoring dan evaluasi kinerja</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Direktur:</strong> Approval rencana pembelian akhir</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Pembelian:</strong> Koordinator penyusunan rencana</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Demand Planner:</strong> Penyedia data forecast dan analisis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Penjualan:</strong> Input target penjualan dan market intelligence</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Gudang:</strong> Data kapasitas dan inventory level</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance:</strong> Penyedia data anggaran dan constraint</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chess-board"></i>
+                                <h3>Annual Purchase Plan</h3>
+                                <p>Rencana pembelian strategis untuk periode 1 tahun</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tasks"></i>
+                                <h3>Monthly Purchase Plan</h3>
+                                <p>Rencana pembelian operasional bulanan</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Purchase Budget</h3>
+                                <p>Alokasi anggaran untuk aktivitas pembelian</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Purchase Calendar</h3>
+                                <p>Jadwal timeline aktivitas pembelian</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PENYUSUNAN RENCANA PEMBELIAN</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Kick-off Meeting dan Timeline Setting</div>
+                    </div>
+                    <p>Mengadakan rapat kick-off dan menetapkan timeline penyusunan rencana</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Timeline:</strong> Rencana tahunan dimulai Oktober, rencana bulanan dimulai 3 minggu sebelum periode</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Pengumpulan Data dan Input</div>
+                    </div>
+                    <p>Mengumpulkan data dari semua departemen terkait</p>
+                    <ul>
+                        <li>Sales forecast dari tim penjualan</li>
+                        <li>Budget constraint dari finance</li>
+                        <li>Inventory data dari gudang</li>
+                        <li>Market intelligence dari marketing</li>
+                        <li>Supplier capability dari purchasing</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Analisis dan Konsolidasi Data</div>
+                    </div>
+                    <p>Menganalisis dan mengkonsolidasikan semua data input</p>
+                    <div class="content-box">
+                        <p><strong>Analisis yang dilakukan:</strong> Gap analysis, risk assessment, opportunity identification, constraint analysis</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Penyusunan Draft Rencana</div>
+                    </div>
+                    <p>Menyusun draft rencana pembelian berdasarkan analisis data</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Komponen draft:</strong> Quantity plan, value plan, timing schedule, supplier allocation, risk mitigation</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Cross-Functional Review</div>
+                    </div>
+                    <p>Mengadakan rapat review dengan semua departemen terkait</p>
+                    <ul>
+                        <li>Alignment dengan sales target</li>
+                        <li>Feasibility check dengan operations</li>
+                        <li>Budget validation dengan finance</li>
+                        <li>Risk assessment dengan management</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Revisi dan Finalisasi</div>
+                    </div>
+                    <p>Melakukan revisi berdasarkan feedback dan menyelesaikan rencana final</p>
+                    <div class="content-box">
+                        <p><strong>Proses finalisasi:</strong> Incorporate feedback, final adjustment, document preparation, approval workflow</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Management Approval</div>
+                    </div>
+                    <p>Mengajukan rencana final untuk mendapatkan approval manajemen</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Approval hierarchy:</strong> Manager Pembelian → Finance Director → General Director</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Komunikasi dan Implementasi</div>
+                    </div>
+                    <p>Mengkomunikasikan rencana yang disetujui dan memulai implementasi</p>
+                    <div class="content-box">
+                        <p><strong>Proses komunikasi:</strong> Department briefing, system update, KPI setting, monitoring mechanism</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KOMPONEN RENCANA SECTION -->
+        <div class="section">
+            <div class="section-title">## KOMPONEN RENCANA PEMBELIAN</div>
+            <div class="section-content">
+                <p>Struktur lengkap rencana pembelian tahunan/bulanan:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Komponen</th>
+                            <th>Deskripsi</th>
+                            <th>Detail</th>
+                            <th>Frekuensi Update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Executive Summary</strong></td>
+                            <td>Ringkasan eksekutif rencana pembelian</td>
+                            <td>Key highlights, objectives, major assumptions</td>
+                            <td><span class="score score-high">Tahunan</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sales Forecast</strong></td>
+                            <td>Proyeksi penjualan per produk</td>
+                            <td>Volume, value, growth rate, seasonality</td>
+                            <td><span class="score score-medium">Bulanan</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Purchase Quantity Plan</strong></td>
+                            <td>Rencana kuantitas pembelian</td>
+                            <td>SKU-level planning, safety stock, reorder point</td>
+                            <td><span class="score score-medium">Bulanan</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Purchase Value Plan</strong></td>
+                            <td>Rencana nilai pembelian</td>
+                            <td>Budget allocation, cost projection, payment terms</td>
+                            <td><span class="score score-medium">Bulanan</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supplier Allocation</strong></td>
+                            <td>Alokasi pembelian ke supplier</td>
+                            <td>Supplier segmentation, volume commitment, contract terms</td>
+                            <td><span class="score score-low">Triwulanan</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Timeline Schedule</strong></td>
+                            <td>Jadwal pelaksanaan pembelian</td>
+                            <td>Purchase calendar, delivery schedule, milestone</td>
+                            <td><span class="score score-medium">Bulanan</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="content-box important">
+                <p><i class="fas fa-calculator"></i> <strong>Parameter Perencanaan:</strong></p>
+                <ul>
+                    <li><strong>Service Level Target:</strong> ≥95% untuk semua produk</li>
+                    <li><strong>Stock Turnover Target:</strong> ≥6x per tahun</li>
+                    <li><strong>Safety Stock Coverage:</strong> 2-4 minggu tergantung lead time</li>
+                    <li><strong>Budget Utilization:</strong> 90-110% (flexibility margin)</li>
+                    <li><strong>Plan Accuracy:</strong> ≥85% (vs actual)</li>
+                </ul>
+            </div>
+
+            <div class="content-box">
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Timeline Penyusunan Rencana:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Rencana Tahunan:</strong> Penyusunan Oktober-November, Approval Desember, Implementasi Januari</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rencana Bulanan:</strong> Penyusunan minggu ke-3 bulan sebelumnya, Approval minggu ke-4, Implementasi bulan berjalan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rolling Forecast:</strong> Update setiap bulan untuk 3 bulan ke depan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plan Review:</strong> Triwulanan dengan management committee</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses penyusunan rencana pembelian:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>FORM-PB-401</h3>
+                                <p>Template Rencana Pembelian Tahunan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-calendar-plus"></i>
+                                <h3>FORM-PB-402</h3>
+                                <p>Template Rencana Pembelian Bulanan</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>FORM-PB-403</h3>
+                                <p>Purchase Plan vs Actual Report</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>FORM-PB-404</h3>
+                                <p>Purchase Plan Approval Form</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-database"></i> <strong>Retensi Dokumen:</strong></p>
+                    <table class="content-table">
+                        <tr>
+                            <td><strong>Rencana Tahunan:</strong> Disimpan 3 tahun</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rencana Bulanan:</strong> Disimpan 2 tahun</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Approval Document:</strong> Disimpan 3 tahun</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plan vs Actual Report:</strong> Disimpan 2 tahun</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Plan Accuracy (Quantity):</strong> ≥85%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plan Accuracy (Value):</strong> ≥90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Budget Adherence:</strong> 95-105%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Service Level Achievement:</strong> ≥95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stock Turnover:</strong> ≥6x per tahun</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Excess Stock Ratio:</strong> ≤8%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stockout Frequency:</strong> ≤2%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plan Compliance:</strong> ≥90%</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-004 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

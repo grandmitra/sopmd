@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Retur dan Penolakan Barang - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        .criteria-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .criteria-table th {
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .criteria-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .criteria-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .criteria-table th {
+                background: var(--primary) !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">RETUR DAN PENOLAKAN BARANG - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-013</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses retur dan penolakan barang guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Penanganan yang cepat dan tepat untuk barang yang tidak sesuai spesifikasi</td>
+                    </tr>
+                    <tr>
+                        <td>Perlindungan terhadap kerugian finansial akibat barang reject</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap ketentuan kontrak dan garansi supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Dokumentasi yang lengkap untuk proses klaim dan audit</td>
+                    </tr>
+                    <tr>
+                        <td>Peningkatan kualitas melalui feedback loop ke supplier</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Proses retur yang efisien dapat mengurangi kerugian finansial hingga 25% dan meningkatkan kepuasan supplier hingga 30%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses retur dan penolakan untuk berbagai jenis bahan bangunan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-times-circle"></i>
+                                <h3>Barang Reject</h3>
+                                <p>Barang cacat produksi dan tidak memenuhi standar kualitas</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h3>Barang Rusak</h3>
+                                <p>Barang yang rusak selama pengiriman atau penanganan</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>Salah Spesifikasi</h3>
+                                <p>Barang tidak sesuai dengan yang dipesan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-undo-alt"></i>
+                                <h3>Excess Stock</h3>
+                                <p>Kelebihan stok yang perlu dikembalikan</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Warehouse Supervisor:</strong> Penerimaan dan inspeksi barang masuk</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality Controller:</strong> Validasi kualitas dan spesifikasi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Staff:</strong> Koordinasi dengan supplier untuk retur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Logistics Coordinator:</strong> Pengaturan transportasi retur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Officer:</strong> Proses credit note dan pembayaran</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Manager:</strong> Approval untuk retur bernilai tinggi</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-undo"></i>
+                                <h3>Goods Return Note</h3>
+                                <p>Dokumen resmi untuk pengembalian barang ke supplier</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice"></i>
+                                <h3>Credit Note</h3>
+                                <p>Dokumen kredit dari supplier untuk barang yang diretur</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>Rejection Report</h3>
+                                <p>Laporan penolakan barang yang tidak memenuhi standar</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-truck-loading"></i>
+                                <h3>Return Delivery Order</h3>
+                                <p>Surat jalan untuk pengiriman kembali ke supplier</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES RETUR DAN PENOLAKAN BARANG</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Identifikasi dan Inspeksi Barang</div>
+                    </div>
+                    <p>Warehouse staff mengidentifikasi barang yang perlu diretur melalui quality check</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Kriteria identifikasi:</strong> Physical damage, specification mismatch, quality defect, quantity discrepancy</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Dokumentasi dan Foto Bukti</div>
+                    </div>
+                    <p>Mendokumentasikan kondisi barang dengan foto dan catatan detail</p>
+                    <ul>
+                        <li>Foto close-up kerusakan/cacat</li>
+                        <li>Foto barcode dan label</li>
+                        <li>Foto packaging condition</li>
+                        <li>Catatan waktu dan lokasi</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Pengisian Form Retur</div>
+                    </div>
+                    <p>Mengisi Goods Return Note (GRN) dengan data lengkap</p>
+                    <div class="content-box">
+                        <p><strong>Data GRN:</strong> Supplier info, PO number, item details, quantity, reason code, supporting evidence</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Approval Internal</div>
+                    </div>
+                    <p>Mengajukan GRN untuk mendapatkan approval dari purchasing manager</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Approval hierarchy:</strong> Warehouse supervisor → Quality controller → Purchasing staff → Purchasing manager (jika > Rp 50 juta)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Koordinasi dengan Supplier</div>
+                    </div>
+                    <p>Purchasing staff mengkoordinasikan retur dengan supplier</p>
+                    <ul>
+                        <li>Notification via email/phone</li>
+                        <li>GRN sharing dengan supplier</li>
+                        <li>Return authorization number</li>
+                        <li>Pick-up/delivery arrangement</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Proses Pengembalian Fisik</div>
+                    </div>
+                    <p>Logistics coordinator mengatur pengembalian fisik barang</p>
+                    <div class="content-box">
+                        <p><strong>Proses pengembalian:</strong> Return DO preparation, goods packing, transportation arrangement, delivery tracking</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Konfirmasi Penerimaan Supplier</div>
+                    </div>
+                    <p>Memastikan supplier telah menerima dan memverifikasi barang retur</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Konfirmasi required:</strong> Supplier acceptance confirmation, credit note issuance, replacement arrangement jika applicable</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Proses Administrasi dan Follow-up</div>
+                    </div>
+                    <p>Finance officer memproses credit note dan update sistem</p>
+                    <div class="content-box">
+                        <p><strong>Administrative process:</strong> Credit note processing, inventory adjustment, payment reconciliation, supplier performance update</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KATEGORI RETUR SECTION -->
+        <div class="section">
+            <div class="section-title">## KATEGORI RETUR DAN PENANGANANNYA</div>
+            <div class="section-content">
+                <p>Klasifikasi jenis retur berdasarkan penyebab dan penanganannya:</p>
+                
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>Kategori Retur</th>
+                            <th>Penyebab</th>
+                            <th>Penanganan</th>
+                            <th>Timeline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Quality Defect</strong></td>
+                            <td>Cacat produksi, tidak memenuhi standar</td>
+                            <td><span class="score score-high">Full Replacement</span></td>
+                            <td>7-14 hari kerja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shipping Damage</strong></td>
+                            <td>Rusak selama pengiriman</td>
+                            <td><span class="score score-medium">Replacement/Insurance</span></td>
+                            <td>10-15 hari kerja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wrong Specification</strong></td>
+                            <td>Tidak sesuai dengan PO</td>
+                            <td><span class="score score-high">Full Return + Correct Item</span></td>
+                            <td>5-10 hari kerja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Over Delivery</strong></td>
+                            <td>Kelebihan quantity dari PO</td>
+                            <td><span class="score score-medium">Return Excess + Credit</span></td>
+                            <td>3-7 hari kerja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Late Delivery</strong></td>
+                            <td>Terlambat dari jadwal</td>
+                            <td><span class="score score-low">Penalty/Partial Rejection</span></td>
+                            <td>2-5 hari kerja</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-clock"></i> <strong>Time Limit untuk Retur:</strong></p>
+                    <ul>
+                        <li><strong>Quality Issues:</strong> 30 hari setelah penerimaan barang</li>
+                        <li><strong>Wrong Specification:</strong> 14 hari setelah penerimaan</li>
+                        <li><strong>Visible Damage:</strong> 3 hari kerja setelah penerimaan</li>
+                        <li><strong>Hidden Defects:</strong> 90 hari (tergantung warranty)</li>
+                        <li><strong>Excess Stock:</strong> 60 hari dengan kondisi original packaging</li>
+                    </ul>
+                </div>
+
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Area Penyimpanan Barang Retur:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Quarantine Area:</strong> Barang reject menunggu inspeksi QC</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Return Holding Area:</strong> Barang approved untuk retur menunggu pickup</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Return Area:</strong> Barang ready untuk dikembalikan ke supplier</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Disposal Area:</strong> Barang tidak dapat diretur (scrap/waste)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses retur dan penolakan barang:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-undo"></i>
+                                <h3>FORM-PB-1301</h3>
+                                <p>Goods Return Note (GRN)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-1302</h3>
+                                <p>Quality Inspection Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-truck-loading"></i>
+                                <h3>FORM-PB-1303</h3>
+                                <p>Return Delivery Order</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice"></i>
+                                <h3>FORM-PB-1304</h3>
+                                <p>Credit Note Request Form</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-database"></i> <strong>Retensi Dokumen Retur:</strong></p>
+                    <ul>
+                        <li><strong>Goods Return Note:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Inspection Reports:</strong> Disimpan 3 tahun</li>
+                        <li><strong>Credit Notes:</strong> Disimpan 7 tahun (pajak)</li>
+                        <li><strong>Photographic Evidence:</strong> Disimpan 2 tahun</li>
+                        <li><strong>Supplier Correspondence:</strong> Disimpan 3 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Return Processing Time:</strong> ≤ 7 hari kerja</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Credit Note Receipt Time:</strong> ≤ 10 hari kerja</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Return Accuracy Rate:</strong> ≥ 98%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Response Time:</strong> ≤ 3 hari kerja</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Return Value Recovery:</strong> ≥ 90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dispute Rate:</strong> ≤ 2%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Satisfaction (Internal):</strong> ≥ 85%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality Improvement Rate:</strong> ≥ 15% YoY</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-013 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

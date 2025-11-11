@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Pengendalian Budget Pembelian - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        .criteria-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .criteria-table th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .criteria-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .criteria-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .criteria-table tr:hover {
+            background: #f0f7f0;
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .criteria-table th {
+                background: var(--primary) !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PENGENDALIAN BUDGET PEMBELIAN - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-021</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses pengendalian budget pembelian guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Pengeluaran pembelian yang terkontrol dan sesuai dengan anggaran yang ditetapkan</td>
+                    </tr>
+                    <tr>
+                        <td>Efisiensi biaya melalui monitoring dan kontrol yang efektif</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap kebijakan keuangan dan approval hierarchy</td>
+                    </tr>
+                    <tr>
+                        <td>Optimalisasi cash flow melalui perencanaan pembelian yang terstruktur</td>
+                    </tr>
+                    <tr>
+                        <td>Akuntabilitas dalam pengelolaan dana perusahaan untuk aktivitas pembelian</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Pengendalian budget yang efektif dapat mengurangi pemborosan hingga 25% dan meningkatkan efisiensi biaya pembelian hingga 30% melalui proses yang terstruktur.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh aktivitas pengendalian budget untuk berbagai jenis pembelian:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-boxes"></i>
+                                <h3>Pembelian Barang Dagangan</h3>
+                                <p>Budget untuk pembelian stok bahan bangunan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tools"></i>
+                                <h3>Pembelian Asset</h3>
+                                <p>Budget untuk pembelian peralatan dan mesin</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>Pembelian Jasa</h3>
+                                <p>Budget untuk pembelian jasa dan kontrak kerja</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-cogs"></i>
+                                <h3>Pembelian Operasional</h3>
+                                <p>Budget untuk kebutuhan operasional harian</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Finance Director:</strong> Approval budget overall dan policy setting</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Manager:</strong> Pengendalian budget departemen pembelian</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Budget Controller:</strong> Monitoring dan reporting budget utilization</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Department Heads:</strong> Pengelolaan budget masing-masing departemen</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Officers:</strong> Compliance terhadap limit budget dalam PO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Internal Audit:</strong> Verifikasi kepatuhan terhadap kebijakan budget</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Budget Commitment</h3>
+                                <p>Dana yang telah dialokasikan untuk pembelian tertentu</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h3>Budget Overage</h3>
+                                <p>Kondisi dimana actual spending melebihi budget</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <h3>Purchase Requisition</h3>
+                                <p>Dokumen permintaan pembelian dengan budget allocation</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Budget Variance</h3>
+                                <p>Selisih antara budget yang direncanakan dan actual spending</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PENGENDALIAN BUDGET PEMBELIAN</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Annual Budget Planning</div>
+                    </div>
+                    <p>Menyusun rencana budget pembelian tahunan berdasarkan forecast penjualan dan inventory plan</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Budget components:</strong> Capital expenditure, operational expenditure, inventory budget, contingency fund</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Monthly Budget Allocation</div>
+                    </div>
+                    <p>Mengalokasikan budget bulanan berdasarkan rencana tahunan dan kebutuhan operasional</p>
+                    <ul>
+                        <li>Department budget breakdown</li>
+                        <li>Product category allocation</li>
+                        <li>Priority setting</li>
+                        <li>Contingency planning</li>
+                        <li>Cash flow consideration</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Purchase Requisition dengan Budget Check</div>
+                    </div>
+                    <p>Melakukan pengecekan ketersediaan budget sebelum membuat purchase requisition</p>
+                    <div class="content-box">
+                        <p><strong>Budget validation:</strong> Available budget check, department allocation, project budget, approval workflow</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Budget Commitment Recording</div>
+                    </div>
+                    <p>Mencatat komitmen budget pada sistem setelah purchase requisition disetujui</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Commitment process:</strong> Budget reservation, available balance update, commitment tracking, budget hold</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">PO Creation dengan Budget Control</div>
+                    </div>
+                    <p>Membuat Purchase Order dengan kontrol budget dan approval sesuai limit</p>
+                    <ul>
+                        <li>Budget availability verification</li>
+                        <li>Price comparison analysis</li>
+                        <li>Approval workflow enforcement</li>
+                        <li>Budget commitment update</li>
+                        <li>Documentation completeness</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Real-time Budget Monitoring</div>
+                    </div>
+                    <p>Memantau utilisasi budget secara real-time melalui sistem terintegrasi</p>
+                    <div class="content-box">
+                        <p><strong>Monitoring tools:</strong> Budget dashboard, spending alerts, variance reports, forecast updates</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Budget Variance Analysis</div>
+                    </div>
+                    <p>Menganalisis selisih budget dan mengambil tindakan korektif jika diperlukan</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Variance analysis:</strong> Spending vs budget comparison, root cause analysis, corrective actions, budget revision</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Monthly Budget Review dan Reporting</div>
+                    </div>
+                    <p>Melakukan review bulanan dan menyiapkan laporan utilisasi budget</p>
+                    <div class="content-box">
+                        <p><strong>Reporting outputs:</strong> Budget utilization report, variance analysis, forecast accuracy, recommendation for adjustment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- LIMIT APPROVAL SECTION -->
+        <div class="section">
+            <div class="section-title">## LIMIT APPROVAL DAN BUDGET AUTHORITY</div>
+            <div class="section-content">
+                <p>Struktur limit approval berdasarkan nilai transaksi dan hierarki organisasi:</p>
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>Jabatan</th>
+                            <th>Limit Approval</th>
+                            <th>Jenis Pembelian</th>
+                            <th>Additional Requirements</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Purchasing Officer</strong></td>
+                            <td>Rp 25 Juta</td>
+                            <td>Regular Inventory</td>
+                            <td><span class="score score-low">Standard Procedure</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Senior Purchasing Officer</strong></td>
+                            <td>Rp 50 Juta</td>
+                            <td>Regular & Emergency</td>
+                            <td><span class="score score-medium">Budget Availability Check</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Purchasing Supervisor</strong></td>
+                            <td>Rp 100 Juta</td>
+                            <td>All Categories</td>
+                            <td><span class="score score-medium">Cost-Benefit Analysis</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Purchasing Manager</strong></td>
+                            <td>Rp 500 Juta</td>
+                            <td>Strategic Purchases</td>
+                            <td><span class="score score-high">Business Case Required</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Finance Director</strong></td>
+                            <td>Rp 2 Miliar</td>
+                            <td>Capital Expenditure</td>
+                            <td><span class="score score-high">Board Presentation</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Board of Directors</strong></td>
+                            <td>> Rp 2 Miliar</td>
+                            <td>Major Investments</td>
+                            <td><span class="score score-high">Full Business Case & Approval</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Budget Overage Handling Procedure:</strong></p>
+                    <ul>
+                        <li><strong>Overage ≤ 5%:</strong> Automatic approval dengan warning notification</li>
+                        <li><strong>Overage 5-10%:</strong> Required additional approval satu level di atas</li>
+                        <li><strong>Overage 10-15%:</strong> Required Finance Director approval dengan justification</li>
+                        <li><strong>Overage > 15%:</strong> Required Board approval dengan detailed business case</li>
+                        <li><strong>Emergency Overage:</strong> Special procedure dengan post-facto approval</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Budget Control Parameters:</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>Monthly Spending Limit:</strong> Maximum 10% of annual budget per bulan untuk regular purchases</p>
+                        <p><strong>Single Transaction Limit:</strong> Maximum 25% of monthly allocation untuk satu transaksi</p>
+                        <p><strong>Emergency Purchase Limit:</strong> Maximum 5% of annual budget untuk emergency purchases</p>
+                        <p><strong>Capital Expenditure Limit:</strong> Separate budget allocation dengan approval khusus</p>
+                        <p><strong>Contingency Fund Usage:</strong> Maximum 3% of total budget dengan double approval</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses pengendalian budget pembelian:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <h3>FORM-PB-2101</h3>
+                                <p>Purchase Requisition Form</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>FORM-PB-2102</h3>
+                                <p>Budget Utilization Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>FORM-PB-2103</h3>
+                                <p>Budget Variance Analysis</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-2104</h3>
+                                <p>Budget Overage Approval Form</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-database"></i> <strong>Retensi Dokumen Budget:</strong></p>
+                    <ul>
+                        <li><strong>Annual Budget Plans:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Budget Approval Documents:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Purchase Requisitions:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Budget Variance Reports:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Overage Approval Records:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Audit Trail Records:</strong> Disimpan permanen</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                    <table class="content-table">
+                        <tr>
+                            <td><strong>Budget Adherence Rate:</strong> ≥ 95%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Budget Forecast Accuracy:</strong> ≥ 90%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Overage Incident Rate:</strong> ≤ 3% of total transactions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Approval Cycle Time:</strong> ≤ 2 working days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost Savings vs Budget:</strong> ≥ 5% through negotiation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Budget Utilization Rate:</strong> 95-105% optimal range</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Emergency Purchase Ratio:</strong> ≤ 5% of total spend</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Budget Reporting Timeliness:</strong> 100% on schedule</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-021 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-PB-031 - Penggunaan Sistem Purchasing Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PENGGUNAAN SISTEM PURCHASING SOFTWARE</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-031</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan penggunaan sistem purchasing software guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Efisiensi proses procurement melalui otomatisasi dan digitalisasi</td>
+                    </tr>
+                    <tr>
+                        <td>Konsistensi data dan informasi dalam seluruh proses purchasing</td>
+                    </tr>
+                    <tr>
+                        <td>Transparansi dan akuntabilitas dalam pengelolaan pengadaan</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap kebijakan dan prosedur perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Optimalisasi penggunaan fitur dan modul sistem untuk meningkatkan produktivitas</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Implementasi sistem purchasing software yang efektif dapat mengurangi waktu proses procurement hingga 60% dan meningkatkan akurasi data hingga 95% melalui otomatisasi dan standarisasi.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh aspek penggunaan sistem purchasing software:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-user-shield"></i>
+                                <h3>User Management</h3>
+                                <p>Pengelolaan akses user dan role-based permissions</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h3>Purchase Requisition</h3>
+                                <p>Proses pengajuan dan approval permintaan pembelian</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice"></i>
+                                <h3>Purchase Order</h3>
+                                <p>Pembuatan dan pengelolaan purchase order digital</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>Reporting & Analytics</h3>
+                                <p>Pelaporan dan analisis data purchasing</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>System Administrator:</strong> Pengelolaan sistem dan user management</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Manager:</strong> Supervisi penggunaan sistem dan approval workflow</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Officer:</strong> Operasional harian sistem purchasing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IT Support:</strong> Technical support dan maintenance sistem</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Department User:</strong> Pengguna sistem untuk pengajuan kebutuhan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Officer:</strong> Integrasi sistem dengan modul finance</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-layer-group"></i>
+                                <h3>ERP System</h3>
+                                <p>Enterprise Resource Planning system terintegrasi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bolt"></i>
+                                <h3>Workflow Automation</h3>
+                                <p>Otomatisasi alur proses dan approval</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-database"></i>
+                                <h3>Master Data</h3>
+                                <p>Data referensi yang menjadi basis sistem</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-sync-alt"></i>
+                                <h3>System Integration</h3>
+                                <p>Integrasi dengan sistem lain perusahaan</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-info-circle"></i> <strong>Istilah Teknis Penting:</strong></p>
+                    <ul>
+                        <li><strong>UI/UX:</strong> User Interface/User Experience design</li>
+                        <li><strong>API:</strong> Application Programming Interface</li>
+                        <li><strong>Dashboard:</strong> Tampilan utama dengan informasi ringkas</li>
+                        <li><strong>Real-time Data:</strong> Data yang terupdate secara langsung</li>
+                        <li><strong>Cloud-based:</strong> Sistem berbasis komputasi awan</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PENGGUNAAN SISTEM PURCHASING SOFTWARE</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">User Registration dan Authentication</div>
+                    </div>
+                    <p>Proses registrasi user dan verifikasi identitas untuk akses sistem</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Proses authentication:</strong> Single Sign-On (SSO), Two-Factor Authentication (2FA), role-based access control</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Pengisian Purchase Requisition (PR)</div>
+                    </div>
+                    <p>User department mengisi form PR digital dengan data yang lengkap</p>
+                    <ul>
+                        <li>Item description dan specification</li>
+                        <li>Quantity dan unit of measure</li>
+                        <li>Required date dan delivery location</li>
+                        <li>Budget code dan cost center</li>
+                        <li>Justification dan supporting document</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Digital Approval Workflow</div>
+                    </div>
+                    <p>Proses approval PR melalui workflow otomatis sesuai hierarki</p>
+                    <div class="content-box">
+                        <p><strong>Approval routing:</strong> Department Head → Budget Controller → Purchasing Manager → Director (jika diperlukan)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Supplier Selection dan Quotation Management</div>
+                    </div>
+                    <p>Proses pemilihan supplier dan pengelolaan penawaran harga</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Fitur supplier management:</strong> Supplier database, performance rating, quotation comparison, historical data</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Purchase Order Creation</div>
+                    </div>
+                    <p>Pembuatan PO digital dengan template standar perusahaan</p>
+                    <ul>
+                        <li>Auto-generated PO number</li>
+                        <li>Standard terms and conditions</li>
+                        <li>Digital signature</li>
+                        <li>Auto-calculated amount</li>
+                        <li>Attachment management</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">PO Approval dan Distribution</div>
+                    </div>
+                    <p>Approval PO final dan distribusi ke supplier melalui sistem</p>
+                    <div class="content-box">
+                        <p><strong>Distribution channels:</strong> Email automation, supplier portal download, printed copy (jika diperlukan)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Order Tracking dan Monitoring</div>
+                    </div>
+                    <p>Pemantauan status order dan pengiriman secara real-time</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Tracking features:</strong> Order status, delivery timeline, milestone tracking, exception alert</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Goods Receipt dan Quality Check</div>
+                    </div>
+                    <p>Pencatatan penerimaan barang dan hasil quality inspection</p>
+                    <div class="content-box">
+                        <p><strong>GRN process:</strong> Barcode scanning, quantity verification, quality inspection recording, acceptance/rejection</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">9</div>
+                        <div class="step-title">Invoice Processing dan Payment</div>
+                    </div>
+                    <p>Proses matching invoice dengan PO dan GRN untuk pembayaran</p>
+                    <div class="content-box">
+                        <p><strong>3-way matching:</strong> PO vs Invoice vs GRN, exception handling, payment approval workflow</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">10</div>
+                        <div class="step-title">Reporting dan Performance Analysis</div>
+                    </div>
+                    <p>Generasi laporan dan analisis kinerja procurement</p>
+                    <div class="content-box">
+                        <p><strong>Reporting capabilities:</strong> Custom reports, dashboard analytics, performance metrics, trend analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MODUL SISTEM SECTION -->
+        <div class="section">
+            <div class="section-title">## MODUL SISTEM DAN FITUR UTAMA</div>
+            <div class="section-content">
+                <p>Klasifikasi modul sistem purchasing software dan fungsionalitas utama:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Modul Sistem</th>
+                            <th>Fungsi Utama</th>
+                            <th>User Access</th>
+                            <th>Integration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Requisition Management</strong></td>
+                            <td>Pengajuan dan approval PR</td>
+                            <td><span class="score score-high">All Users</span></td>
+                            <td>Budget System</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supplier Management</strong></td>
+                            <td>Database supplier dan performance</td>
+                            <td><span class="score score-medium">Purchasing Team</span></td>
+                            <td>CRM System</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Purchase Order</strong></td>
+                            <td>Pembuatan dan tracking PO</td>
+                            <td><span class="score score-medium">Purchasing Team</span></td>
+                            <td>Inventory System</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contract Management</strong></td>
+                            <td>Pengelolaan kontrak supplier</td>
+                            <td><span class="score score-low">Manager Level</span></td>
+                            <td>Legal System</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Analytics & Reporting</strong></td>
+                            <td>Laporan dan dashboard</td>
+                            <td><span class="score score-high">All Managers</span></td>
+                            <td>BI Tools</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Critical System Features:</strong></p>
+                    <ul>
+                        <li><strong>Mobile Accessibility:</strong> Akses sistem melalui mobile device</li>
+                        <li><strong>Real-time Notification:</strong> Notifikasi otomatis untuk setiap status change</li>
+                        <li><strong>Document Management:</strong> Penyimpanan dan retrieval dokumen digital</li>
+                        <li><strong>Audit Trail:</strong> Pencatatan lengkap semua aktivitas sistem</li>
+                        <li><strong>Custom Workflow:</strong> Kemampuan kustomisasi alur approval</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Security dan Access Control:</h3>
+                <div class="content-box">
+                    <p><strong>User Roles:</strong> Super Admin, Purchasing Manager, Purchasing Officer, Department User, Finance User, Read-only User</p>
+                    <p><strong>Access Levels:</strong> Full Access, Create & Edit, View Only, No Access</p>
+                    <p><strong>Data Security:</strong> Encryption, Regular Backup, Access Log, Session Timeout</p>
+                    <p><strong>Compliance:</strong> GDPR Compliance, Data Privacy, Audit Requirement</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan penggunaan sistem purchasing software:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-book"></i>
+                                <h3>FORM-PB-3101</h3>
+                                <p>User Access Request Form</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-question-circle"></i>
+                                <h3>FORM-PB-3102</h3>
+                                <p>System Issue Reporting</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-3103</h3>
+                                <p>System Performance Report</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-cogs"></i>
+                                <h3>FORM-PB-3104</h3>
+                                <p>System Enhancement Request</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Data Sistem:</strong></p>
+                    <ul>
+                        <li><strong>Transaction Data:</strong> Disimpan 7 tahun</li>
+                        <li><strong>User Activity Log:</strong> Disimpan 3 tahun</li>
+                        <li><strong>System Backup:</strong> Disimpan 1 tahun (incremental)</li>
+                        <li><strong>Audit Trail:</strong> Disimpan 10 tahun</li>
+                        <li><strong>User Data:</strong> Disimpan selama user aktif + 2 tahun</li>
+                        <li><strong>System Configuration:</strong> Version control permanen</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>System Uptime:</strong> ≥ 99.5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User Adoption Rate:</strong> ≥ 95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Accuracy:</strong> ≥ 98%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Process Cycle Time Reduction:</strong> ≥ 50%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>System Response Time:</strong> ≤ 3 detik</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Training Completion:</strong> 100%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Issue Resolution Time:</strong> ≤ 4 jam (critical)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User Satisfaction:</strong> ≥ 4.2/5</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">System Administrator</th>
+                        <th width="25%">Purchasing Manager</th>
+                        <th width="25%">IT Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-031 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

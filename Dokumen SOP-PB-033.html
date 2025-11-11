@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-PB-033 - Backup dan Keamanan Data Pembelian</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">BACKUP DAN KEAMANAN DATA PEMBELIAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-033</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses backup dan keamanan data pembelian guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Ketersediaan data pembelian yang kontinu dan dapat diakses kapan saja</td>
+                    </tr>
+                    <tr>
+                        <td>Perlindungan data sensitif pembelian dari ancaman keamanan siber</td>
+                    </tr>
+                    <tr>
+                        <td>Pemulihan data yang cepat dan efektif dalam situasi darurat</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap regulasi perlindungan data dan privasi</td>
+                    </tr>
+                    <tr>
+                        <td>Integritas dan keaslian data pembelian dari modifikasi tidak sah</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Implementasi sistem backup dan keamanan yang efektif dapat mencegah kerugian hingga 95% dari potensi kehilangan data dan mengurangi downtime sistem hingga 80% melalui strategi yang komprehensif.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh aspek backup dan keamanan data pembelian:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-database"></i>
+                                <h3>Data Transaksi</h3>
+                                <p>PO, invoice, receipt, payment records</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-users"></i>
+                                <h3>Data Supplier</h3>
+                                <p>Informasi vendor, kontrak, performance data</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>Data Analitik</h3>
+                                <p>Spend analysis, trend data, KPI metrics</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>Dokumen Legal</h3>
+                                <p>Kontrak, perjanjian, dokumen regulasi</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>IT Security Manager:</strong> Koordinasi overall keamanan data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Protection Officer:</strong> Kepatuhan regulasi perlindungan data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>System Administrator:</strong> Implementasi backup dan recovery</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Manager:</strong> Penentuan critical data requirements</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Network Security Specialist:</strong> Pengamanan infrastruktur jaringan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance Auditor:</strong> Audit rutin keamanan dan backup</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-redo-alt"></i>
+                                <h3>RTO (Recovery Time Objective)</h3>
+                                <p>Waktu maksimal yang diterima untuk pemulihan sistem</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-history"></i>
+                                <h3>RPO (Recovery Point Objective)</h3>
+                                <p>Point waktu maksimal data yang boleh hilang</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>Encryption at Rest</h3>
+                                <p>Enkripsi data yang disimpan dalam media penyimpanan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-user-shield"></i>
+                                <h3>Zero Trust Architecture</h3>
+                                <p>Model keamanan yang tidak mempercayai siapa pun</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-info-circle"></i> <strong>Istilah Teknis Keamanan Data:</strong></p>
+                    <ul>
+                        <li><strong>DRP:</strong> Disaster Recovery Plan</li>
+                        <li><strong>BCP:</strong> Business Continuity Plan</li>
+                        <li><strong>SLA:</strong> Service Level Agreement</li>
+                        <li><strong>RAID:</strong> Redundant Array of Independent Disks</li>
+                        <li><strong>MFA:</strong> Multi-Factor Authentication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES BACKUP DAN KEAMANAN DATA PEMBELIAN</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Identifikasi dan Klasifikasi Data</div>
+                    </div>
+                    <p>Mengidentifikasi dan mengklasifikasikan data pembelian berdasarkan sensitivitas dan criticality</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Klasifikasi data:</strong> Public, Internal, Confidential, Restricted, Highly Sensitive</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Penetapan RTO dan RPO</div>
+                    </div>
+                    <p>Menetapkan Recovery Time Objective dan Recovery Point Objective untuk setiap kategori data</p>
+                    <ul>
+                        <li>Critical data: RTO < 4 jam, RPO < 15 menit</li>
+                        <li>Important data: RTO < 8 jam, RPO < 1 jam</li>
+                        <li>Standard data: RTO < 24 jam, RPO < 4 jam</li>
+                        <li>Archive data: RTO < 72 jam, RPO < 24 jam</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Implementasi Backup Strategy</div>
+                    </div>
+                    <p>Menerapkan strategi backup sesuai dengan klasifikasi data dan RTO/RPO</p>
+                    <div class="content-box">
+                        <p><strong>Backup methods:</strong> Full backup, incremental backup, differential backup, snapshot backup</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Enkripsi dan Pengamanan Data</div>
+                    </div>
+                    <p>Mengimplementasikan enkripsi data dan mekanisme keamanan lainnya</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Security measures:</strong> AES-256 encryption, SSL/TLS, VPN, firewall, intrusion detection</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Monitoring dan Alert System</div>
+                    </div>
+                    <p>Memantau sistem backup dan keamanan dengan real-time alert</p>
+                    <ul>
+                        <li>Backup success/failure monitoring</li>
+                        <li>Security breach detection</li>
+                        <li>System performance tracking</li>
+                        <li>Anomaly behavior detection</li>
+                        <li>Automated alert escalation</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Regular Backup Validation</div>
+                    </div>
+                    <p>Melakukan validasi rutin terhadap backup data untuk memastikan integritas</p>
+                    <div class="content-box">
+                        <p><strong>Validation methods:</strong> Checksum verification, test restoration, data integrity check</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Disaster Recovery Testing</div>
+                    </div>
+                    <p>Melakukan testing pemulihan bencana secara berkala</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Testing scenarios:</strong> Full system recovery, partial recovery, data corruption recovery, cyber attack recovery</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Access Control dan Authentication</div>
+                    </div>
+                    <p>Mengelola akses data dan sistem autentikasi pengguna</p>
+                    <div class="content-box">
+                        <p><strong>Access management:</strong> Role-based access control, multi-factor authentication, single sign-on, privileged access management</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">9</div>
+                        <div class="step-title">Audit dan Compliance Monitoring</div>
+                    </div>
+                    <p>Melakukan audit rutin dan monitoring kepatuhan regulasi</p>
+                    <div class="content-box">
+                        <p><strong>Compliance requirements:</strong> GDPR, PDP Law, ISO 27001, SOX, Industry regulations</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">10</div>
+                        <div class="step-title">Continuous Improvement</div>
+                    </div>
+                    <p>Melakukan evaluasi dan peningkatan berkelanjutan sistem backup dan keamanan</p>
+                    <div class="content-box">
+                        <p><strong>Improvement activities:</strong> Technology update, process optimization, threat intelligence, security training</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STRATEGI BACKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## STRATEGI BACKUP DAN KEAMANAN DATA</div>
+            <div class="section-content">
+                <p>Klasifikasi strategi backup berdasarkan jenis data dan criticality:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Kategori Data</th>
+                            <th>Frekuensi Backup</th>
+                            <th>Retensi Period</th>
+                            <th>Storage Location</th>
+                            <th>Encryption Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Critical Transaction Data</strong></td>
+                            <td><span class="score score-high">Real-time</span></td>
+                            <td>7 tahun</td>
+                            <td>On-premise + Cloud</td>
+                            <td>AES-256</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supplier Master Data</strong></td>
+                            <td><span class="score score-high">Hourly</span></td>
+                            <td>10 tahun</td>
+                            <td>On-premise + Cloud</td>
+                            <td>AES-256</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contract Documents</strong></td>
+                            <td><span class="score score-medium">Daily</span></td>
+                            <td>15 tahun</td>
+                            <td>Cloud + Offline</td>
+                            <td>AES-256 + PGP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Analytical Data</strong></td>
+                            <td><span class="score score-medium">Weekly</span></td>
+                            <td>5 tahun</td>
+                            <td>Cloud</td>
+                            <td>AES-128</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Archive Data</strong></td>
+                            <td><span class="score score-low">Monthly</span></td>
+                            <td>Permanent</td>
+                            <td>Offline Storage</td>
+                            <td>AES-256</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Prinsip 3-2-1 Backup Strategy:</strong></p>
+                    <ul>
+                        <li><strong>3 Copies:</strong> Minimal 3 copy data (production + 2 backup)</li>
+                        <li><strong>2 Different Media:</strong> Backup disimpan di 2 media berbeda (disk + tape/cloud)</li>
+                        <li><strong>1 Off-site:</strong> Minimal 1 copy disimpan di lokasi terpisah</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Lapisan Keamanan Data Pembelian:</h3>
+                <div class="content-box">
+                    <p><strong>Physical Security:</strong> Data center access control, CCTV, biometric authentication, environmental controls</p>
+                    <p><strong>Network Security:</strong> Firewall, IDS/IPS, VPN, network segmentation, DDoS protection</p>
+                    <p><strong>Application Security:</strong> Secure coding, vulnerability assessment, penetration testing, API security</p>
+                    <p><strong>Data Security:</strong> Encryption, data masking, tokenization, data loss prevention</p>
+                    <p><strong>Access Security:</strong> RBAC, MFA, privileged access management, session management</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses backup dan keamanan data pembelian:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-shield"></i>
+                                <h3>FORM-PB-3301</h3>
+                                <p>Data Classification Matrix</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-3302</h3>
+                                <p>Backup Validation Checklist</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bug"></i>
+                                <h3>FORM-PB-3303</h3>
+                                <p>Security Incident Report</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tasks"></i>
+                                <h3>FORM-PB-3304</h3>
+                                <p>DRP Testing Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Keamanan:</strong></p>
+                    <ul>
+                        <li><strong>Backup Logs:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Security Incident Reports:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Audit Reports:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Compliance Documentation:</strong> Disimpan 10 tahun</li>
+                        <li><strong>DRP Test Results:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Access Logs:</strong> Disimpan 3 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Backup Success Rate:</strong> ≥ 99.9%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RTO Achievement:</strong> ≥ 98%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RPO Achievement:</strong> ≥ 99%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security Incident Response Time:</strong> ≤ 30 menit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Recovery Success Rate:</strong> ≥ 99.5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>System Uptime:</strong> ≥ 99.95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance Audit Score:</strong> ≥ 95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security Training Completion:</strong> 100%</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">IT Security Manager</th>
+                        <th width="25%">Data Protection Officer</th>
+                        <th width="25%">Purchasing Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-033 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

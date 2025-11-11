@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Pembayaran dan Administrasi Keuangan - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        .criteria-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .criteria-table th {
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .criteria-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .criteria-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .criteria-table th {
+                background: var(--primary) !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PEMBAYARAN DAN ADMINISTRASI KEUANGAN - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-014</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses pembayaran dan administrasi keuangan guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Akurasi dan ketepatan waktu dalam proses pembayaran kepada supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap ketentuan perpajakan dan regulasi keuangan</td>
+                    </tr>
+                    <tr>
+                        <td>Pengendalian internal yang efektif untuk mencegah penyimpangan</td>
+                    </tr>
+                    <tr>
+                        <td>Efisiensi dalam pengelolaan cash flow perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Dokumentasi yang lengkap untuk keperluan audit dan pelaporan</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Proses pembayaran yang terstruktur dapat mengoptimalkan cash flow hingga 30% dan mengurangi keterlambatan pembayaran hingga 80%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses pembayaran dan administrasi keuangan untuk berbagai jenis transaksi:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-truck"></i>
+                                <h3>Pembayaran Supplier</h3>
+                                <p>Pembayaran untuk pembelian barang dagangan dan jasa</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <h3>Utang Usaha</h3>
+                                <p>Pengelolaan account payable dan terms pembayaran</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-receipt"></i>
+                                <h3>Verifikasi Faktur</h3>
+                                <p>Pemeriksaan dan validasi dokumen pembayaran</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Cash Flow Management</h3>
+                                <p>Pengelolaan arus kas dan forecasting</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Finance Manager:</strong> Approval akhir dan pengawasan proses</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Account Payable Staff:</strong> Verifikasi dan proses pembayaran</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Officer:</strong> Konfirmasi penerimaan barang</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Warehouse Supervisor:</strong> Validasi GRN dan kuantitas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tax Officer:</strong> Verifikasi aspek perpajakan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cashier/Bank Officer:</strong> Eksekusi transfer/pembayaran</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice"></i>
+                                <h3>Invoice</h3>
+                                <p>Tagihan resmi dari supplier untuk barang/jasa yang diberikan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-credit-card"></i>
+                                <h3>Credit Note</h3>
+                                <p>Dokumen kredit untuk retur barang atau koreksi faktur</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>Payment Terms</h3>
+                                <p>Syarat dan ketentuan pembayaran yang disepakati</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>SPP</h3>
+                                <p>Surat Permintaan Pembayaran untuk proses approval</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PEMBAYARAN DAN ADMINISTRASI KEUANGAN</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Penerimaan dan Registrasi Invoice</div>
+                    </div>
+                    <p>Menerima invoice dari supplier dan melakukan registrasi di sistem</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Data yang diverifikasi:</strong> Nomor invoice, tanggal, nama supplier, jumlah, PO reference, terms pembayaran</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Verifikasi 3-Way Matching</div>
+                    </div>
+                    <p>Melakukan matching antara Purchase Order, Goods Received Note, dan Invoice</p>
+                    <ul>
+                        <li>Quantity sesuai antara PO dan GRN</li>
+                        <li>Harga sesuai dengan PO</li>
+                        <li>Barang telah diterima dan approved</li>
+                        <li>Tax calculation sesuai ketentuan</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Verifikasi Aspek Perpajakan</div>
+                    </div>
+                    <p>Tax officer memverifikasi kelengkapan dan keabsahan dokumen pajak</p>
+                    <div class="content-box">
+                        <p><strong>Dokumen pajak:</strong> Faktur Pajak, NPWP, kode billing, bukti potong PPh</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Pembuatan Surat Permintaan Pembayaran (SPP)</div>
+                    </div>
+                    <p>Membuat SPP untuk proses approval pembayaran</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Approval hierarchy:</strong> Account Payable Staff → Finance Supervisor → Finance Manager → Director (jika > Rp 500 juta)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Proses Approval</div>
+                    </div>
+                    <p>SPP diajukan untuk mendapatkan approval sesuai limit wewenang</p>
+                    <ul>
+                        <li>Approval online melalui sistem</li>
+                        <li>Document attachment lengkap</li>
+                        <li>Payment schedule sesuai cash flow</li>
+                        <li>Budget availability check</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Persiapan Pembayaran</div>
+                    </div>
+                    <p>Mempersiapkan dokumen dan instruksi pembayaran</p>
+                    <div class="content-box">
+                        <p><strong>Persiapan:</strong> Payment instruction, bank details, amount verification, due date calculation</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Eksekusi Pembayaran</div>
+                    </div>
+                    <p>Melakukan pembayaran melalui transfer bank atau metode lainnya</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Metode pembayaran:</strong> Bank transfer, GIRO, virtual account, cash (terbatas), payment gateway</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Rekonsiliasi dan Dokumentasi</div>
+                    </div>
+                    <p>Merekonsiliasi pembayaran dan mengarsipkan dokumen</p>
+                    <div class="content-box">
+                        <p><strong>Proses rekonsiliasi:</strong> Bank statement matching, GL posting, document archiving, supplier confirmation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- JENIS PEMBAYARAN SECTION -->
+        <div class="section">
+            <div class="section-title">## JENIS PEMBAYARAN DAN TERMS</div>
+            <div class="section-content">
+                <p>Klasifikasi jenis pembayaran berdasarkan terms dan kondisi yang disepakati:</p>
+                
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>Jenis Pembayaran</th>
+                            <th>Terms</th>
+                            <th>Approval Limit</th>
+                            <th>Waktu Proses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cash on Delivery</strong></td>
+                            <td>Pembayaran saat barang diterima</td>
+                            <td><span class="score score-high">≤ Rp 50 juta</span></td>
+                            <td>1-2 hari kerja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Net 30</strong></td>
+                            <td>Pembayaran 30 hari setelah invoice</td>
+                            <td><span class="score score-medium">≤ Rp 200 juta</span></td>
+                            <td>3-5 hari kerja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Net 45</strong></td>
+                            <td>Pembayaran 45 hari setelah invoice</td>
+                            <td><span class="score score-medium">≤ Rp 500 juta</span></td>
+                            <td>5-7 hari kerja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DP + Pelunasan</strong></td>
+                            <td>Down payment + balance payment</td>
+                            <td><span class="score score-high">≤ Rp 1 Miliar</span></td>
+                            <td>7-10 hari kerja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Progress Payment</strong></td>
+                            <td>Pembayaran berdasarkan progress</td>
+                            <td><span class="score score-low">BOD Approval</span></td>
+                            <td>10-14 hari kerja</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-clock"></i> <strong>Payment Schedule dan Prioritas:</strong></p>
+                    <ul>
+                        <li><strong>Priority 1 (Urgent):</strong> Pembayaran COD dan yang akan melewati due date</li>
+                        <li><strong>Priority 2 (High):</strong> Pembayaran dengan discount early payment</li>
+                        <li><strong>Priority 3 (Medium):</strong> Pembayaran regular sesuai terms</li>
+                        <li><strong>Priority 4 (Low):</strong> Pembayaran advance dan progress payment</li>
+                        <li><strong>Priority 5 (Scheduled):</strong> Pembayaran rutin (gaji, sewa, utilities)</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Limit Approval Pembayaran:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Finance Staff:</strong> Rp 25 juta per invoice</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Supervisor:</strong> Rp 100 juta per invoice</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Manager:</strong> Rp 500 juta per invoice</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Director:</strong> Rp 2 Miliar per invoice</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Board of Directors:</strong> Di atas Rp 2 Miliar</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses pembayaran dan administrasi keuangan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <h3>FORM-PB-1401</h3>
+                                <p>Surat Permintaan Pembayaran (SPP)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-receipt"></i>
+                                <h3>FORM-PB-1402</h3>
+                                <p>Invoice Verification Checklist</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>FORM-PB-1403</h3>
+                                <p>Payment Voucher</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>FORM-PB-1404</h3>
+                                <p>Cash Flow Forecast Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-database"></i> <strong>Retensi Dokumen Keuangan:</strong></p>
+                    <ul>
+                        <li><strong>Invoice dan Bukti Pembayaran:</strong> Disimpan 10 tahun</li>
+                        <li><strong>SPP dan Payment Voucher:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Bank Statements:</strong> Disimpan permanen</li>
+                        <li><strong>Tax Documents:</strong> Disimpan 10 tahun (pajak)</li>
+                        <li><strong>Audit Reports:</strong> Disimpan permanen</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Payment Processing Time:</strong> ≤ 5 hari kerja</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Invoice Accuracy Rate:</strong> ≥ 99%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>On-time Payment Rate:</strong> ≥ 95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Early Payment Discount Captured:</strong> ≥ 80%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AP Turnover Ratio:</strong> ≥ 8x per tahun</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payment Error Rate:</strong> ≤ 0.1%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Satisfaction Score:</strong> ≥ 90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cash Flow Forecast Accuracy:</strong> ≥ 85%</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-014 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

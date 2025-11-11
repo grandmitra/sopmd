@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Seleksi Supplier - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">SELEKSI SUPPLIER - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-006</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses seleksi dan evaluasi supplier bahan bangunan guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>- Ketersediaan produk bahan bangunan yang berkualitas</td>
+                    </tr>
+                    <tr>
+                        <td>- Harga kompetitif dan sesuai dengan budget perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>- Kontinuitas pasokan yang terjamin</td>
+                    </tr>
+                    <tr>
+                        <td>- Kepatuhan terhadap standar kualitas dan regulasi</td>
+                    </tr>
+                    <tr>
+                        <td>- Kemitraan yang saling menguntungkan dan berkelanjutan</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Proses seleksi supplier harus dilakukan secara objektif, transparan, dan terdokumentasi dengan baik untuk menghindari konflik kepentingan.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini berlaku untuk semua proses seleksi supplier bahan bangunan di perusahaan retail, meliputi:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bricks"></i>
+                                <h3>Material Dinding</h3>
+                                <p>Bata, batako, semen, pasir, keramik</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-hammer"></i>
+                                <h3>Material Struktural</h3>
+                                <p>Besi beton, kayu, kaca, aluminium</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tint"></i>
+                                <h3>Material Plumbing</h3>
+                                <p>Pipa, fitting, sanitary, aksesoris</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bolt"></i>
+                                <h3>Material Elektrikal</h3>
+                                <p>Kabel, fitting lampu, aksesoris listrik</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Manager Pembelian:</strong> Penanggung jawab akhir proses seleksi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Staf Pembelian:</strong> Pelaksana proses seleksi dan evaluasi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Gudang:</strong> Evaluasi kualitas produk dan ketepatan pengiriman</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance:</strong> Evaluasi aspek keuangan dan pembayaran</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-industry"></i>
+                                <h3>Supplier</h3>
+                                <p>Penyedia barang/jasa yang menjadi mitra bisnis perusahaan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>RFQ</h3>
+                                <p>Request For Quotation - Permintaan penawaran harga</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>Kualifikasi</h3>
+                                <p>Proses penilaian kemampuan dan kelayakan supplier</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-star"></i>
+                                <h3>Evaluasi</h3>
+                                <p>Penilaian kinerja supplier berdasarkan kriteria yang ditetapkan</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES SELEKSI SUPPLIER</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Identifikasi Kebutuhan</div>
+                    </div>
+                    <p>Departemen terkait mengajukan kebutuhan produk bahan bangunan berdasarkan analisis pasar dan stok</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Output:</strong> Daftar kebutuhan produk dengan spesifikasi teknis</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Pencarian Calon Supplier</div>
+                    </div>
+                    <p>Melakukan riset pasar untuk menemukan calon supplier potensial melalui berbagai sumber</p>
+                    <ul>
+                        <li>Referensi dari supplier existing</li>
+                        <li>Trade show dan pameran industri</li>
+                        <li>Rekomendasi asosiasi industri</li>
+                        <li>Online sourcing platform</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Pra-Kualifikasi</div>
+                    </div>
+                    <p>Melakukan screening awal terhadap calon supplier berdasarkan kriteria minimum</p>
+                    <div class="content-box">
+                        <p><strong>Kriteria Pra-Kualifikasi:</strong></p>
+                        <ul>
+                            <li>Legalitas perusahaan (SIUP, TDP, NPWP)</li>
+                            <li>Pengalaman minimal 3 tahun di industri</li>
+                            <li>Kapasitas produksi/pasokan</li>
+                            <li>Referensi dari klien sebelumnya</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Permintaan Penawaran (RFQ)</div>
+                    </div>
+                    <p>Mengirimkan RFQ kepada supplier yang lolos pra-kualifikasi dengan spesifikasi lengkap</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Dokumen RFQ harus mencakup:</strong> Spesifikasi teknis, kuantitas, jadwal pengiriman, syarat pembayaran, dan masa berlaku penawaran</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Evaluasi Penawaran</div>
+                    </div>
+                    <p>Menganalisis dan membandingkan penawaran dari berbagai supplier berdasarkan kriteria yang ditetapkan</p>
+                    <ul>
+                        <li>Harga dan syarat pembayaran</li>
+                        <li>Kualitas produk (sesuai standar)</li>
+                        <li>Ketepatan waktu pengiriman</li>
+                        <li>Fleksibilitas dan layanan purna jual</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Kunjungan dan Audit</div>
+                    </div>
+                    <p>Melakukan kunjungan lapangan ke fasilitas supplier untuk verifikasi kapabilitas</p>
+                    <div class="content-box">
+                        <p><strong>Aspek yang dinilai:</strong> Kapasitas produksi, sistem kualitas, manajemen gudang, kondisi fasilitas, dan keselamatan kerja</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Penilaian Akhir dan Seleksi</div>
+                    </div>
+                    <p>Tim seleksi melakukan scoring dan menentukan supplier terpilih berdasarkan hasil evaluasi komprehensif</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Keputusan final</strong> disetujui oleh Manager Pembelian dan dilaporkan kepada Direktur</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Kontrak dan Implementasi</div>
+                    </div>
+                    <p>Menyusun dan menandatangani kontrak kerjasama dengan supplier terpilih</p>
+                    <div class="content-box">
+                        <p><strong>Isi kontrak:</strong> Harga, kuantitas, jadwal pengiriman, syarat kualitas, mekanisme pembayaran, dan sanksi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KRITERIA SELEKSI SECTION -->
+        <div class="section">
+            <div class="section-title">## KRITERIA SELEKSI SUPPLIER</div>
+            <div class="section-content">
+                <p>Penilaian supplier dilakukan berdasarkan kriteria berikut dengan sistem scoring 1-10:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Kriteria</th>
+                            <th>Bobot</th>
+                            <th>Indikator Penilaian</th>
+                            <th>Skor Maksimal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Kualitas Produk</strong></td>
+                            <td>30%</td>
+                            <td>Sesuai standar, sertifikasi, konsistensi kualitas</td>
+                            <td><span class="score score-high">10</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Harga</strong></td>
+                            <td>25%</td>
+                            <td>Kompetitif, nilai tambah, fleksibilitas harga</td>
+                            <td><span class="score score-high">10</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ketepatan Waktu</strong></td>
+                            <td>20%</td>
+                            <td>On-time delivery, kemampuan memenuhi permintaan mendadak</td>
+                            <td><span class="score score-medium">8</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kapabilitas Teknis</strong></td>
+                            <td>15%</td>
+                            <td>Teknologi, kapasitas produksi, expertise teknis</td>
+                            <td><span class="score score-medium">8</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Layanan & Dukungan</strong></td>
+                            <td>10%</td>
+                            <td>Responsivitas, layanan purna jual, fleksibilitas</td>
+                            <td><span class="score score-low">6</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-calculator"></i> <strong>Rumus Penilaian Akhir:</strong> (Skor Kualitas × 30%) + (Skor Harga × 25%) + (Skor Ketepatan Waktu × 20%) + (Skor Kapabilitas Teknis × 15%) + (Skor Layanan × 10%)</p>
+                    <p><strong>Supplier dengan total skor ≥ 8.0</strong> dinyatakan LOLOS seleksi</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses seleksi supplier:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice"></i>
+                                <h3>FORM-PB-001</h3>
+                                <p>Formulir Permintaan Penawaran (RFQ)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-002</h3>
+                                <p>Checklist Pra-Kualifikasi Supplier</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>FORM-PB-003</h3>
+                                <p>Formulir Evaluasi dan Scoring Supplier</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-building"></i>
+                                <h3>FORM-PB-004</h3>
+                                <p>Laporan Kunjungan dan Audit Supplier</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-database"></i> <strong>Arsip Dokumen:</strong> Semua dokumen proses seleksi supplier harus disimpan selama minimal 3 tahun untuk keperluan audit dan evaluasi ulang.</p>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-006 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

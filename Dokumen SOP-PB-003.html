@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Forecasting dan Peramalan Stok - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">FORECASTING DAN PERAMALAN STOK - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-003</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2024</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses forecasting dan peramalan stok guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Akurasi dalam memprediksi kebutuhan stok masa depan</td>
+                    </tr>
+                    <tr>
+                        <td>Optimasi level inventori untuk memenuhi permintaan pasar</td>
+                    </tr>
+                    <tr>
+                        <td>Minimalisasi biaya penyimpanan dan risiko stockout</td>
+                    </tr>
+                    <tr>
+                        <td>Peningkatan service level kepada pelanggan</td>
+                    </tr>
+                    <tr>
+                        <td>Dukungan data untuk pengambilan keputusan strategis</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Forecasting yang akurat dapat mengurangi biaya inventory hingga 25% dan meningkatkan service level hingga 95%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses forecasting untuk semua kategori bahan bangunan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Forecasting Jangka Pendek</h3>
+                                <p>Ramalan 1-3 bulan untuk operasional harian</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>Forecasting Jangka Menengah</h3>
+                                <p>Ramalan 3-12 bulan untuk perencanaan</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chess-board"></i>
+                                <h3>Forecasting Strategis</h3>
+                                <p>Ramalan 1-3 tahun untuk perencanaan strategis</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-cloud-sun"></i>
+                                <h3>Seasonal Forecasting</h3>
+                                <p>Ramalan berdasarkan pola musiman</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Demand Planner:</strong> Koordinator utama proses forecasting</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Pembelian:</strong> Review dan approval forecast</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Staf Pembelian:</strong> Input data dan analisis pendukung</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Penjualan:</strong> Input sales forecast dan market intelligence</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Gudang:</strong> Data historis stok dan lead time</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketing:</strong> Data campaign dan promosi</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-crystal-ball"></i>
+                                <h3>Forecast Accuracy</h3>
+                                <p>Tingkat akurasi ramalan terhadap realisasi aktual</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-wave-square"></i>
+                                <h3>Seasonality</h3>
+                                <p>Pola permintaan yang berulang secara periodik</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-trend-up"></i>
+                                <h3>Trend</h3>
+                                <p>Kecenderungan permintaan jangka panjang</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-random"></i>
+                                <h3>Random Variation</h3>
+                                <p>Fluktuasi permintaan yang tidak terduga</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES FORECASTING DAN PERAMALAN STOK</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Pengumpulan Data Historis</div>
+                    </div>
+                    <p>Mengumpulkan data penjualan 2-3 tahun terakhir untuk analisis pola</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Data yang dikumpulkan:</strong> Sales history, stock movement, lead time, promo effect, seasonal pattern</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Pembersihan dan Validasi Data</div>
+                    </div>
+                    <p>Membersihkan data dari outlier dan anomali untuk meningkatkan akurasi</p>
+                    <ul>
+                        <li>Identifikasi dan koreksi data error</li>
+                        <li>Penanganan missing data</li>
+                        <li>Normalisasi data promo dan event</li>
+                        <li>Adjustment untuk outlier</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Analisis Pola dan Trend</div>
+                    </div>
+                    <p>Menganalisis pola permintaan menggunakan statistical tools</p>
+                    <div class="content-box">
+                        <p><strong>Analisis yang dilakukan:</strong> Trend analysis, seasonal decomposition, correlation analysis, pattern recognition</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Pemilihan Metode Forecasting</div>
+                    </div>
+                    <p>Memilih metode forecasting yang sesuai berdasarkan karakteristik produk</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Pertimbangan pemilihan:</strong> Data availability, product lifecycle, demand pattern, forecast horizon</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Perhitungan Baseline Forecast</div>
+                    </div>
+                    <p>Menghitung forecast dasar menggunakan metode statistik terpilih</p>
+                    <ul>
+                        <li>Time series analysis</li>
+                        <li>Regression analysis</li>
+                        <li>Exponential smoothing</li>
+                        <li>Moving average</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Incorporation Business Intelligence</div>
+                    </div>
+                    <p>Mengintegrasikan input bisnis dan market intelligence</p>
+                    <div class="content-box">
+                        <p><strong>Input yang diintegrasikan:</strong> Sales input, marketing plan, competitor activity, economic factor, market trend</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Konsolidasi dan Finalisasi Forecast</div>
+                    </div>
+                    <p>Mengkonsolidasikan semua input dan menyelesaikan forecast final</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Proses konsolidasi:</strong> Consensus meeting, risk assessment, sensitivity analysis, management review</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Monitoring dan Review</div>
+                    </div>
+                    <p>Memantau akurasi forecast dan melakukan review berkala</p>
+                    <div class="content-box">
+                        <p><strong>Monitoring metrics:</strong> Forecast accuracy, bias, MAPE, tracking signal, dan performance analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- METODE FORECASTING SECTION -->
+        <div class="section">
+            <div class="section-title">## METODE FORECASTING DAN APLIKASINYA</div>
+            <div class="section-content">
+                <p>Berbagai metode forecasting yang digunakan berdasarkan karakteristik produk:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Metode Forecasting</th>
+                            <th>Aplikasi</th>
+                            <th>Akurasi</th>
+                            <th>Kompleksitas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Moving Average</strong></td>
+                            <td>Produk dengan permintaan stabil, fast moving</td>
+                            <td><span class="score score-medium">75-85%</span></td>
+                            <td>Rendah</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Exponential Smoothing</strong></td>
+                            <td>Produk dengan trend, medium moving</td>
+                            <td><span class="score score-high">80-90%</span></td>
+                            <td>Sedang</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Seasonal Decomposition</strong></td>
+                            <td>Produk musiman, seasonal items</td>
+                            <td><span class="score score-high">85-92%</span></td>
+                            <td>Tinggi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Regression Analysis</strong></td>
+                            <td>Produk dengan faktor eksternal, new product</td>
+                            <td><span class="score score-medium">70-85%</span></td>
+                            <td>Tinggi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ARIMA Models</strong></td>
+                            <td>Produk dengan pola kompleks, strategic items</td>
+                            <td><span class="score score-high">88-95%</span></td>
+                            <td>Sangat Tinggi</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-calculator"></i> <strong>Rumus Forecasting Utama:</strong></p>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>Simple Moving Average:</strong> F<sub>t+1</sub> = (D<sub>t</sub> + D<sub>t-1</sub> + ... + D<sub>t-n+1</sub>) / n</p>
+                        <p><strong>Exponential Smoothing:</strong> F<sub>t+1</sub> = α × D<sub>t</sub> + (1-α) × F<sub>t</sub></p>
+                        <p><strong>Seasonal Index:</strong> SI = (Actual Demand / Average Demand) × 100%</p>
+                        <p><strong>Forecast Accuracy:</strong> Accuracy = 1 - |(Actual - Forecast)| / Actual</p>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Klasifikasi Produk Berdasarkan Metode Forecasting:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Kelas A (High Value):</strong> ARIMA/Regression - Forecast accuracy target: ≥90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kelas B (Medium Value):</strong> Exponential Smoothing - Forecast accuracy target: ≥85%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kelas C (Low Value):</strong> Moving Average - Forecast accuracy target: ≥80%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>New Products:</strong> Qualitative + Market Analog - Forecast accuracy target: ≥70%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Seasonal Products:</strong> Seasonal Decomposition - Forecast accuracy target: ≥88%</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses forecasting dan peramalan stok:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>FORM-PB-301</h3>
+                                <p>Template Data Historis Penjualan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-calculator"></i>
+                                <h3>FORM-PB-302</h3>
+                                <p>Forecast Calculation Worksheet</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>FORM-PB-303</h3>
+                                <p>Forecast Accuracy Report</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-signature"></i>
+                                <h3>FORM-PB-304</h3>
+                                <p>Forecast Consensus Meeting Minutes</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-calendar-alt"></i> <strong>Siklus Forecasting:</strong></p>
+                    <table class="content-table">
+                        <tr>
+                            <td><strong>Forecast Harian:</strong> Fast moving items & stock critical items</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Forecast Mingguan:</strong> Operational planning & replenishment</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Forecast Bulanan:</strong> Sales & operations planning (S&OP)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Forecast Triwulanan:</strong> Budget review & strategic adjustment</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Forecast Tahunan:</strong> Annual business planning</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Forecast Accuracy:</strong> ≥85% (Overall)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bias (Forecast Error):</strong> ±5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MAPE (Mean Absolute Percentage Error):</strong> ≤15%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tracking Signal:</strong> ±4 (Control Limits)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Service Level:</strong> ≥95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stock Turnover:</strong> ≥6x per tahun</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Excess Stock Ratio:</strong> ≤8%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stockout Frequency:</strong> ≤2%</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Penjualan</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2024 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-003 | Revisi: 01 | Berlaku sejak: 1 Januari 2024</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

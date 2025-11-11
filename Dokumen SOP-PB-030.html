@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-PB-030 - Pengadaan Barang Promosi dan Diskon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PENGADAAN BARANG PROMOSI DAN DISKON</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-030</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses pengadaan barang promosi dan diskon guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Efektivitas program promosi dalam meningkatkan penjualan dan market share</td>
+                    </tr>
+                    <tr>
+                        <td>Optimasi biaya promosi dengan ROI yang terukur</td>
+                    </tr>
+                    <tr>
+                        <td>Ketersediaan barang promosi tepat waktu sesuai jadwal campaign</td>
+                    </tr>
+                    <tr>
+                        <td>Kualitas barang promosi yang sesuai dengan brand image perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap regulasi periklanan dan promosi</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Program promosi yang terstruktur dapat meningkatkan penjualan hingga 40% dan customer acquisition hingga 25% dengan pengelolaan pengadaan yang efektif.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses pengadaan untuk berbagai jenis program promosi dan diskon:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tags"></i>
+                                <h3>Barang Diskon</h3>
+                                <p>Material dengan harga khusus untuk program promosi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-gift"></i>
+                                <h3>Free Goods</h3>
+                                <p>Barang gratis sebagai bonus pembelian</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-box-open"></i>
+                                <h3>Bundling Package</h3>
+                                <p>Paket produk dengan harga khusus</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-award"></i>
+                                <h3>Premium Items</h3>
+                                <p>Barang limited edition untuk program loyalitas</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Promotion Manager:</strong> Koordinasi overall program promosi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketing Procurement Officer:</strong> Pengadaan barang promosi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Campaign Planner:</strong> Perencanaan jadwal dan kebutuhan promosi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Brand Manager:</strong> Penjagaan konsistensi brand image</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sales Manager:</strong> Input kebutuhan promosi dari tim sales</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Controller:</strong> Pengendalian budget promosi</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-percentage"></i>
+                                <h3>Trade Promotion</h3>
+                                <p>Program promosi untuk channel distribusi dan retailer</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-users"></i>
+                                <h3>Consumer Promotion</h3>
+                                <p>Program promosi langsung ke end consumer</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-calculator"></i>
+                                <h3>Promotion ROI</h3>
+                                <p>Return on Investment dari program promosi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-calendar-alt"></i>
+                                <h3>Promotion Calendar</h3>
+                                <p>Kalender jadwal program promosi tahunan</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-info-circle"></i> <strong>Istilah Penting Lainnya:</strong></p>
+                    <ul>
+                        <li><strong>Sell-in vs Sell-out:</strong> Penjualan ke distributor vs ke end consumer</li>
+                        <li><strong>Promotion Lift:</strong> Peningkatan penjualan akibat promosi</li>
+                        <li><strong>Post-Promotion Dip:</strong> Penurunan penjualan setelah promosi</li>
+                        <li><strong>Promotion Allowance:</strong> Budget khusus untuk program promosi</li>
+                        <li><strong>Scan-back:</strong> Mekanisme klaim promosi berdasarkan scanning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PENGADAAN BARANG PROMOSI DAN DISKON</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Perencanaan Program Promosi</div>
+                    </div>
+                    <p>Menyusun rencana program promosi berdasarkan analisis pasar dan tujuan bisnis</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Aspek perencanaan:</strong> Target market, objective, budget, timeline, KPI, competitive analysis</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Identifikasi Kebutuhan Barang Promosi</div>
+                    </div>
+                    <p>Mengidentifikasi jenis dan quantity barang promosi yang dibutuhkan</p>
+                    <ul>
+                        <li>Product selection</li>
+                        <li>Quantity requirement</li>
+                        <li>Specification detail</li>
+                        <li>Packaging requirement</li>
+                        <li>Budget allocation</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Budget Approval dan Financial Planning</div>
+                    </div>
+                    <p>Mengajukan dan mendapatkan approval budget promosi</p>
+                    <div class="content-box">
+                        <p><strong>Budget components:</strong> Product cost, logistics, packaging, marketing support, contingency</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Sourcing dan Negosiasi dengan Supplier</div>
+                    </div>
+                    <p>Melakukan sourcing supplier dan negosiasi harga khusus promosi</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Negotiation points:</strong> Special pricing, payment terms, delivery schedule, quality standard, return policy</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Purchase Order dan Kontrak Promosi</div>
+                    </div>
+                    <p>Menerbitkan PO khusus promosi dengan terms and conditions yang jelas</p>
+                    <ul>
+                        <li>Special pricing clause</li>
+                        <li>Delivery requirement</li>
+                        <li>Quality standard</li>
+                        <li>Promotion period</li>
+                        <li>Return and exchange policy</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Production dan Quality Control</div>
+                    </div>
+                    <p>Memantau proses produksi dan quality control barang promosi</p>
+                    <div class="content-box">
+                        <p><strong>QC aspects:</strong> Product quality, packaging, labeling, quantity, compliance with spec</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Logistics dan Distribution Planning</div>
+                    </div>
+                    <p>Merencanakan logistik dan distribusi barang promosi ke berbagai channel</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Distribution channels:</strong> Central warehouse, regional DC, direct to store, third party logistics</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Launch dan Execution Monitoring</div>
+                    </div>
+                    <p>Melaksanakan launch promosi dan memantau pelaksanaan di lapangan</p>
+                    <div class="content-box">
+                        <p><strong>Monitoring activities:</strong> Stock availability, POSM deployment, sales tracking, competitor response</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">9</div>
+                        <div class="step-title">Performance Measurement dan Reporting</div>
+                    </div>
+                    <p>Mengukur kinerja promosi dan menyusun laporan hasil</p>
+                    <div class="content-box">
+                        <p><strong>Performance metrics:</strong> Sales lift, ROI, market share, customer acquisition, brand awareness</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">10</div>
+                        <div class="step-title">Post-Promotion Analysis dan Inventory Clearance</div>
+                    </div>
+                    <p>Menganalisis hasil promosi dan mengelola sisa inventory</p>
+                    <div class="content-box">
+                        <p><strong>Post-promotion activities:</strong> Result analysis, lesson learned, inventory clearance, supplier settlement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- JENIS PROMOSI SECTION -->
+        <div class="section">
+            <div class="section-title">## JENIS PROGRAM PROMOSI DAN PARAMETER PENGADAAN</div>
+            <div class="section-content">
+                <p>Klasifikasi program promosi berdasarkan tujuan dan parameter pengadaan:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Jenis Promosi</th>
+                            <th>Tujuan Utama</th>
+                            <th>Lead Time Pengadaan</th>
+                            <th>Budget Allocation</th>
+                            <th>ROI Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Seasonal Promotion</strong></td>
+                            <td>Clearance stock, seasonal demand</td>
+                            <td><span class="score score-high">4-6 minggu</span></td>
+                            <td>15-20% of sales</td>
+                            <td>1:3</td>
+                        </tr>
+                        <tr>
+                            <td><strong>New Product Launch</strong></td>
+                            <td>Market penetration, awareness</td>
+                            <td><span class="score score-medium">8-12 minggu</span></td>
+                            <td>20-25% of sales</td>
+                            <td>1:2</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Competitive Response</strong></td>
+                            <td>Market defense, share protection</td>
+                            <td><span class="score score-low">2-4 minggu</span></td>
+                            <td>10-15% of sales</td>
+                            <td>1:1.5</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trade Promotion</strong></td>
+                            <td>Channel motivation, distribution</td>
+                            <td><span class="score score-medium">6-8 minggu</span></td>
+                            <td>25-30% of sales</td>
+                            <td>1:4</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Loyalty Program</strong></td>
+                            <td>Customer retention, repeat purchase</td>
+                            <td><span class="score score-high">10-16 minggu</span></td>
+                            <td>5-10% of sales</td>
+                            <td>1:5</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Critical Success Factors Program Promosi:</strong></p>
+                    <ul>
+                        <li><strong>Timing:</strong> Ketepatan waktu launch sesuai opportunity window</li>
+                        <li><strong>Product Selection:</strong> Pemilihan produk yang tepat untuk promosi</li>
+                        <li><strong>Pricing Strategy:</strong> Penetapan harga yang kompetitif dan profitable</li>
+                        <li><strong>Communication:</strong> Konsistensi komunikasi dan branding</li>
+                        <li><strong>Execution:</strong> Kualitas pelaksanaan di tingkat lapangan</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Kalender Promosi Tahunan:</h3>
+                <div class="content-box">
+                    <p><strong>Q1 (Jan-Mar):</strong> New Year Promotion, Chinese New Year, Back to School</p>
+                    <p><strong>Q2 (Apr-Jun):</strong> Ramadan & Lebaran, School Holiday, Mid-Year Sale</p>
+                    <p><strong>Q3 (Jul-Sep):</strong> Independence Day, Summer Promotion, New Product Launch</p>
+                    <p><strong>Q4 (Okt-Des):</strong> Year-End Sale, Christmas Promotion, Stock Clearance</p>
+                    <p><strong>Ongoing:</strong> Member Loyalty Program, Trade Promotion, Flash Sale</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses pengadaan barang promosi dan diskon:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-calendar-check"></i>
+                                <h3>FORM-PB-3001</h3>
+                                <p>Promotion Planning Worksheet</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <h3>FORM-PB-3002</h3>
+                                <p>Promotion Budget Template</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-3003</h3>
+                                <p>Promotion PO Special Terms</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-3004</h3>
+                                <p>Promotion Performance Dashboard</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Promosi:</strong></p>
+                    <ul>
+                        <li><strong>Promotion Plans:</strong> Disimpan 3 tahun</li>
+                        <li><strong>Budget Documents:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Purchase Orders:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Performance Reports:</strong> Disimpan 3 tahun</li>
+                        <li><strong>Supplier Contracts:</strong> Disimpan 10 tahun</li>
+                        <li><strong>ROI Analysis:</strong> Disimpan 5 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Promotion ROI:</strong> ≥ 1:3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sales Lift:</strong> ≥ 25% during promotion</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Acquisition:</strong> ≥ 15% new customers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Budget Utilization:</strong> 95-105% of allocated budget</td>
+                    </tr>
+                    <tr>
+                        <td><strong>On-time Delivery:</strong> ≥ 98%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stock Availability:</strong> ≥ 99% during promotion</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Post-Promotion Sales:</strong> ≥ 90% of pre-promotion level</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Satisfaction:</strong> ≥ 4.5/5 rating</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Promotion Manager</th>
+                        <th width="25%">Marketing Procurement</th>
+                        <th width="25%">Finance Controller</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-030 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

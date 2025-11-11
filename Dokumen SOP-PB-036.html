@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-PB-036 - Penanganan Kekurangan Stok Mendadak</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PENANGANAN KEKURANGAN STOK MENDADAK</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-036</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan penanganan kekurangan stok mendadak guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Respon cepat terhadap situasi stockout yang tidak terduga</td>
+                    </tr>
+                    <tr>
+                        <td>Minimalisasi dampak gangguan operasional akibat kekurangan stok</td>
+                    </tr>
+                    <tr>
+                        <td>Optimasi alokasi stok yang tersedia untuk kebutuhan prioritas</td>
+                    </tr>
+                    <tr>
+                        <td>Pemulihan ketersediaan stok dalam waktu sesingkat mungkin</td>
+                    </tr>
+                    <tr>
+                        <td>Pencegahan terulangnya kejadian stockout yang sama di masa depan</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Penanganan stockout yang efektif dapat mengurangi dampak finansial hingga 70% dan mempertahankan service level di atas 95% melalui respon yang terstruktur dan cepat.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh aspek penanganan berbagai jenis kekurangan stok mendadak:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line-down"></i>
+                                <h3>Stockout Kritis</h3>
+                                <p>Kekurangan stok yang mengancam kelangsungan operasional</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-boxes"></i>
+                                <h3>Shortage Parsial</h3>
+                                <p>Kekurangan stok sebagian yang mempengaruhi produksi</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-truck"></i>
+                                <h3>Supply Disruption</h3>
+                                <p>Gangguan pasokan dari supplier yang tidak terduga</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h3>Demand Spike</h3>
+                                <p>Lonjakan permintaan yang melebihi perkiraan</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Stockout Response Manager:</strong> Koordinasi overall penanganan stockout</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inventory Controller:</strong> Monitoring level stok dan early warning</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Emergency Purchasing Officer:</strong> Procurement cepat untuk penanganan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Production Planner:</strong> Penyesuaian schedule produksi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supply Chain Coordinator:</strong> Koordinasi dengan supplier dan logistik</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality Assurance:</strong> Memastikan kualitas material pengganti</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-box-open"></i>
+                                <h3>Stockout Situation</h3>
+                                <p>Kondisi dimana stok tidak tersedia untuk memenuhi permintaan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bolt"></i>
+                                <h3>Emergency Replenishment</h3>
+                                <p>Pengisian ulang stok dengan prioritas tertinggi</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-exchange-alt"></i>
+                                <h3>Stock Allocation</h3>
+                                <p>Alokasi stok yang tersedia untuk kebutuhan prioritas</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-search"></i>
+                                <h3>Root Cause Analysis</h3>
+                                <p>Analisis penyebab utama terjadinya stockout</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-info-circle"></i> <strong>Istilah Penting Lainnya:</strong></p>
+                    <ul>
+                        <li><strong>Safety Stock Breach:</strong> Pelanggaran batas safety stock</li>
+                        <li><strong>Lead Time Variability:</strong> Variasi waktu pengiriman supplier</li>
+                        <li><strong>Demand Forecasting Error:</strong> Kesalahan dalam peramalan permintaan</li>
+                        <li><strong>Stock Rotation Issue:</strong> Masalah dalam rotasi persediaan</li>
+                        <li><strong>Emergency Supplier:</strong> Supplier cadangan untuk situasi darurat</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PENANGANAN KEKURANGAN STOK MENDADAK</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Early Detection dan Alert</div>
+                    </div>
+                    <p>Pendeteksian dini dan sistem alert untuk potensi stockout</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Detection methods:</strong> Automated stock monitoring, threshold alerts, consumption pattern analysis, supplier performance tracking</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Assessment Impact dan Severity</div>
+                    </div>
+                    <p>Penilaian dampak dan tingkat keparahan stockout</p>
+                    <ul>
+                        <li>Operational impact assessment</li>
+                        <li>Financial impact calculation</li>
+                        <li>Customer impact evaluation</li>
+                        <li>Timeline estimation for resolution</li>
+                        <li>Priority level determination</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Activation Emergency Response Team</div>
+                    </div>
+                    <p>Aktivasi tim respon darurat dan koordinasi penanganan</p>
+                    <div class="content-box">
+                        <p><strong>Team composition:</strong> Purchasing, Inventory, Production, Logistics, Quality Assurance, Sales</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Immediate Stock Allocation</div>
+                    </div>
+                    <p>Alokasi segera stok yang tersedia untuk kebutuhan prioritas</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Allocation criteria:</strong> Critical customers, high-margin products, regulatory requirements, strategic projects</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Emergency Sourcing dan Procurement</div>
+                    </div>
+                    <p>Pencarian sumber alternatif dan procurement darurat</p>
+                    <ul>
+                        <li>Alternative supplier identification</li>
+                        <li>Emergency quotation process</li>
+                        <li>Expedited PO processing</li>
+                        <li>Priority delivery arrangement</li>
+                        <li>Quality assurance coordination</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Production Adjustment</div>
+                    </div>
+                    <p>Penyesuaian schedule dan proses produksi</p>
+                    <div class="content-box">
+                        <p><strong>Adjustment strategies:</strong> Production rescheduling, batch optimization, product substitution, temporary line shutdown</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Customer Communication</div>
+                    </div>
+                    <p>Komunikasi proaktif dengan customer yang terdampak</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Communication protocol:</strong> Transparent updates, alternative solutions, compensation offers, relationship management</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Expedited Receipt dan Quality Check</div>
+                    </div>
+                    <p>Penerimaan dipercepat dan pemeriksaan kualitas darurat</p>
+                    <div class="content-box">
+                        <p><strong>Expedited process:</strong> Direct to production receipt, simplified GRN, accelerated quality inspection, immediate deployment</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">9</div>
+                        <div class="step-title">Root Cause Analysis</div>
+                    </div>
+                    <p>Analisis penyebab utama dan identifikasi improvement</p>
+                    <div class="content-box">
+                        <p><strong>Analysis methods:</strong> 5-Why analysis, process mapping, data analysis, stakeholder interviews</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">10</div>
+                        <div class="step-title">Preventive Action Implementation</div>
+                    </div>
+                    <p>Implementasi tindakan pencegahan untuk masa depan</p>
+                    <div class="content-box">
+                        <p><strong>Preventive actions:</strong> Safety stock adjustment, supplier diversification, process improvement, system enhancement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STRATEGI PENANGANAN SECTION -->
+        <div class="section">
+            <div class="section-title">## STRATEGI PENANGANAN BERDASARKAN TIPE STOCKOUT</div>
+            <div class="section-content">
+                <p>Klasifikasi strategi penanganan berdasarkan jenis dan tingkat keparahan stockout:</p>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Tipe Stockout</th>
+                            <th>Response Time</th>
+                            <th>Primary Strategy</th>
+                            <th>Secondary Strategy</th>
+                            <th>Recovery Timeline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Critical Stockout</strong></td>
+                            <td><span class="score score-low">≤ 2 jam</span></td>
+                            <td>Emergency Air Freight</td>
+                            <td>Local Market Purchase</td>
+                            <td>24-48 jam</td>
+                        </tr>
+                        <tr>
+                            <td><strong>High Priority Shortage</strong></td>
+                            <td><span class="score score-low">≤ 4 jam</span></td>
+                            <td>Expedited Ground Transport</td>
+                            <td>Supplier Collaboration</td>
+                            <td>48-72 jam</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Medium Priority Gap</strong></td>
+                            <td><span class="score score-medium">≤ 8 jam</span></td>
+                            <td>Inventory Reallocation</td>
+                            <td>Production Rescheduling</td>
+                            <td>3-5 hari</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Low Level Shortage</strong></td>
+                            <td><span class="score score-high">≤ 24 jam</span></td>
+                            <td>Normal Replenishment</td>
+                            <td>Customer Communication</td>
+                            <td>5-7 hari</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Critical Success Factors:</strong></p>
+                    <ul>
+                        <li><strong>Early Warning System:</strong> Deteksi dini melalui automated monitoring</li>
+                        <li><strong>Supplier Relationship:</strong> Kemitraan strategis dengan supplier kunci</li>
+                        <li><strong>Cross-Functional Coordination:</strong> Kerjasama antar departemen yang efektif</li>
+                        <li><strong>Data-Driven Decision:</strong> Keputusan berdasarkan data real-time</li>
+                        <li><strong>Continuous Improvement:</strong> Learning dari setiap kejadian stockout</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Emergency Sourcing Options:</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>Primary Supplier Acceleration:</strong> Negotiate expedited delivery from current supplier</p>
+                        <p><strong>Alternative Supplier Activation:</strong> Engage backup suppliers with stock availability</p>
+                        <p><strong>Local Market Purchase:</strong> Source from local distributors or competitors</p>
+                        <p><strong>Internal Reallocation:</strong> Transfer stock from other locations or departments</p>
+                        <p><strong>Product Substitution:</strong> Use alternative products with similar specifications</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses penanganan kekurangan stok mendadak:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bell"></i>
+                                <h3>FORM-PB-3601</h3>
+                                <p>Stockout Alert and Assessment Form</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tasks"></i>
+                                <h3>FORM-PB-3602</h3>
+                                <p>Emergency Response Checklist</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-search"></i>
+                                <h3>FORM-PB-3603</h3>
+                                <p>Root Cause Analysis Worksheet</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>FORM-PB-3604</h3>
+                                <p>Stockout Performance Dashboard</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Stockout:</strong></p>
+                    <ul>
+                        <li><strong>Stockout Incident Reports:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Emergency PO Documentation:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Root Cause Analysis:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Customer Communication Records:</strong> Disimpan 3 tahun</li>
+                        <li><strong>Improvement Action Plans:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Performance Metrics:</strong> Disimpan 3 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Stockout Response Time:</strong> ≤ 4 jam</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stockout Resolution Rate:</strong> ≥ 95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Service Level:</strong> ≥ 98%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Emergency Procurement Cycle Time:</strong> ≤ 48 jam</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stockout Frequency Reduction:</strong> ≥ 50% year-over-year</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Root Cause Identification:</strong> 100% within 7 hari</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preventive Action Implementation:</strong> ≥ 90% on-time</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost of Stockout Reduction:</strong> ≥ 30% year-over-year</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Stockout Response Manager</th>
+                        <th width="25%">Inventory Controller</th>
+                        <th width="25%">Purchasing Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-036 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Penyelesaian Sengketa dengan Supplier - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PENYELESAIAN SENGKETA DENGAN SUPPLIER - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-019</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses penyelesaian sengketa dengan supplier guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Penyelesaian sengketa yang efektif, efisien, dan adil bagi kedua belah pihak</td>
+                    </tr>
+                    <tr>
+                        <td>Perlindungan kepentingan hukum dan finansial perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Pemeliharaan hubungan bisnis yang baik dengan supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Minimalisasi dampak negatif terhadap operasional bisnis</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap ketentuan kontrak dan regulasi yang berlaku</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Penyelesaian sengketa yang efektif dapat mengurangi kerugian finansial hingga 40% dan mempertahankan 75% hubungan bisnis dengan supplier.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses penyelesaian sengketa untuk berbagai jenis konflik dengan supplier:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>Sengketa Kontrak</h3>
+                                <p>Pelanggaran terms and conditions kontrak</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-boxes"></i>
+                                <h3>Sengketa Kualitas</h3>
+                                <p>Barang tidak memenuhi standar kualitas</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-truck"></i>
+                                <h3>Sengketa Pengiriman</h3>
+                                <p>Keterlambatan atau ketidaktepatan pengiriman</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <h3>Sengketa Pembayaran</h3>
+                                <p>Masalah invoice, pembayaran, dan credit note</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Dispute Resolution Manager:</strong> Penanggung jawab utama proses penyelesaian sengketa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Manager:</strong> Koordinator dengan departemen terkait</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal Counsel:</strong> Advise hukum dan review dokumen</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Controller:</strong> Analisis dampak finansial</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technical Specialist:</strong> Validasi aspek teknis sengketa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Director:</strong> Approval untuk penyelesaian bernilai tinggi</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Alternative Dispute Resolution</h3>
+                                <p>Metode penyelesaian sengketa di luar pengadilan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-users"></i>
+                                <h3>Mediation</h3>
+                                <p>Penyelesaian dengan bantuan pihak ketiga netral</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-gavel"></i>
+                                <h3>Arbitration</h3>
+                                <p>Penyelesaian oleh arbiter yang keputusannya mengikat</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>Settlement Agreement</h3>
+                                <p>Perjanjian damai antara kedua belah pihak</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PENYELESAIAN SENGKETA DENGAN SUPPLIER</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Identifikasi dan Klasifikasi Sengketa</div>
+                    </div>
+                    <p>Mengidentifikasi sengketa dan mengklasifikasikan berdasarkan jenis dan tingkat keparahan</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Kriteria klasifikasi:</strong> Contract breach, financial impact, relationship impact, legal complexity, time sensitivity</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Pengumpulan Bukti dan Dokumentasi</div>
+                    </div>
+                    <p>Mengumpulkan semua bukti dan dokumen pendukung yang relevan</p>
+                    <ul>
+                        <li>Kontrak dan amendment</li>
+                        <li>Purchase orders dan delivery documents</li>
+                        <li>Communication records</li>
+                        <li>Quality inspection reports</li>
+                        <li>Financial documents</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Analisis Dampak dan Risiko</div>
+                    </div>
+                    <p>Menganalisis dampak finansial, operasional, dan reputasi dari sengketa</p>
+                    <div class="content-box">
+                        <p><strong>Aspek analisis:</strong> Financial loss calculation, operational impact assessment, legal risk evaluation, relationship risk analysis</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Penyusunan Strategi Penyelesaian</div>
+                    </div>
+                    <p>Menyusun strategi penyelesaian berdasarkan analisis dan klasifikasi sengketa</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Pilihan strategi:</strong> Negotiation, mediation, arbitration, litigation, combination approach</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Komunikasi dan Negosiasi Awal</div>
+                    </div>
+                    <p>Melakukan komunikasi formal dan negosiasi awal dengan supplier</p>
+                    <ul>
+                        <li>Formal dispute notification</li>
+                        <li>Evidence presentation</li>
+                        <li>Initial settlement proposal</li>
+                        <li>Response analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Proses Mediasi atau Arbitrase</div>
+                    </div>
+                    <p>Melakukan proses mediasi atau arbitrase jika negosiasi tidak berhasil</p>
+                    <div class="content-box">
+                        <p><strong>Proses ADR:</strong> Mediator/arbiter selection, hearing preparation, settlement discussion, agreement drafting</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Finalisasi Kesepakatan</div>
+                    </div>
+                    <p>Memfinalisasi kesepakatan penyelesaian dan mendapatkan approval internal</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Elemen kesepakatan:</strong> Settlement amount, payment terms, future relationship terms, confidentiality agreement, release of claims</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Implementasi dan Monitoring</div>
+                    </div>
+                    <p>Mengimplementasikan kesepakatan dan memantau kepatuhan</p>
+                    <div class="content-box">
+                        <p><strong>Follow-up actions:</strong> Settlement payment processing, contract amendment, relationship rebuilding, performance monitoring, lessons learned documentation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- METODE PENYELESAIAN SECTION -->
+        <div class="section">
+            <div class="section-title">## METODE PENYELESAIAN SENGKETA</div>
+            <div class="section-content">
+                <p>Berbagai metode penyelesaian sengketa berdasarkan kompleksitas dan nilai sengketa:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Metode Penyelesaian</th>
+                            <th>Nilai Sengketa</th>
+                            <th>Waktu Penyelesaian</th>
+                            <th>Tingkat Kompleksitas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Direct Negotiation</strong></td>
+                            <td>< Rp 100 juta</td>
+                            <td><span class="score score-high">7-14 hari</span></td>
+                            <td>Rendah</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Formal Mediation</strong></td>
+                            <td>Rp 100 juta - 1 M</td>
+                            <td><span class="score score-medium">14-30 hari</span></td>
+                            <td>Sedang</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Arbitration</strong></td>
+                            <td>Rp 1 M - 5 M</td>
+                            <td><span class="score score-medium">30-90 hari</span></td>
+                            <td>Tinggi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Litigation</strong></td>
+                            <td>> Rp 5 M</td>
+                            <td><span class="score score-low">6-24 bulan</span></td>
+                            <td>Sangat Tinggi</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-balance-scale"></i> <strong>Pertimbangan Pemilihan Metode:</strong></p>
+                    <ul>
+                        <li><strong>Cost-Benefit Analysis:</strong> Biaya vs potensi recovery</li>
+                        <li><strong>Time Sensitivity:</strong> Urgensi penyelesaian</li>
+                        <li><strong>Relationship Value:</strong> Nilai hubungan bisnis jangka panjang</li>
+                        <li><strong>Legal Precedent:</strong> Dampak terhadap kasus serupa di masa depan</li>
+                        <li><strong>Confidentiality Needs:</strong> Kebutuhan kerahasiaan informasi</li>
+                    </ul>
+                </div>
+
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Eskalasi Sengketa Berdasarkan Nilai:</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>Level 1 (≤ Rp 50 juta):</strong> Purchasing Staff → Purchasing Manager</p>
+                        <p><strong>Level 2 (Rp 50-200 juta):</strong> Purchasing Manager → Dispute Resolution Manager</p>
+                        <p><strong>Level 3 (Rp 200 juta-1 M):</strong> Dispute Resolution Manager → Legal Counsel → Director</p>
+                        <p><strong>Level 4 (> Rp 1 M):</strong> Dispute Committee → Board of Directors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses penyelesaian sengketa dengan supplier:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-1901</h3>
+                                <p>Dispute Registration Form</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>FORM-PB-1902</h3>
+                                <p>Settlement Agreement Template</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>FORM-PB-1903</h3>
+                                <p>Dispute Impact Analysis Worksheet</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-gavel"></i>
+                                <h3>FORM-PB-1904</h3>
+                                <p>Legal Case Summary Template</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Sengketa:</strong></p>
+                    <ul>
+                        <li><strong>Settlement Agreements:</strong> Disimpan 10 tahun setelah berakhir</li>
+                        <li><strong>Dispute Records:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Legal Documents:</strong> Disimpan 15 tahun</li>
+                        <li><strong>Communication Records:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Financial Settlement Proof:</strong> Disimpan 10 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Dispute Resolution Rate:</strong> ≥85%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Average Resolution Time:</strong> ≤30 hari</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost Recovery Rate:</strong> ≥80%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Relationship Preservation:</strong> ≥70%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal Cost vs Recovery Ratio:</strong> ≤1:3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repeat Dispute Rate:</strong> ≤5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Satisfaction Score (Internal):</strong> ≥80%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance with SLA:</strong> ≥95%</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-019 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

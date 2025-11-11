@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Pemantauan Kinerja Supplier - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PEMANTAUAN KINERJA SUPPLIER - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-015</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses pemantauan dan evaluasi kinerja supplier guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Kinerja supplier yang konsisten dan memenuhi standar kualitas</td>
+                    </tr>
+                    <tr>
+                        <td>Pengambilan keputusan yang objektif dalam seleksi dan retensi supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Peningkatan kualitas produk melalui feedback yang konstruktif</td>
+                    </tr>
+                    <tr>
+                        <td>Pengurangan risiko supply chain dan gangguan operasional</td>
+                    </tr>
+                    <tr>
+                        <td>Optimalisasi biaya melalui kerja sama dengan supplier berkualitas</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Pemantauan kinerja supplier yang efektif dapat meningkatkan kualitas produk hingga 35% dan mengurangi biaya terkait quality issue hingga 50%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses pemantauan dan evaluasi untuk berbagai kategori supplier:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-boxes"></i>
+                                <h3>Supplier Material</h3>
+                                <p>Pemasok bahan baku dan material bangunan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tools"></i>
+                                <h3>Supplier Perkakas</h3>
+                                <p>Pemasok alat dan perlengkapan konstruksi</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-truck"></i>
+                                <h3>Supplier Jasa</h3>
+                                <p>Penyedia jasa logistik dan transportasi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-cogs"></i>
+                                <h3>Supplier Teknis</h3>
+                                <p>Pemasok komponen dan spare part teknis</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Purchasing Manager:</strong> Koordinasi overall supplier management</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Relationship Officer:</strong> Monitoring dan evaluasi harian</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality Control Team:</strong> Assessment kualitas produk</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Logistics Coordinator:</strong> Evaluasi kinerja pengiriman</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Officer:</strong> Review terms pembayaran dan compliance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Warehouse Supervisor:</strong> Feedback penerimaan barang</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-star"></i>
+                                <h3>Supplier Scorecard</h3>
+                                <p>Laporan penilaian kinerja supplier secara komprehensif</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>KPI Supplier</h3>
+                                <p>Key Performance Indicator untuk mengukur kinerja</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-medal"></i>
+                                <h3>Supplier Tier</h3>
+                                <p>Klasifikasi supplier berdasarkan tingkat kinerja</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>Performance Review</h3>
+                                <p>Proses evaluasi dan feedback kinerja supplier</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PEMANTAUAN KINERJA SUPPLIER</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Pengumpulan Data Kinerja</div>
+                    </div>
+                    <p>Mengumpulkan data kinerja supplier dari berbagai departemen</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Sumber data:</strong> QC reports, delivery records, invoice accuracy, response time, complaint handling</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Perhitungan KPI Bulanan</div>
+                    </div>
+                    <p>Menghitung Key Performance Indicator untuk setiap supplier</p>
+                    <ul>
+                        <li>On-time Delivery Rate</li>
+                        <li>Quality Acceptance Rate</li>
+                        <li>Documentation Accuracy</li>
+                        <li>Response Time Index</li>
+                        <li>Cost Compliance Score</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Pembuatan Supplier Scorecard</div>
+                    </div>
+                    <p>Menyusun laporan scorecard dengan rating komprehensif</p>
+                    <div class="content-box">
+                        <p><strong>Komponen scorecard:</strong> Overall score, performance trend, improvement areas, recommendation</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Klasifikasi Supplier Tier</div>
+                    </div>
+                    <p>Mengklasifikasikan supplier berdasarkan hasil evaluasi</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Tier classification:</strong> Strategic Partner (A), Preferred Supplier (B), Approved Supplier (C), Under Review (D)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Quarterly Performance Review</div>
+                    </div>
+                    <p>Mengadakan meeting review dengan supplier strategis</p>
+                    <ul>
+                        <li>Presentasi hasil evaluasi</li>
+                        <li>Diskusi improvement areas</li>
+                        <li>Penyusunan action plan</li>
+                        <li>Penetapan target berikutnya</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Implementasi Corrective Action</div>
+                    </div>
+                    <p>Memantau implementasi rencana perbaikan dari supplier</p>
+                    <div class="content-box">
+                        <p><strong>Monitoring actions:</strong> Progress tracking, effectiveness verification, impact assessment</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Update Database Supplier</div>
+                    </div>
+                    <p>Memperbarui status dan informasi supplier di sistem</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Data yang diupdate:</strong> Performance rating, tier status, approved product list, contact information</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Reporting ke Management</div>
+                    </div>
+                    <p>Menyampaikan laporan kinerja supplier kepada manajemen</p>
+                    <div class="content-box">
+                        <p><strong>Management report:</strong> Overall supplier performance, risk assessment, strategic recommendation, budget impact</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KRITERIA PENILAIAN SECTION -->
+        <div class="section">
+            <div class="section-title">## KRITERIA PENILAIAN KINERJA SUPPLIER</div>
+            <div class="section-content">
+                <p>Parameter penilaian kinerja supplier dengan bobot dan standar yang ditetapkan:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Kriteria Penilaian</th>
+                            <th>Bobot</th>
+                            <th>Standar Minimum</th>
+                            <th>Target Excellence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Kualitas Produk</strong></td>
+                            <td>30%</td>
+                            <td><span class="score score-medium">≥ 95%</span></td>
+                            <td><span class="score score-high">≥ 98%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ketepatan Pengiriman</strong></td>
+                            <td>25%</td>
+                            <td><span class="score score-medium">≥ 90%</span></td>
+                            <td><span class="score score-high">≥ 95%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Responsiveness</strong></td>
+                            <td>15%</td>
+                            <td><span class="score score-medium">≤ 24 jam</span></td>
+                            <td><span class="score score-high">≤ 4 jam</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Harga & Terms</strong></td>
+                            <td>15%</td>
+                            <td><span class="score score-medium">Competitive</span></td>
+                            <td><span class="score score-high">Market Leader</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dokumentasi</strong></td>
+                            <td>10%</td>
+                            <td><span class="score score-medium">≥ 98%</span></td>
+                            <td><span class="score score-high">100%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Innovation & Support</strong></td>
+                            <td>5%</td>
+                            <td><span class="score score-low">Basic</span></td>
+                            <td><span class="score score-high">Excellent</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-chart-bar"></i> <strong>Klasifikasi Tier Supplier:</strong></p>
+                    <ul>
+                        <li><strong>Tier A (Strategic Partner):</strong> Score ≥ 90% - Prioritas utama, volume tinggi, partnership jangka panjang</li>
+                        <li><strong>Tier B (Preferred Supplier):</strong> Score 80-89% - Supplier pilihan, volume menengah, potensi development</li>
+                        <li><strong>Tier C (Approved Supplier):</strong> Score 70-79% - Supplier approved, volume terbatas, monitoring ketat</li>
+                        <li><strong>Tier D (Under Review):</strong> Score < 70% - Supplier dalam masa percobaan, risk tinggi</li>
+                        <li><strong>Tier E (Suspended):</strong> Score < 60% - Ditangguhkan, require significant improvement</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Frekuensi Evaluasi:</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>Evaluasi Bulanan:</strong> KPI calculation dan performance tracking untuk semua supplier aktif</p>
+                        <p><strong>Review Triwulan:</strong> Formal performance review meeting dengan Tier A & B suppliers</p>
+                        <p><strong>Assesment Semester:</strong> Comprehensive evaluation dan tier reclassification</p>
+                        <p><strong>Audit Tahunan:</strong> On-site audit untuk strategic partners dan high-risk suppliers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses pemantauan kinerja supplier:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-star"></i>
+                                <h3>FORM-PB-1501</h3>
+                                <p>Supplier Scorecard Template</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-1502</h3>
+                                <p>Performance Review Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>FORM-PB-1503</h3>
+                                <p>Supplier Improvement Plan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-pie"></i>
+                                <h3>FORM-PB-1504</h3>
+                                <p>Supplier Performance Dashboard</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-database"></i> <strong>Retensi Dokumen Supplier Performance:</strong></p>
+                    <ul>
+                        <li><strong>Supplier Scorecards:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Performance Review Minutes:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Improvement Plans:</strong> Disimpan 3 tahun</li>
+                        <li><strong>Audit Reports:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Supplier Contracts:</strong> Disimpan 10 tahun</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                    <table class="content-table">
+                        <tr>
+                            <td><strong>Supplier On-time Delivery:</strong> ≥ 95%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quality Acceptance Rate:</strong> ≥ 98%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Strategic Supplier Ratio:</strong> ≥ 40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supplier Satisfaction Score:</strong> ≥ 85%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost Savings from Supplier Development:</strong> ≥ 5% per tahun</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supplier Risk Mitigation:</strong> 100% high-risk suppliers managed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance Review Completion:</strong> 100% on schedule</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supplier Development Projects:</strong> ≥ 6 per tahun</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-015 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

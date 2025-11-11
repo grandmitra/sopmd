@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Analisis Kebutuhan Barang Dagangan - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">ANALISIS KEBUTUHAN BARANG DAGANGAN - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-002</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses analisis kebutuhan barang dagangan guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>- Kesesuaian antara stok yang tersedia dengan permintaan pasar</td>
+                    </tr>
+                    <tr>
+                        <td>- Optimasi komposisi produk dalam portofolio barang dagangan</td>
+                    </tr>
+                    <tr>
+                        <td>- Identifikasi peluang produk baru dan produk yang perlu di-discontinue</td>
+                    </tr>
+                    <tr>
+                        <td>- Minimisasi dead stock dan slow moving items</td>
+                    </tr>
+                    <tr>
+                        <td>- Maksimalisasi profitabilitas melalui analisis margin yang tepat</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Analisis yang akurat dapat meningkatkan sales hingga 20% dan mengurangi inventory cost hingga 30%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses analisis kebutuhan untuk semua kategori bahan bangunan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-boxes"></i>
+                                <h3>Analisis Stok</h3>
+                                <p>Evaluasi level stok dan perputaran barang</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Analisis Penjualan</h3>
+                                <p>Trend penjualan dan pola permintaan</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-users"></i>
+                                <h3>Analisis Pasar</h3>
+                                <p>Kebutuhan dan preferensi konsumen</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <h3>Analisis Profitabilitas</h3>
+                                <p>Margin dan kontribusi profit per produk</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Manager Pembelian:</strong> Koordinator analisis kebutuhan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Staf Pembelian:</strong> Pelaksana analisis data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Penjualan:</strong> Input data penjualan dan feedback pasar</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Gudang:</strong> Data stok dan pergerakan barang</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketing:</strong> Data trend pasar dan kompetitor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance:</strong> Analisis profitabilitas produk</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-running"></i>
+                                <h3>Fast Moving Goods</h3>
+                                <p>Barang dengan perputaran tinggi (>8x/tahun)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-walking"></i>
+                                <h3>Slow Moving Goods</h3>
+                                <p>Barang dengan perputaran rendah (<4x/tahun)</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-skull-crossbones"></i>
+                                <h3>Dead Stock</h3>
+                                <p>Barang tidak bergerak >6 bulan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chess-board"></i>
+                                <h3>Product Portfolio</h3>
+                                <p>Komposisi produk dalam bauran dagangan</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES ANALISIS KEBUTUHAN BARANG DAGANGAN</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Pengumpulan Data</div>
+                    </div>
+                    <p>Mengumpulkan data dari berbagai sumber untuk analisis komprehensif</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Sumber Data:</strong> Sistem penjualan, data gudang, laporan keuangan, riset pasar, feedback sales</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Analisis ABC</div>
+                    </div>
+                    <p>Mengklasifikasikan produk berdasarkan kontribusi penjualan</p>
+                    <ul>
+                        <li><strong>Kelas A (80%):</strong> Produk dengan kontribusi 80% dari penjualan</li>
+                        <li><strong>Kelas B (15%):</strong> Produk dengan kontribusi 15% dari penjualan</li>
+                        <li><strong>Kelas C (5%):</strong> Produk dengan kontribusi 5% dari penjualan</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Analisis XYZ</div>
+                    </div>
+                    <p>Mengklasifikasikan produk berdasarkan konsistensi permintaan</p>
+                    <div class="content-box">
+                        <p><strong>Kategori:</strong></p>
+                        <ul>
+                            <li><strong>X:</strong> Permintaan sangat stabil (variance <10%)</li>
+                            <li><strong>Y:</strong> Permintaan moderat (variance 10-25%)</li>
+                            <li><strong>Z:</strong> Permintaan tidak menentu (variance >25%)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Analisis Trend dan Seasonality</div>
+                    </div>
+                    <p>Mengidentifikasi pola musiman dan trend penjualan</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Pola Musiman:</strong> Musim hujan (material atap, waterproofing), musim kemarau (material eksterior), tahun baru (material renovasi)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Analisis Profitabilitas</div>
+                    </div>
+                    <p>Menghitung margin dan kontribusi profit per produk</p>
+                    <ul>
+                        <li>Gross margin per produk</li>
+                        <li>Contribution margin</li>
+                        <li>Inventory carrying cost</li>
+                        <li>Return on inventory investment</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Analisis Kompetitor</div>
+                    </div>
+                    <p>Memantau produk dan strategi kompetitor</p>
+                    <div class="content-box">
+                        <p><strong>Aspek yang dianalisis:</strong> Assortment, pricing, promotion, new product introduction</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Identifikasi Kebutuhan</div>
+                    </div>
+                    <p>Menyimpulkan kebutuhan berdasarkan hasil analisis</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Output:</strong> Rekomendasi penambahan, pengurangan, penggantian, atau discontinuation produk</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Penyusunan Rekomendasi</div>
+                    </div>
+                    <p>Menyusun laporan rekomendasi untuk manajemen</p>
+                    <div class="content-box">
+                        <p><strong>Isi laporan:</strong> Executive summary, data analisis, rekomendasi produk, action plan, expected outcome</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KRITERIA ANALISIS SECTION -->
+        <div class="section">
+            <div class="section-title">## KRITERIA DAN PARAMETER ANALISIS</div>
+            <div class="section-content">
+                <p>Parameter yang digunakan dalam analisis kebutuhan barang dagangan:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Rumus</th>
+                            <th>Target Ideal</th>
+                            <th>Kategori</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Stock Turnover Ratio</strong></td>
+                            <td>Cost of Goods Sold / Average Inventory</td>
+                            <td><span class="score score-high">≥ 6x/tahun</span></td>
+                            <td>Efisiensi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GMROII</strong></td>
+                            <td>Gross Margin / Average Inventory Cost</td>
+                            <td><span class="score score-high">≥ 200%</span></td>
+                            <td>Profitabilitas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Service Level</strong></td>
+                            <td>(Orders Fulfilled / Total Orders) × 100%</td>
+                            <td><span class="score score-high">≥ 95%</span></td>
+                            <td>Kinerja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stockout Frequency</strong></td>
+                            <td>Jumlah kejadian stockout / Periode</td>
+                            <td><span class="score score-low">≤ 2x/bulan</span></td>
+                            <td>Ketersediaan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dead Stock Ratio</strong></td>
+                            <td>Value Dead Stock / Total Inventory Value</td>
+                            <td><span class="score score-low">≤ 5%</span></td>
+                            <td>Risiko</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sell-Through Rate</strong></td>
+                            <td>(Units Sold / Units Received) × 100%</td>
+                            <td><span class="score score-high">≥ 80%</span></td>
+                            <td>Efektivitas</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-calculator"></i> <strong>Klasifikasi Produk Berdasarkan Analisis Kombinasi ABC-XYZ:</strong></p>
+                    <ul>
+                        <li><strong>AX:</strong> High value, stable demand - Priority 1</li>
+                        <li><strong>AY:</strong> High value, variable demand - Priority 2</li>
+                        <li><strong>AZ:</strong> High value, erratic demand - Monitor closely</li>
+                        <li><strong>BX:</strong> Medium value, stable demand - Regular review</li>
+                        <li><strong>BY:</strong> Medium value, variable demand - Careful management</li>
+                        <li><strong>BZ:</strong> Medium value, erratic demand - Consider reduction</li>
+                        <li><strong>CX:</strong> Low value, stable demand - Standard procedure</li>
+                        <li><strong>CY:</strong> Low value, variable demand - Minimal stock</li>
+                        <li><strong>CZ:</strong> Low value, erratic demand - Consider discontinuation</li>
+                    </ul>
+                </div>
+
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Matriks Analisis Produk:</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>High Margin - High Volume:</strong> Star Products (Pertahankan dan tingkatkan)</p>
+                        <p><strong>High Margin - Low Volume:</strong> Question Marks (Evaluasi potensi perkembangan)</p>
+                        <p><strong>Low Margin - High Volume:</strong> Cash Cows (Optimasi cost dan efisiensi)</p>
+                        <p><strong>Low Margin - Low Volume:</strong> Dogs (Pertimbangkan discontinuation)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses analisis kebutuhan barang dagangan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-pie"></i>
+                                <h3>FORM-PB-201</h3>
+                                <p>Template Analisis ABC-XYZ</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-wave-square"></i>
+                                <h3>FORM-PB-202</h3>
+                                <p>Form Analisis Trend dan Seasonality</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-money-bill-trend-up"></i>
+                                <h3>FORM-PB-203</h3>
+                                <p>Form Analisis Profitabilitas Produk</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-204</h3>
+                                <p>Laporan Rekomendasi Produk</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-calendar-alt"></i> <strong>Jadwal Analisis:</strong></p>
+                    <ul>
+                        <li><strong>Analisis Harian:</strong> Stockout dan fast moving items</li>
+                        <li><strong>Analisis Mingguan:</strong> Sales performance dan stock level</li>
+                        <li><strong>Analisis Bulanan:</strong> ABC analysis dan profitabilitas</li>
+                        <li><strong>Analisis Triwulanan:</strong> Product portfolio review</li>
+                        <li><strong>Analisis Tahunan:</strong> Strategic product assessment</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                    <table class="content-table">
+                        <tr>
+                            <td><strong>Accuracy Forecast:</strong> ≥85%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Product Availability:</strong> ≥95%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stock Turnover:</strong> ≥6x per tahun</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dead Stock Ratio:</strong> ≤5%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>New Product Success Rate:</strong> ≥70%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Product Portfolio Health Index:</strong> ≥80%</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-002 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

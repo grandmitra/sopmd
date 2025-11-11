@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-PB-027 - Pengadaan Material Import</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PENGADAAN MATERIAL IMPORT</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-027</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses pengadaan material import guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Kepatuhan terhadap regulasi kepabeanan dan peraturan impor Indonesia</td>
+                    </tr>
+                    <tr>
+                        <td>Efisiensi biaya dan waktu dalam proses impor material</td>
+                    </tr>
+                    <tr>
+                        <td>Kualitas material import yang memenuhi standar teknis proyek</td>
+                    </tr>
+                    <tr>
+                        <td>Minimalisasi risiko keterlambatan dan penolakan di customs</td>
+                    </tr>
+                    <tr>
+                        <td>Optimalisasi penggunaan fasilitas dan insentif impor yang tersedia</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Proses pengadaan material import yang efektif dapat mengurangi biaya logistik hingga 25% dan mempersingkat waktu customs clearance hingga 40% melalui sistem yang terstruktur.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses pengadaan material import untuk berbagai jenis proyek:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-cogs"></i>
+                                <h3>Material Teknis Khusus</h3>
+                                <p>Equipment khusus, spare part machinery, komponen teknis</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tools"></i>
+                                <h3>Material Finishing</h3>
+                                <p>Material dekoratif, sanitary import, fitting khusus</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-industry"></i>
+                                <h3>Material Struktural</h3>
+                                <p>Baja struktural, material komposit, produk fabrikasi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bolt"></i>
+                                <h3>Material MEP</h3>
+                                <p>Electrical equipment, plumbing system, HVAC components</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Import Manager:</strong> Koordinasi overall proses impor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>International Purchasing Officer:</strong> Procurement dari supplier luar negeri</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customs Clearance Officer:</strong> Penanganan dokumen dan proses bea cukai</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Logistics Coordinator:</strong> Koordinasi pengiriman internasional</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal & Compliance Officer:</strong> Memastikan kepatuhan regulasi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality Control:</strong> Pemeriksaan kualitas material import</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-passport"></i>
+                                <h3>PIUD</h3>
+                                <p>Persetujuan Impor untuk Dipakai (Import Approval)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <h3>PIB</h3>
+                                <p>Pemberitahuan Impor Barang (Customs Import Declaration)</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-ship"></i>
+                                <h3>BL/AWB</h3>
+                                <p>Bill of Lading / Air Waybill (Dokumen Pengangkutan)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-certificate"></i>
+                                <h3>COO</h3>
+                                <p>Certificate of Origin (Sertifikat Asal Barang)</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-info-circle"></i> <strong>Istilah Penting Lainnya:</strong></p>
+                    <ul>
+                        <li><strong>HS Code:</strong> Kode klasifikasi barang untuk kepabeanan</li>
+                        <li><strong>FOB/CIF:</strong> Term pengiriman internasional</li>
+                        <li><strong>LARTAS:</strong> Larangan dan Pembatasan impor</li>
+                        <li><strong>PPJK:</strong> Perusahaan Pengurusan Jasa Kepabeanan</li>
+                        <li><strong>SPPB:</strong> Surat Persetujuan Pengeluaran Barang</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PENGADAAN MATERIAL IMPORT</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Identifikasi Kebutuhan dan Studi Kelayakan</div>
+                    </div>
+                    <p>Analisis kebutuhan material import dan studi kelayakan teknis & finansial</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Analisis yang dilakukan:</strong> Ketersediaan lokal, keunggulan teknis, analisis biaya-manfaat, lead time, regulasi impor</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Pengurusan API dan NIK</div>
+                    </div>
+                    <p>Memastikan perusahaan memiliki Angka Pengenal Importir (API) dan Nomor Induk Kepabeanan (NIK)</p>
+                    <ul>
+                        <li>Validasi dokumen perusahaan</li>
+                        <li>Pengajuan API jika belum memiliki</li>
+                        <li>Verifikasi NIK di sistem customs</li>
+                        <li>Update data jika diperlukan</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Identifikasi HS Code dan Regulasi</div>
+                    </div>
+                    <p>Menentukan HS Code yang tepat dan mengidentifikasi regulasi terkait</p>
+                    <div class="content-box">
+                        <p><strong>Aspek yang dianalisis:</strong> Tarif bea masuk, PPN impor, PPh pasal 22, LARTAS, standardisasi, perijinan khusus</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">International Procurement</div>
+                    </div>
+                    <p>Melakukan procurement dari supplier internasional dengan term yang jelas</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Aspek kontrak:</strong> Incoterms, metode pembayaran, dokumen yang diperlukan, klausul kualitas, force majeure</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Pengurusan Dokumen Export dari Negara Asal</div>
+                    </div>
+                    <p>Memastikan kelengkapan dokumen export dari supplier</p>
+                    <ul>
+                        <li>Commercial Invoice</li>
+                        <li>Packing List</li>
+                        <li>Certificate of Origin</li>
+                        <li>Bill of Lading/Air Waybill</li>
+                        <li>Insurance Certificate</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Pemberitahuan PIB dan Pembayaran Bea Masuk</div>
+                    </div>
+                    <p>Mengajukan PIB dan melakukan pembayaran bea masuk serta pajak impor</p>
+                    <div class="content-box">
+                        <p><strong>Dokumen PIB:</strong> Invoice, Packing List, BL/AWB, COO, API, NIK, dokumen pendukung lainnya</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Physical Inspection dan Customs Clearance</div>
+                    </div>
+                    <p>Proses pemeriksaan fisik dan pengeluaran barang dari customs</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Jenis pemeriksaan:</strong> Pemeriksaan dokumen, pemeriksaan fisik biasa, pemeriksasan fisik intensif, pemeriksaan x-ray</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Pengangkutan ke Gudang dan Pemeriksaan Kualitas</div>
+                    </div>
+                    <p>Pengiriman barang ke gudang dan melakukan pemeriksaan kualitas menyeluruh</p>
+                    <div class="content-box">
+                        <p><strong>Pemeriksaan:</strong> Kesesuaian quantity, kondisi barang, spesifikasi teknis, kelengkapan, dokumen</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">9</div>
+                        <div class="step-title">Penyelesaian Administrasi dan Pembayaran</div>
+                    </div>
+                    <p>Menyelesaikan administrasi dan melakukan pembayaran kepada supplier</p>
+                    <div class="content-box">
+                        <p><strong>Dokumen penyelesaian:</strong> Laporan penerimaan barang, berita acara pemeriksaan, konfirmasi kualitas, approval pembayaran</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">10</div>
+                        <div class="step-title">Evaluasi Kinerja dan Improvement</div>
+                    </div>
+                    <p>Melakukan evaluasi kinerja proses impor dan identifikasi improvement</p>
+                    <div class="content-box">
+                        <p><strong>Metrik evaluasi:</strong> Lead time, biaya, kualitas, kepatuhan regulasi, kinerja supplier</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN BEA CUKAI SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN BEA CUKAI DAN REGULASI</div>
+            <div class="section-content">
+                <p>Dokumen wajib dan regulasi yang harus dipenuhi dalam proses impor:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Dokumen/Regulasi</th>
+                            <th>Status</th>
+                            <th>Deskripsi</th>
+                            <th>Timeline Penyelesaian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>API (Angka Pengenal Importir)</strong></td>
+                            <td><span class="score score-high">Wajib</span></td>
+                            <td>Izin impor untuk perusahaan</td>
+                            <td>Sebelum proses impor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NIK (Nomor Induk Kepabeanan)</strong></td>
+                            <td><span class="score score-high">Wajib</span></td>
+                            <td>Identitas perusahaan di sistem bea cukai</td>
+                            <td>Sebelum proses impor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PIB (Pemberitahuan Impor Barang)</strong></td>
+                            <td><span class="score score-high">Wajib</span></td>
+                            <td>Dokumen deklarasi impor ke bea cukai</td>
+                            <td>Max 30 hari setelah barang tiba</td>
+                        </tr>
+                        <tr>
+                            <td><strong>COO (Certificate of Origin)</strong></td>
+                            <td><span class="score score-medium">Kondisional</span></td>
+                            <td>Sertifikat asal barang untuk fasilitas FTA</td>
+                            <td>Sesuai kesepakatan dengan supplier</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Surveyor Report</strong></td>
+                            <td><span class="score score-medium">Kondisional</span></td>
+                            <td>Laporan surveyor untuk barang tertentu</td>
+                            <td>Sebelum pengajuan PIB</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Peraturan dan Regulasi Penting:</strong></p>
+                    <ul>
+                        <li><strong>UU No. 17 Tahun 2006:</strong> Tentang Kepabeanan</li>
+                        <li><strong>PMK No. 199/PMK.04/2019:</strong> Ketentuan Kepabeanan di Bidang Impor</li>
+                        <li><strong>Peraturan LARTAS:</strong> Larangan dan Pembatasan barang impor</li>
+                        <li><strong>Peraturan HS Code:</strong> Klasifikasi barang berdasarkan BTI</li>
+                        <li><strong>Perjanjian FTA:</strong> ASEAN-China FTA, Indonesia-Japan EPA, dll</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Biaya dan Pajak Impor:</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>Bea Masuk:</strong> 0% - 40% tergantung HS Code dan perjanjian FTA</p>
+                        <p><strong>PPN Impor:</strong> 11% dari nilai CIF + Bea Masuk</p>
+                        <p><strong>PPh Pasal 22 Impor:</strong> 2.5% (umum) atau 7.5% (tanpa API) dari nilai CIF</p>
+                        <p><strong>Biaya Lainnya:</strong> Biaya customs clearance, biaya surveyor, biaya handling, biaya transportasi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses pengadaan material import:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-globe"></i>
+                                <h3>FORM-PB-2701</h3>
+                                <p>International Purchase Requisition</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>FORM-PB-2702</h3>
+                                <p>International Purchase Order</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>FORM-PB-2703</h3>
+                                <p>Customs Declaration Checklist</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-PB-2704</h3>
+                                <p>Import Compliance Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Impor:</strong></p>
+                    <ul>
+                        <li><strong>Dokumen PIB:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Commercial Invoice:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Shipping Documents:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Customs Approval:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Import Licenses:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Payment Records:</strong> Disimpan 10 tahun</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">KPI (Key Performance Indicator):</h3>
+                    <ul>
+                        <li><strong>Customs Clearance Time:</strong> ≤ 5 hari kerja</li>
+                        <li><strong>Import Lead Time:</strong> ≤ 45 hari (sea freight)</li>
+                        <li><strong>Document Accuracy:</strong> ≥ 98%</li>
+                        <li><strong>Regulatory Compliance:</strong> 100%</li>
+                        <li><strong>Cost Variance:</strong> ≤ 5% dari budget</li>
+                        <li><strong>Quality Acceptance Rate:</strong> ≥ 95%</li>
+                        <li><strong>On-Time Delivery:</strong> ≥ 90%</li>
+                        <li><strong>Customs Audit Findings:</strong> 0 major findings</li>
+                    </ul>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Import Manager</th>
+                        <th width="25%">Legal & Compliance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-027 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-PB-037 - Proses Pembelian Cepat (Fast Track)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PROSES PEMBELIAN CEPAT (FAST TRACK)</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-037</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses pembelian cepat (fast track) guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Akselerasi proses pembelian untuk kebutuhan bisnis yang mendesak</td>
+                    </tr>
+                    <tr>
+                        <td>Minimalisasi waktu siklus procurement tanpa mengorbankan kualitas</td>
+                    </tr>
+                    <tr>
+                        <td>Optimasi efisiensi melalui penyederhanaan proses dan otomatisasi</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap kontrol internal dalam proses yang dipercepat</td>
+                    </tr>
+                    <tr>
+                        <td>Peningkatan responsivitas terhadap kebutuhan operasional yang time-sensitive</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Implementasi proses fast track yang efektif dapat mengurangi waktu procurement hingga 75% dan meningkatkan kepuasan user department hingga 40% melalui efisiensi proses yang terstruktur.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh jenis pembelian yang memenuhi kriteria fast track:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-running"></i>
+                                <h3>Urgent Operational Needs</h3>
+                                <p>Kebutuhan operasional yang time-critical</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-project-diagram"></i>
+                                <h3>Project Critical Path</h3>
+                                <p>Item kritis dalam critical path project</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tools"></i>
+                                <h3>Pre-approved Items</h3>
+                                <p>Item dengan pre-approval dan kontrak existing</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bolt"></i>
+                                <h3>Low Value Procurement</h3>
+                                <p>Pembelian nilai rendah dengan risiko minimal</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Fast Track Coordinator:</strong> Koordinasi overall proses fast track</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Officer (Fast Track):</strong> Eksekusi pembelian cepat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Department Requester:</strong> Pengajuan kebutuhan fast track</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Budget Controller:</strong> Validasi budget dan approval limit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Relationship Manager:</strong> Koordinasi dengan preferred suppliers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance Auditor:</strong> Monitoring kepatuhan proses fast track</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <h3>Fast Track Procurement</h3>
+                                <p>Proses pembelian yang dipercepat dengan timeline khusus</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-check-double"></i>
+                                <h3>Pre-approved Supplier</h3>
+                                <p>Supplier yang telah lolos kualifikasi dan pre-approval</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-signature"></i>
+                                <h3>Blanket PO</h3>
+                                <p>Purchase order dengan multiple release capability</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bolt"></i>
+                                <h3>Express Approval</h3>
+                                <p>Proses approval yang dipercepat dengan delegasi</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-info-circle"></i> <strong>Istilah Penting Lainnya:</strong></p>
+                    <ul>
+                        <li><strong>Accelerated Timeline:</strong> Timeline yang dikompres untuk proses cepat</li>
+                        <li><strong>Delegated Authority:</strong> Wewenang yang didelegasikan untuk approval</li>
+                        <li><strong>Simplified Workflow:</strong> Alur kerja yang disederhanakan</li>
+                        <li><strong>Auto-approval Threshold:</strong> Batas nilai untuk approval otomatis</li>
+                        <li><strong>Fast Track Justification:</strong> Dokumentasi justifikasi untuk fast track</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PEMBELIAN CEPAT (FAST TRACK)</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Fast Track Eligibility Check</div>
+                    </div>
+                    <p>Pemeriksaan kelayakan permintaan untuk proses fast track</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Eligibility criteria:</strong> Budget availability, urgency level, pre-approved supplier, low complexity, within delegation limit</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Fast Track Justification dan Approval</div>
+                    </div>
+                    <p>Pengisian justifikasi fast track dan approval dipercepat</p>
+                    <ul>
+                        <li>Business urgency justification</li>
+                        <li>Impact analysis documentation</li>
+                        <li>Budget confirmation</li>
+                        <li>Delegated approval process</li>
+                        <li>Auto-approval untuk threshold tertentu</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Preferred Supplier Selection</div>
+                    </div>
+                    <p>Seleksi dari daftar preferred suppliers yang pre-approved</p>
+                    <div class="content-box">
+                        <p><strong>Selection criteria:</strong> Availability, pricing agreement, performance rating, delivery capability</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Accelerated Quotation Process</div>
+                    </div>
+                    <p>Proses permintaan penawaran yang dipercepat</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Acceleration methods:</strong> Template pricing, pre-negotiated rates, electronic quotation, simplified comparison</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Express PO Generation</div>
+                    </div>
+                    <p>Pembuatan purchase order dengan template cepat</p>
+                    <ul>
+                        <li>Fast track PO numbering system</li>
+                        <li>Template-based PO creation</li>
+                        <li>Auto-populated terms and conditions</li>
+                        <li>Simplified approval workflow</li>
+                        <li>Electronic signature capability</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Expedited Delivery Coordination</div>
+                    </div>
+                    <p>Koordinasi pengiriman dengan prioritas tinggi</p>
+                    <div class="content-box">
+                        <p><strong>Delivery options:</strong> Express shipping, dedicated transport, supplier stock allocation, real-time tracking</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Streamlined Receipt Process</div>
+                    </div>
+                    <p>Proses penerimaan yang disederhanakan dan dipercepat</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Streamlining features:</strong> Simplified GRN, barcode scanning, direct to user delivery, minimal documentation</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Accelerated Payment Processing</div>
+                    </div>
+                    <p>Proses pembayaran yang dipercepat untuk supplier</p>
+                    <div class="content-box">
+                        <p><strong>Payment acceleration:</strong> Early payment terms, electronic payment, simplified matching, auto-approval untuk amount tertentu</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">9</div>
+                        <div class="step-title">Post-Process Documentation</div>
+                    </div>
+                    <p>Penyelesaian dokumentasi setelah proses selesai</p>
+                    <div class="content-box">
+                        <p><strong>Required documentation:</strong> Fast track justification, approval records, delivery confirmation, payment documents, performance feedback</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">10</div>
+                        <div class="step-title">Performance Review dan Improvement</div>
+                    </div>
+                    <p>Review kinerja proses dan identifikasi improvement</p>
+                    <div class="content-box">
+                        <p><strong>Review aspects:</strong> Timeline achievement, cost efficiency, supplier performance, process compliance, user satisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KRITERIA FAST TRACK SECTION -->
+        <div class="section">
+            <div class="section-title">## KRITERIA DAN PARAMETER FAST TRACK</div>
+            <div class="section-content">
+                <p>Klasifikasi kriteria fast track berdasarkan nilai dan kompleksitas:</p>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Kategori Fast Track</th>
+                            <th>Nilai Maksimal</th>
+                            <th>Approval Level</th>
+                            <th>Timeline Target</th>
+                            <th>Documentation Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Level 1 - Express</strong></td>
+                            <td><span class="score score-high">≤ Rp 50 juta</span></td>
+                            <td>Purchasing Officer</td>
+                            <td>24 jam</td>
+                            <td>Minimal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level 2 - Accelerated</strong></td>
+                            <td><span class="score score-medium">≤ Rp 200 juta</span></td>
+                            <td>Purchasing Manager</td>
+                            <td>48 jam</td>
+                            <td>Simplified</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level 3 - Priority</strong></td>
+                            <td><span class="score score-low">≤ Rp 500 juta</span></td>
+                            <td>Department Director</td>
+                            <td>72 jam</td>
+                            <td>Standard</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level 4 - Critical</strong></td>
+                            <td><span class="score score-low">> Rp 500 juta</span></td>
+                            <td>Executive Committee</td>
+                            <td>5 hari</td>
+                            <td>Comprehensive</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Qualifying Criteria for Fast Track:</strong></p>
+                    <ul>
+                        <li><strong>Operational Urgency:</strong> Kebutuhan yang mengancam kelangsungan operasi</li>
+                        <li><strong>Project Critical Path:</strong> Item dalam critical path project</li>
+                        <li><strong>Pre-approved Items:</strong> Item dengan kontrak dan harga existing</li>
+                        <li><strong>Low Risk Procurement:</strong> Pembelian dengan risiko minimal</li>
+                        <li><strong>Recurring Requirements:</strong> Kebutuhan berulang dengan pattern stabil</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Fast Track Process Acceleration Features:</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>Automated Workflow:</strong> System-generated approvals untuk threshold tertentu</p>
+                        <p><strong>Template-based Documentation:</strong> Pre-defined templates untuk dokumen standar</p>
+                        <p><strong>Electronic Signatures:</strong> Digital approval untuk mempercepat proses</p>
+                        <p><strong>Real-time Tracking:</strong> Live tracking untuk semua tahapan proses</p>
+                        <p><strong>Integrated Communication:</strong> Otomatis notifikasi dan reminder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses pembelian cepat (fast track):</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bolt"></i>
+                                <h3>FORM-PB-3701</h3>
+                                <p>Fast Track Justification Form</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-check-circle"></i>
+                                <h3>FORM-PB-3702</h3>
+                                <p>Express Approval Checklist</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice"></i>
+                                <h3>FORM-PB-3703</h3>
+                                <p>Fast Track PO Template</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-3704</h3>
+                                <p>Fast Track Performance Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Fast Track:</strong></p>
+                    <ul>
+                        <li><strong>Fast Track Justifications:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Express POs:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Approval Records:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Performance Metrics:</strong> Disimpan 3 tahun</li>
+                        <li><strong>Supplier Performance Data:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Process Improvement Records:</strong> Disimpan 5 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Fast Track Cycle Time:</strong> ≤ target timeline + 10%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Process Compliance Rate:</strong> ≥ 98%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User Satisfaction Score:</strong> ≥ 4.5/5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost Savings vs Normal Process:</strong> ≥ 15%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier On-time Delivery:</strong> ≥ 95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>First-time Approval Rate:</strong> ≥ 90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Documentation Accuracy:</strong> ≥ 99%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Process Efficiency Improvement:</strong> ≥ 25% year-over-year</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Fast Track Coordinator</th>
+                        <th width="25%">Purchasing Manager</th>
+                        <th width="25%">Finance Controller</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-037 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

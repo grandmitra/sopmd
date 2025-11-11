@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Kontrak dan Perjanjian Pembelian - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">KONTRAK DAN PERJANJIAN PEMBELIAN - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-010</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses pembuatan dan pengelolaan kontrak serta perjanjian pembelian guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Perlindungan hukum yang memadai bagi kepentingan perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Kepastian dan kejelasan dalam hubungan bisnis dengan supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap regulasi dan kebijakan perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Pengelolaan risiko yang efektif dalam proses pembelian</td>
+                    </tr>
+                    <tr>
+                        <td>Efisiensi dalam pelaksanaan dan monitoring kontrak</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Kontrak yang baik dapat mengurangi risiko sengketa hingga 80% dan meningkatkan kepatuhan supplier hingga 95%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses pengelolaan kontrak untuk berbagai jenis pembelian bahan bangunan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-signature"></i>
+                                <h3>Kontrak Jangka Panjang</h3>
+                                <p>Perjanjian pembelian untuk periode 1-3 tahun</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h3>Kontrak Spot Purchase</h3>
+                                <p>Perjanjian untuk pembelian satu kali</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-hard-hat"></i>
+                                <h3>Kontrak Proyek</h3>
+                                <p>Perjanjian untuk kebutuhan proyek konstruksi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-sync-alt"></i>
+                                <h3>Kontrak Berulang</h3>
+                                <p>Perjanjian untuk pembelian rutin</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Purchasing Manager:</strong> Penanggung jawab akhir kontrak</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal Counsel:</strong> Review dan validasi aspek hukum</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contract Administrator:</strong> Pengelola administrasi kontrak</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Controller:</strong> Review klausul finansial</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technical Specialist:</strong> Validasi spesifikasi teknis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Director:</strong> Approval untuk kontrak bernilai tinggi</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-gavel"></i>
+                                <h3>Force Majeure</h3>
+                                <p>Klausul pembebasan kewajiban akibat kejadian di luar kendali</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Liquidated Damages</h3>
+                                <p>Ganti rugi yang telah ditetapkan sebelumnya</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>Service Level Agreement</h3>
+                                <p>Perjanjian tingkat layanan yang harus dipenuhi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-exchange-alt"></i>
+                                <h3>Assignment Clause</h3>
+                                <p>Klausul pengalihan hak dan kewajiban</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES KONTRAK DAN PERJANJIAN PEMBELIAN</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Contract Requirement Analysis</div>
+                    </div>
+                    <p>Menganalisis kebutuhan kontrak berdasarkan jenis pembelian dan kompleksitas</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Analisis kebutuhan:</strong> Contract type, duration, value, risk level, regulatory requirements</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Draft Contract Preparation</div>
+                    </div>
+                    <p>Menyusun draft kontrak menggunakan template standar perusahaan</p>
+                    <ul>
+                        <li>Standard terms and conditions</li>
+                        <li>Specific commercial terms</li>
+                        <li>Technical specifications</li>
+                        <li>Service level agreements</li>
+                        <li>Penalty clauses</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Legal and Compliance Review</div>
+                    </div>
+                    <p>Melakukan review hukum dan kepatuhan oleh legal counsel</p>
+                    <div class="content-box">
+                        <p><strong>Aspek review:</strong> Legal validity, regulatory compliance, risk assessment, dispute resolution mechanism</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Internal Stakeholder Review</div>
+                    </div>
+                    <p>Mengajukan draft kontrak untuk review oleh stakeholder internal</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Stakeholder involved:</strong> Finance, technical, operations, risk management, user department</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Negotiation with Supplier</div>
+                    </div>
+                    <p>Melakukan negosiasi kontrak dengan supplier</p>
+                    <ul>
+                        <li>Commercial terms negotiation</li>
+                        <li>Technical specifications alignment</li>
+                        <li>Legal clauses discussion</li>
+                        <li>Risk allocation agreement</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Final Draft and Approval</div>
+                    </div>
+                    <p>Menyelesaikan draft final dan mendapatkan approval internal</p>
+                    <div class="content-box">
+                        <p><strong>Approval process:</strong> Contract administrator → Purchasing manager → Legal counsel → Director (berdasarkan nilai)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Execution and Signing</div>
+                    </div>
+                    <p>Melaksanakan proses penandatanganan kontrak</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Proses signing:</strong> Authorized signatory verification, witness requirement, notary public jika diperlukan, document distribution</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Contract Management and Monitoring</div>
+                    </div>
+                    <p>Mengelola dan memantau pelaksanaan kontrak</p>
+                    <div class="content-box">
+                        <p><strong>Management activities:</strong> Performance monitoring, compliance tracking, amendment management, renewal process, dispute resolution</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- JENIS KONTRAK SECTION -->
+        <div class="section">
+            <div class="section-title">## JENIS KONTRAK DAN KARAKTERISTIKNYA</div>
+            <div class="section-content">
+                <p>Klasifikasi jenis kontrak berdasarkan struktur pembayaran dan alokasi risiko:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Jenis Kontrak</th>
+                            <th>Karakteristik</th>
+                            <th>Alokasi Risiko</th>
+                            <th>Aplikasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Fixed Price</strong></td>
+                            <td>Harga tetap selama kontrak</td>
+                            <td><span class="score score-high">Supplier</span></td>
+                            <td>Produk standar, harga stabil</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost Plus</strong></td>
+                            <td>Biaya aktual + fee</td>
+                            <td><span class="score score-low">Buyer</span></td>
+                            <td>Proyek kompleks, R&D</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Unit Price</strong></td>
+                            <td>Harga per unit</td>
+                            <td><span class="score score-medium">Shared</span></td>
+                            <td>Material konstruksi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Time & Material</strong></td>
+                            <td>Berdasarkan waktu & material</td>
+                            <td><span class="score score-low">Buyer</span></td>
+                            <td>Jasa, maintenance</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-gavel"></i> <strong>Klausul Wajib dalam Kontrak Pembelian:</strong></p>
+                    <ul>
+                        <li><strong>Scope of Work:</strong> Definisi jelas tentang apa yang dibeli</li>
+                        <li><strong>Price and Payment Terms:</strong> Harga, terms pembayaran, currency</li>
+                        <li><strong>Delivery and Acceptance:</strong> Jadwal, tempat, kriteria penerimaan</li>
+                        <li><strong>Warranty and Liability:</strong> Garansi, tanggung jawab, indemnification</li>
+                        <li><strong>Termination Clause:</strong> Syarat pengakhiran kontrak</li>
+                        <li><strong>Dispute Resolution:</strong> Mekanisme penyelesaian sengketa</li>
+                    </ul>
+                </div>
+
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Contract Value Threshold dan Approval Authority:</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>≤ Rp 100 juta:</strong> Purchasing Manager</p>
+                        <p><strong>Rp 100 juta - 500 juta:</strong> Purchasing Manager + Finance Director</p>
+                        <p><strong>Rp 500 juta - 2 M:</strong> Purchasing Manager + Finance Director + Legal Counsel</p>
+                        <p><strong>> Rp 2 M:</strong> Purchasing Manager + Finance Director + Legal Counsel + Director</p>
+                        <p><strong>> Rp 10 M:</strong> Board of Directors approval required</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses kontrak dan perjanjian pembelian:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>FORM-PB-1001</h3>
+                                <p>Purchase Contract Template</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>FORM-PB-1002</h3>
+                                <p>Contract Checklist</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-search"></i>
+                                <h3>FORM-PB-1003</h3>
+                                <p>Contract Review Form</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-1004</h3>
+                                <p>Contract Performance Dashboard</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Kontrak:</strong></p>
+                    <ul>
+                        <li><strong>Original Contracts:</strong> Disimpan 10 tahun setelah berakhir</li>
+                        <li><strong>Amendment Documents:</strong> Disimpan 10 tahun</li>
+                        <li><strong>Performance Records:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Correspondence:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Approval Documents:</strong> Disimpan 10 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Contract Compliance Rate:</strong> ≥95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contract Cycle Time:</strong> ≤15 hari kerja</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amendment Frequency:</strong> ≤2 per kontrak per tahun</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dispute Resolution Time:</strong> ≤30 hari</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Performance Score:</strong> ≥85%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contract Value Realization:</strong> ≥90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Risk Mitigation Effectiveness:</strong> ≥90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stakeholder Satisfaction:</strong> ≥85%</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-010 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Kode Etik Pembelian - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">KODE ETIK PEMBELIAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-038</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Kode Etik Pembelian ini bertujuan untuk menetapkan standar perilaku etis yang harus dipatuhi oleh seluruh karyawan yang terlibat dalam proses procurement guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Integritas dan transparansi dalam seluruh proses pembelian</td>
+                    </tr>
+                    <tr>
+                        <td>Kepatuhan terhadap peraturan perundang-undangan dan kebijakan perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Pencegahan konflik kepentingan dan praktik korupsi</td>
+                    </tr>
+                    <tr>
+                        <td>Perlindungan terhadap reputasi dan aset perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>Penegakan prinsip keadilan dan persaingan sehat dengan supplier</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Kepatuhan terhadap kode etik ini merupakan syarat mutlak bagi setiap karyawan yang terlibat dalam proses procurement. Pelanggaran dapat berakibat pada tindakan disipliner hingga pemutusan hubungan kerja.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PRINSIP DASAR SECTION -->
+        <div class="section">
+            <div class="section-title">## PRINSIP DASAR ETIKA PEMBELIAN</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>Integritas</h3>
+                                <p>Bertindak jujur, konsisten, dan dapat dipercaya dalam semua transaksi pembelian</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-eye"></i>
+                                <h3>Transparansi</h3>
+                                <p>Memastikan keterbukaan informasi dan proses yang dapat dipertanggungjawabkan</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-gavel"></i>
+                                <h3>Akuntabilitas</h3>
+                                <p>Bertanggung jawab penuh atas keputusan dan tindakan dalam proses procurement</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Keadilan</h3>
+                                <p>Memperlakukan semua supplier secara adil dan tanpa diskriminasi</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-user-secret"></i>
+                                <h3>Kerahasiaan</h3>
+                                <p>Menjaga kerahasiaan informasi perusahaan dan supplier</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>Profesionalisme</h3>
+                                <p>Menjunjung tinggi standar profesional dalam semua interaksi bisnis</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Kewajiban Khusus Karyawan Procurement:</h3>
+                    <ul>
+                        <li>Menyampaikan laporan aset dan kepentingan pribadi secara berkala</li>
+                        <li>Mengikuti training etika procurement minimal 1 kali per tahun</li>
+                        <li>Menandatangani pernyataan kepatuhan kode etik setiap tahun</li>
+                        <li>Melaporkan setiap potensi konflik kepentingan secara proaktif</li>
+                        <li>Menjauhi situasi yang dapat menimbulkan persepsi negatif</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- LARANGAN SECTION -->
+        <div class="section">
+            <div class="section-title">## LARANGAN DAN BATASAN</div>
+            <div class="section-content">
+                <p>Perilaku dan praktik yang secara tegas dilarang dalam proses procurement:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Jenis Pelanggaran</th>
+                            <th>Kategori</th>
+                            <th>Konsekuensi</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Suap dan Gratifikasi</strong></td>
+                            <td><span class="score score-low">Berat</span></td>
+                            <td>PHK & Pelaporan Hukum</td>
+                            <td>Menerima uang, hadiah, atau fasilitas dari supplier</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Konflik Kepentingan</strong></td>
+                            <td><span class="score score-low">Berat</span></td>
+                            <td>Sanksi Disipliner</td>
+                            <td>Memiliki kepentingan di perusahaan supplier</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kolusi</strong></td>
+                            <td><span class="score score-low">Berat</span></td>
+                            <td>PHK & Tuntutan Pidana</td>
+                            <td>Bersekongkol dengan supplier untuk mengatur tender</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Penyalahgunaan Informasi</strong></td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Sanksi Disipliner</td>
+                            <td>Membocorkan informasi rahasia tender</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diskriminasi</strong></td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Peringatan & Training</td>
+                            <td>Memihak supplier tertentu tanpa alasan objektif</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box warning">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Batasan Nilai Hadiah dan Hospitality:</h3>
+                    <ul>
+                        <li><strong>Hadiah:</strong> Maksimal Rp 500.000 per kejadian dan harus dilaporkan</li>
+                        <li><strong>Makanan/Entertainment:</strong> Maksimal Rp 250.000 per orang per kejadian</li>
+                        <li><strong>Transportasi/Akomodasi:</strong> Hanya untuk keperluan bisnis yang disetujui</li>
+                        <li><strong>Cash/Gift Card:</strong> Dilarang keras dalam bentuk apapun</li>
+                        <li><strong>Hadiah Promosi:</strong> Harus bernilai rendah dan tersedia untuk semua</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KONFLIK KEPENTINGAN SECTION -->
+        <div class="section">
+            <div class="section-title">## PENGELOLAAN KONFLIK KEPENTINGAN</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-users"></i>
+                                <h3>Hubungan Keluarga</h3>
+                                <p>Laporkan jika keluarga memiliki hubungan dengan supplier atau kompetitor</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-briefcase"></i>
+                                <h3>Kepemilikan Bisnis</h3>
+                                <p>Larangan memiliki saham atau kepentingan di perusahaan supplier</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <h3>Pinjaman & Utang</h3>
+                                <p>Larangan menerima pinjaman atau memiliki utang ke supplier</p>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Proses Deklarasi Konflik Kepentingan:</h3>
+                    <ol>
+                        <li><strong>Identifikasi:</strong> Karyawan wajib mengidentifikasi potensi konflik</li>
+                        <li><strong>Deklarasi:</strong> Mengisi formulir deklarasi konflik kepentingan</li>
+                        <li><strong>Review:</strong> Komite Etik mengevaluasi tingkat konflik</li>
+                        <li><strong>Mitigasi:</strong> Penetapan langkah mitigasi yang diperlukan</li>
+                        <li><strong>Monitoring:</strong> Pemantauan berkelanjutan terhadap situasi</li>
+                    </ol>
+                </div>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Kewajiban Pelaporan:</strong> Setiap karyawan wajib melaporkan konflik kepentingan aktual maupun potensial dalam waktu 7 hari kerja sejak mengetahui adanya konflik tersebut.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PELAPORAN SECTION -->
+        <div class="section">
+            <div class="section-title">## MEKANISME PELAPORAN DAN PERLINDUNGAN</div>
+            <div class="section-content">
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Saluran Pelaporan Pelanggaran Etika:</h3>
+                    <table class="grid-table">
+                        <tr>
+                            <td>
+                                <div class="person-card">
+                                    <i class="fas fa-envelope"></i>
+                                    <h3>Email Khusus</h3>
+                                    <p>ethics.report@grandmitra.com<br>Respon dalam 48 jam</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="person-card">
+                                    <i class="fas fa-phone"></i>
+                                    <h3>Hotline</h3>
+                                    <p>0800-1234-5678<br>24 jam, bebas pulsa</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="person-card">
+                                    <i class="fas fa-box"></i>
+                                    <h3>Kotak Pengaduan</h3>
+                                    <p>Lokasi strategis di kantor<br>Anonim tersedia</p>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Perlindungan bagi Pelapor (Whistleblower):</h3>
+                    <ul>
+                        <li><strong>Kerahasiaan Identitas:</strong> Identitas pelapor dirahasiakan</li>
+                        <li><strong>Perlindungan Hukum:</strong> Bantuan hukum jika diperlukan</li>
+                        <li><strong>Non-Retaliasi:</strong> Larangan pembalasan terhadap pelapor</li>
+                        <li><strong>Penghargaan:</strong> Apresiasi untuk pelapor yang valid</li>
+                        <li><strong>Konseling:</strong> Dukungan psikologis jika diperlukan</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box warning">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Proses Investigasi Pelanggaran:</h3>
+                    <ol>
+                        <li><strong>Penerimaan Laporan:</strong> Pencatatan dan klasifikasi laporan</li>
+                        <li><strong>Assesment Awal:</strong> Penilaian validitas dan urgensi</li>
+                        <li><strong>Investigasi:</strong> Pengumpulan bukti dan wawancara</li>
+                        <li><strong>Analisis:</strong> Evaluasi temuan dan rekomendasi</li>
+                        <li><strong>Tindakan:</strong> Implementasi sanksi atau klarifikasi</li>
+                        <li><strong>Follow-up:</strong> Monitoring dan pencegahan berulang</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT DAN PENGAWASAN</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen pendukung implementasi Kode Etik Pembelian:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-signature"></i>
+                                <h3>FORM-PB-3801</h3>
+                                <p>Pernyataan Kepatuhan Kode Etik Tahunan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>FORM-PB-3802</h3>
+                                <p>Deklarasi Konflik Kepentingan</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-gift"></i>
+                                <h3>FORM-PB-3803</h3>
+                                <p>Laporan Penerimaan Hadiah & Hospitality</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>FORM-PB-3804</h3>
+                                <p>Checklist Assessment Etika Supplier</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Struktur Pengawasan dan Penegakan:</h3>
+                    <ul>
+                        <li><strong>Komite Etika Perusahaan:</strong> Penetapan kebijakan dan pengawasan</li>
+                        <li><strong>Internal Audit:</strong> Audit rutin kepatuhan kode etik</li>
+                        <li><strong>Compliance Officer:</strong> Implementasi dan monitoring harian</li>
+                        <li><strong>Manajemen:</strong> Tanggung jawab penegakan di level departemen</li>
+                        <li><strong>External Auditor:</strong> Review independen periodik</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box important">
+                    <h3><i class="fas fa-chart-line"></i> Metrik Kepatuhan Etika:</h3>
+                    <ul>
+                        <li><strong>Tingkat Pelaporan:</strong> ≥ 95% deklarasi konflik kepentingan</li>
+                        <li><strong>Training Completion:</strong> 100% karyawan procurement</li>
+                        <li><strong>Respon Time:</strong> ≤ 48 jam untuk laporan etika</li>
+                        <li><strong>Supplier Compliance:</strong> ≥ 98% supplier menandatangani kode etik</li>
+                        <li><strong>Audit Findings:</strong> ≤ 2 temuan minor per tahun</li>
+                    </ul>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-038 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

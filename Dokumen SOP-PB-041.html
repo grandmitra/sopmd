@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Penentuan Harga Jual Produk ke Customer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5276;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        .content-box.danger {
+            border-left-color: var(--danger);
+            background: #ffe6e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.danger {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PENENTUAN HARGA JUAL PRODUK KE CUSTOMER</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-041</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses penentuan harga jual produk kepada customer guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>- Harga yang kompetitif namun tetap menguntungkan</td>
+                    </tr>
+                    <tr>
+                        <td>- Konsistensi harga untuk customer dengan kategori yang sama</td>
+                    </tr>
+                    <tr>
+                        <td>- Akurasi perhitungan biaya dan margin keuntungan</td>
+                    </tr>
+                    <tr>
+                        <td>- Kepatuhan terhadap regulasi penetapan harga</td>
+                    </tr>
+                    <tr>
+                        <td>- Optimalisasi profitabilitas perusahaan</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Perusahaan dengan strategi penetapan harga yang terstruktur memiliki 32% lebih tinggi profit margin dibandingkan yang tidak memiliki sistem yang jelas.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh aspek penentuan harga jual produk:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-calculator"></i>
+                                <h3>Analisis Biaya</h3>
+                                <p>Perhitungan biaya produksi, distribusi, dan overhead</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Analisis Pasar</h3>
+                                <p>Penelitian harga kompetitor dan daya beli pasar</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tags"></i>
+                                <h3>Strategi Harga</h3>
+                                <p>Penetapan strategi markup, discount, dan promosi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <h3>Pricing Policy</h3>
+                                <p>Kebijakan harga untuk berbagai segmen customer</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Pricing Manager:</strong> Penanggung jawab strategi dan kebijakan harga</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance Manager:</strong> Analisis biaya dan margin keuntungan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketing Manager:</strong> Analisis pasar dan positioning harga</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sales Manager:</strong> Implementasi harga di lapangan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Manager:</strong> Informasi biaya bahan baku</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Director:</strong> Approval final pricing policy</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-dollar-sign"></i>
+                                <h3>Harga Pokok Penjualan</h3>
+                                <p>Total biaya yang dikeluarkan untuk memproduksi atau memperoleh produk</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-percentage"></i>
+                                <h3>Markup Percentage</h3>
+                                <p>Persentase keuntungan yang ditambahkan pada harga pokok</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Price Positioning</h3>
+                                <p>Posisi harga relatif terhadap kompetitor di pasar</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <h3>Value-Based Pricing</h3>
+                                <p>Strategi harga berdasarkan nilai yang diterima customer</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PENENTUAN HARGA JUAL PRODUK</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Analisis Biaya Produk</div>
+                    </div>
+                    <p>Menghitung total biaya yang terkait dengan produk</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Komponen biaya yang dianalisis:</strong> Biaya bahan baku, biaya tenaga kerja, biaya overhead produksi, biaya distribusi, biaya administrasi, biaya pemasaran</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Analisis Pasar dan Kompetitor</div>
+                    </div>
+                    <p>Meneliti harga pasar dan strategi harga kompetitor</p>
+                    <ul>
+                        <li>Harga rata-rata produk sejenis di pasar</li>
+                        <li>Strategi harga yang digunakan kompetitor</li>
+                        <li>Tingkat sensitivitas harga customer</li>
+                        <li>Posisi produk di pasar (premium, ekonomis, dll)</li>
+                        <li>Faktor musiman dan trend pasar</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Penentuan Strategi Harga</div>
+                    </div>
+                    <p>Memilih strategi harga yang sesuai dengan positioning produk</p>
+                    <div class="content-box">
+                        <p><strong>Jenis strategi harga:</strong> Cost-plus pricing, value-based pricing, competition-based pricing, penetration pricing, skimming pricing, bundle pricing</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Perhitungan Harga Dasar</div>
+                    </div>
+                    <p>Menghitung harga dasar berdasarkan biaya dan strategi yang dipilih</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Formula perhitungan:</strong> Harga Dasar = Total Biaya + (Total Biaya × Markup Percentage)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Penyesuaian Berdasarkan Segmentasi Customer</div>
+                    </div>
+                    <p>Menyesuaikan harga berdasarkan kategori customer</p>
+                    <ul>
+                        <li>Customer retail (walk-in)</li>
+                        <li>Customer corporate (kontrak)</li>
+                        <li>Customer proyek (volume besar)</li>
+                        <li>Customer distributor/reseller</li>
+                        <li>Customer pemerintah/tender</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Penetapan Kebijakan Discount dan Promosi</div>
+                    </div>
+                    <p>Menetapkan aturan discount dan program promosi</p>
+                    <div class="content-box">
+                        <p><strong>Jenis discount:</strong> Volume discount, early payment discount, seasonal discount, loyalty discount, promotional discount</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Approval dan Implementasi</div>
+                    </div>
+                    <p>Mendapatkan approval final dan mengimplementasikan harga</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Proses approval:</strong> Pricing Committee Review → Finance Director Approval → System Update → Communication to Sales Team → Implementation Monitoring</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Monitoring dan Evaluasi</div>
+                    </div>
+                    <p>Memantau efektivitas harga dan melakukan penyesuaian jika diperlukan</p>
+                    <div class="content-box">
+                        <p><strong>Metrik yang dimonitor:</strong> Sales volume, profit margin, customer feedback, competitor response, market share, price elasticity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STRATEGI HARGA SECTION -->
+        <div class="section">
+            <div class="section-title">## STRATEGI HARGA & MARGIN ANALYSIS</div>
+            <div class="section-content">
+                <p>Berbagai strategi penetapan harga dan margin yang direkomendasikan:</p>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Strategi Harga</th>
+                            <th>Target Margin</th>
+                            <th>Tingkat Risiko</th>
+                            <th>Rekomendasi Produk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cost-Plus Pricing</strong></td>
+                            <td>15-25%</td>
+                            <td><span class="score score-low">Rendah</span></td>
+                            <td>Produk standar, bahan baku</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Value-Based Pricing</strong></td>
+                            <td>25-40%</td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Produk unggulan, solusi khusus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Competition-Based Pricing</strong></td>
+                            <td>10-20%</td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Produk komoditas, high competition</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Penetration Pricing</strong></td>
+                            <td>5-15%</td>
+                            <td><span class="score score-high">Tinggi</span></td>
+                            <td>Produk baru, market entry</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Premium Pricing</strong></td>
+                            <td>30-50%</td>
+                            <td><span class="score score-high">Tinggi</span></td>
+                            <td>Produk eksklusif, brand kuat</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Tabel Target Margin Divisi Kategori Produk -->
+            <div class="content-box">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">TARGET MARGIN DIVISI KATEGORI PRODUK</h3>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Divisi Kategori Produk</th>
+                            <th>Target Margin</th>
+                            <th>Kategori Risiko</th>
+                            <th>Rekomendasi Strategi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>FLOORING & WALL</strong></td>
+                            <td><span class="score score-medium">9%</span></td>
+                            <td><span class="score score-low">Rendah</span></td>
+                            <td>Competition-Based Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PAINT & SUNDRIES</strong></td>
+                            <td><span class="score score-high">20%</span></td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Value-Based Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>BUILDING MATERIAL</strong></td>
+                            <td><span class="score score-medium">12%</span></td>
+                            <td><span class="score score-low">Rendah</span></td>
+                            <td>Cost-Plus Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SANITARY</strong></td>
+                            <td><span class="score score-medium">15%</span></td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Competition-Based Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ELECTRICAL & LIGHTING</strong></td>
+                            <td><span class="score score-medium">15%</span></td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Value-Based Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PLUMBING</strong></td>
+                            <td><span class="score score-medium">15%</span></td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Cost-Plus Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TOOLS</strong></td>
+                            <td><span class="score score-high">25%</span></td>
+                            <td><span class="score score-high">Tinggi</span></td>
+                            <td>Premium Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>APPLIANCE</strong></td>
+                            <td><span class="score score-low">8%</span></td>
+                            <td><span class="score score-low">Rendah</span></td>
+                            <td>Penetration Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HOUSEWARE</strong></td>
+                            <td><span class="score score-high">20%</span></td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Value-Based Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MBC</strong></td>
+                            <td><span class="score score-low">4%</span></td>
+                            <td><span class="score score-low">Rendah</span></td>
+                            <td>Penetration Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HARDWARE</strong></td>
+                            <td><span class="score score-high">20%</span></td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Value-Based Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FOOD & BEVERAGE</strong></td>
+                            <td><span class="score score-high">30%</span></td>
+                            <td><span class="score score-high">Tinggi</span></td>
+                            <td>Premium Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DOORS & WINDOWS</strong></td>
+                            <td><span class="score score-high">25%</span></td>
+                            <td><span class="score score-high">Tinggi</span></td>
+                            <td>Premium Pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FURNITURE</strong></td>
+                            <td><span class="score score-medium">15%</span></td>
+                            <td><span class="score score-medium">Sedang</span></td>
+                            <td>Value-Based Pricing</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="content-box important">
+                <p><i class="fas fa-info-circle"></i> <strong>Panduan Kategori Risiko Margin:</strong></p>
+                <ul>
+                    <li><span class="score score-low">Rendah</span>: Margin ≤ 10% - Produk komoditas, high competition</li>
+                    <li><span class="score score-medium">Sedang</span>: Margin 11-20% - Produk standar, moderate competition</li>
+                    <li><span class="score score-high">Tinggi</span>: Margin ≥ 21% - Produk spesial, low competition</li>
+                </ul>
+            </div>
+
+            <div class="content-box danger">
+                <p><i class="fas fa-exclamation-triangle"></i> <strong>Peringatan dalam Penetapan Harga:</strong></p>
+                <ul>
+                    <li><strong>Jangan Underpricing:</strong> Hindari harga terlalu rendah yang merusak pasar</li>
+                    <li><strong>Jangan Overpricing:</strong> Hindari harga terlalu tinggi yang mengurangi daya saing</li>
+                    <li><strong>Konsistensi Harga:</strong> Jaga konsistensi harga untuk customer segmen sama</li>
+                    <li><strong>Transparansi Biaya:</strong> Hindari hidden cost yang mengecewakan customer</li>
+                    <li><strong>Update Berkala:</strong> Lakukan review harga secara berkala sesuai kondisi pasar</li>
+                </ul>
+            </div>
+            
+            <div class="content-box">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">Tools & Template untuk Penetapan Harga:</h3>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                    <p><strong>Pricing Calculator:</strong> Template Excel untuk perhitungan harga otomatis</p>
+                    <p><strong>Competitor Price Tracking:</strong> Sistem monitoring harga kompetitor</p>
+                    <p><strong>Margin Analysis Dashboard:</strong> Dashboard real-time analisis margin produk</p>
+                    <p><strong>Price Elasticity Model:</strong> Model untuk menganalisis sensitivitas harga</p>
+                    <p><strong>Customer Segmentation Matrix:</strong> Template segmentasi customer untuk pricing</p>
+                    <p><strong>Discount Approval Workflow:</strong> Sistem approval discount secara digital</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan prosedur penetapan harga:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-calculator"></i>
+                                <h3>FORM-PB-0401</h3>
+                                <p>Cost Analysis Worksheet</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>FORM-PB-0402</h3>
+                                <p>Competitor Price Analysis</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <h3>FORM-PB-0403</h3>
+                                <p>Pricing Strategy Template</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-percentage"></i>
+                                <h3>FORM-PB-0404</h3>
+                                <p>Discount Approval Form</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Retensi Dokumen Penetapan Harga:</strong></p>
+                    <ul>
+                        <li><strong>Pricing Policy:</strong> Disimpan 5 tahun setelah revisi</li>
+                        <li><strong>Cost Analysis:</strong> Disimpan 3 tahun</li>
+                        <li><strong>Competitor Analysis:</strong> Disimpan 2 tahun</li>
+                        <li><strong>Price Lists:</strong> Disimpan 3 tahun setelah update</li>
+                        <li><strong>Discount Records:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Pricing Committee Minutes:</strong> Disimpan 7 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Average Gross Margin:</strong> ≥ 25% untuk seluruh produk</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price Compliance Rate:</strong> ≥ 95% penjualan sesuai harga standar</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Discount Control:</strong> ≤ 15% total penjualan dengan discount</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price Update Frequency:</strong> Quarterly review untuk 100% produk</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Price Satisfaction:</strong> ≥ 85% rating satisfaction</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Competitive Price Positioning:</strong> ±5% dari harga pasar rata-rata</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pricing Error Rate:</strong> ≤ 1% dari total transaksi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Profit Impact of Pricing:</strong> ≥ 10% peningkatan profit dari pricing optimization</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Pricing Manager</th>
+                        <th width="25%">Finance Manager</th>
+                        <th width="25%">Marketing Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-041 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

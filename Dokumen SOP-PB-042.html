@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Grade Kualitas Barang - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --good: #3498db;
+            --better: #9b59b6;
+            --best: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        .grade-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            color: white;
+            margin: 2px;
+        }
+        
+        .grade-good {
+            background: var(--good);
+        }
+        
+        .grade-better {
+            background: var(--better);
+        }
+        
+        .grade-best {
+            background: var(--best);
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .price-table th, .price-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        .price-table th {
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .price-good {
+            background: #ebf5fb;
+        }
+        
+        .price-better {
+            background: #f4ecf7;
+        }
+        
+        .price-best {
+            background: #fbebeb;
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .grade-good {
+                background: var(--good) !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .grade-better {
+                background: var(--better) !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .grade-best {
+                background: var(--best) !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .price-good {
+                background: #ebf5fb !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .price-better {
+                background: #f4ecf7 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .price-best {
+                background: #fbebeb !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">GRADE KUALITAS BARANG (GOOD, BETTER, BEST) - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-GB-003</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2025</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan klasifikasi kualitas barang dengan sistem grade (Good, Better, Best) guna:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>- Memberikan pilihan harga yang jelas dan transparan kepada customer</td>
+                    </tr>
+                    <tr>
+                        <td>- Menyeragamkan pemahaman tentang kualitas barang di seluruh tim penjualan</td>
+                    </tr>
+                    <tr>
+                        <td>- Memudahkan customer dalam mengambil keputusan pembelian berdasarkan budget</td>
+                    </tr>
+                    <tr>
+                        <td>- Meningkatkan customer satisfaction dengan memberikan opsi yang sesuai kebutuhan</td>
+                    </tr>
+                    <tr>
+                        <td>- Mengoptimalkan penjualan dengan strategi product differentiation</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Setiap barang dengan multiple merk/supplier harus diklasifikasikan ke dalam grade yang sesuai berdasarkan kriteria objektif.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini berlaku untuk semua kategori barang di toko bahan bangunan yang memiliki variasi kualitas dan harga, meliputi:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-hammer"></i>
+                                <h3>Perkakas Tangan</h3>
+                                <p>Palu, obeng, tang, kunci, dll</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tint"></i>
+                                <h3>Material Sanitari</h3>
+                                <p>Kloset, wastafel, keran, pipa</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bolt"></i>
+                                <h3>Material Elektrikal</h3>
+                                <p>Kabel, stopkontak, saklar, lampu</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-paint-roller"></i>
+                                <h3>Material Finishing</h3>
+                                <p>Cat, pelapis, lem, aksesoris</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Manager Pembelian:</strong> Penentuan grade berdasarkan spesifikasi produk</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Penjualan:</strong> Implementasi sistem grade di lini penjualan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Staf Penjualan:</strong> Penjelasan grade kepada customer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Gudang:</strong> Penataan barang berdasarkan grade</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketing:</strong> Komunikasi sistem grade kepada customer</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI GRADE SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI GRADE KUALITAS</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <span class="grade-badge grade-good">GOOD</span>
+                                <h3>Grade GOOD</h3>
+                                <p>Kualitas standar, harga ekonomis, cocok untuk penggunaan ringan atau proyek dengan budget terbatas</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <span class="grade-badge grade-better">BETTER</span>
+                                <h3>Grade BETTER</h3>
+                                <p>Kualitas menengah, harga kompetitif, keseimbangan antara kualitas dan harga</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <span class="grade-badge grade-best">BEST</span>
+                                <h3>Grade BEST</h3>
+                                <p>Kualitas premium, harga tinggi, fitur lengkap, daya tahan maksimal</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-tags"></i>
+                                <h3>Price Positioning</h3>
+                                <p>Good: Harga Terjangkau | Better: Value for Money | Best: Premium Quality</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Contoh Penerapan Grade:</h3>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th width="25%">Produk</th>
+                            <th width="25%" class="price-good">GOOD</th>
+                            <th width="25%" class="price-better">BETTER</th>
+                            <th width="25%" class="price-best">BEST</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Palu</strong></td>
+                            <td class="price-good">Merk C: Rp 50.000</td>
+                            <td class="price-better">Merk B: Rp 80.000</td>
+                            <td class="price-best">Merk A: Rp 100.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cat Tembok</strong></td>
+                            <td class="price-good">Merk Lokal: Rp 75.000</td>
+                            <td class="price-better">Merk Nasional: Rp 120.000</td>
+                            <td class="price-best">Merk Premium: Rp 180.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kloset Duduk</strong></td>
+                            <td class="price-good">Standard: Rp 450.000</td>
+                            <td class="price-better">Medium: Rp 750.000</td>
+                            <td class="price-best">Premium: Rp 1.200.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kabel Listrik</strong></td>
+                            <td class="price-good">2.5 mm: Rp 85.000</td>
+                            <td class="price-better">4 mm: Rp 130.000</td>
+                            <td class="price-best">Fire Resistance: Rp 210.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- KRITERIA PENENTUAN GRADE SECTION -->
+        <div class="section">
+            <div class="section-title">## KRITERIA PENENTUAN GRADE</div>
+            <div class="section-content">
+                <p>Penentuan grade dilakukan berdasarkan parameter objektif berikut:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>GOOD</th>
+                            <th>BETTER</th>
+                            <th>BEST</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Daya Tahan</strong></td>
+                            <td>Penggunaan normal 1-2 tahun</td>
+                            <td>Penggunaan normal 3-5 tahun</td>
+                            <td>Penggunaan normal 5+ tahun</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Material</strong></td>
+                            <td>Material standar, finishing basic</td>
+                            <td>Material berkualitas, finishing baik</td>
+                            <td>Material premium, finishing excellent</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Garansi</strong></td>
+                            <td>6 bulan - 1 tahun</td>
+                            <td>1-2 tahun</td>
+                            <td>2-5 tahun</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fitur</strong></td>
+                            <td>Fitur dasar</td>
+                            <td>Fitur lengkap</td>
+                            <td>Fitur premium + inovasi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Brand Reputation</strong></td>
+                            <td>Brand lokal/regional</td>
+                            <td>Brand nasional</td>
+                            <td>Brand internasional/premium</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Target Customer</strong></td>
+                            <td>Budget terbatas, proyek kecil</td>
+                            <td>Home owner, kontraktor</td>
+                            <td>Proyek premium, komersial</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box">
+                    <p><strong>Contoh Penerapan Kriteria - Produk Palu:</strong></p>
+                    <ul>
+                        <li><span class="grade-badge grade-good">GOOD</span>: Material besi biasa, gagal kayu, tanpa garansi</li>
+                        <li><span class="grade-badge grade-better">BETTER</span>: Material besi tempa, gagal fiber, garansi 1 tahun</li>
+                        <li><span class="grade-badge grade-best">BEST</span>: Material steel alloy, gagal ergonomis, garansi seumur hidup</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES KLASIFIKASI GRADE</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Identifikasi Produk</div>
+                    </div>
+                    <p>Manager Pembelian mengidentifikasi produk yang memiliki variasi kualitas dan harga dari multiple supplier</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Focus pada:</strong> Produk dengan perbedaan harga >20% antara merk/supplier</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Analisis Spesifikasi</div>
+                    </div>
+                    <p>Menganalisis spesifikasi teknis, material, fitur, dan garansi setiap produk</p>
+                    <ul>
+                        <li>Uji ketahanan produk</li>
+                        <li>Analisis material composition</li>
+                        <li>Review testimoni customer</li>
+                        <li>Benchmark dengan kompetitor</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Penentuan Grade</div>
+                    </div>
+                    <p>Menetapkan grade berdasarkan kriteria objektif yang telah ditetapkan</p>
+                    <div class="content-box">
+                        <p><strong>Proses penentuan:</strong> Scoring system berdasarkan parameter daya tahan, material, garansi, fitur, dan reputasi brand</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Labeling dan Penataan</div>
+                    </div>
+                    <p>Memberikan label grade yang jelas pada produk dan menata display berdasarkan grade</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Wajib:</strong> Gunakan sticker/tag dengan warna konsisten: Good (Biru), Better (Ungu), Best (Merah)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Training Staf Penjualan</div>
+                    </div>
+                    <p>Melakukan training kepada seluruh staf penjualan tentang sistem grade dan cara menjelaskannya ke customer</p>
+                    <ul>
+                        <li><strong>Good:</strong> "Ekonomis untuk penggunaan ringan"</li>
+                        <li><strong>Better:</strong> "Nilai terbaik untuk uang Anda"</li>
+                        <li><strong>Best:</strong> "Investasi jangka panjang dengan kualitas terbaik"</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Implementasi di Point of Sale</div>
+                    </div>
+                    <p>Memastikan sistem grade tercermin dalam price tag, catalog, dan sistem penjualan</p>
+                    <div class="content-box">
+                        <p><strong>Tools pendukung:</strong> Price tag berwarna, product catalog dengan grade, script penjualan standar</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Monitoring dan Evaluasi</div>
+                    </div>
+                    <p>Memantau efektivitas sistem grade dan melakukan evaluasi berkala</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Metrik monitoring:</strong> Sales conversion rate, customer satisfaction, average transaction value</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PEDOMAN PENJUALAN SECTION -->
+        <div class="section">
+            <div class="section-title">## PEDOMAN PENJUALAN BERDASARKAN GRADE</div>
+            <div class="section-content">
+                <p>Berikut pedoman untuk staf penjualan dalam menerapkan sistem grade:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Skenario Customer</th>
+                            <th>Rekomendasi Grade</th>
+                            <th>Script Penjualan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Budget Terbatas</strong><br>Proyek kecil, penggunaan ringan</td>
+                            <td><span class="grade-badge grade-good">GOOD</span></td>
+                            <td>"Untuk kebutuhan ini, merk C dengan grade GOOD sudah cukup dengan harga terjangkau"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Value Seeker</strong><br>Kualitas baik dengan harga wajar</td>
+                            <td><span class="grade-badge grade-better">BETTER</span></td>
+                            <td>"Saya rekomendasikan merk B grade BETTER, kualitas lebih baik dengan tambahan biaya yang wajar"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quality Focus</strong><br>Daya tahan panjang, proyek penting</td>
+                            <td><span class="grade-badge grade-best">BEST</span></td>
+                            <td>"Untuk investasi jangka panjang, merk A grade BEST memberikan garansi dan daya tahan terbaik"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bingung Memilih</strong><br>Butuh perbandingan jelas</td>
+                            <td><span class="grade-badge grade-good">GOOD</span> + <span class="grade-badge grade-better">BETTER</span> + <span class="grade-badge grade-best">BEST</span></td>
+                            <td>"Mari bandingkan ketiga opsi: GOOD untuk ekonomis, BETTER untuk nilai terbaik, BEST untuk kualitas premium"</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-handshake"></i> <strong>Prinsip Penjualan:</strong> Jangan memaksakan grade tinggi, tapi berikan pilihan yang sesuai kebutuhan dan budget customer. Fokus pada value, bukan harga.</p>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Aturan Display:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Penataan Rak:</strong> Susun produk dari kiri ke kanan: GOOD → BETTER → BEST</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price Tag:</strong> Gunakan background color: Good (Biru muda), Better (Ungu muda), Best (Merah muda)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Catalog:</strong> Tampilkan ketiga grade bersebelahan untuk memudahkan perbandingan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Digital:</strong> Sertakan filter "Grade" pada website dan aplikasi</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan sistem grade kualitas barang:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-alt"></i>
+                                <h3>FORM-GB-001</h3>
+                                <p>Form Penilaian Grade Produk</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>FORM-GB-002</h3>
+                                <p>Daftar Grade Produk</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-book"></i>
+                                <h3>MANUAL-GB-001</h3>
+                                <p>Manual Training Grade System</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>REPORT-GB-001</h3>
+                                <p>Laporan Penjualan per Grade</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-sync-alt"></i> <strong>Review Berkala:</strong> Daftar grade produk harus direview setiap 6 bulan untuk menyesuaikan dengan perubahan produk dan pasar.</p>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Penjualan</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2025 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-GB-003 | Revisi: 01 | Berlaku sejak: 1 Januari 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

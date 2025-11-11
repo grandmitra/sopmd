@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Perencanaan dan Budgeting Pembelian - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PERENCANAAN DAN BUDGETING PEMBELIAN - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-001</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses perencanaan dan penganggaran pembelian barang dagangan guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>- Ketersediaan stok yang optimal sesuai kebutuhan pasar</td>
+                    </tr>
+                    <tr>
+                        <td>- Efisiensi penggunaan anggaran perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>- Keselarasan antara rencana pembelian dengan strategi bisnis</td>
+                    </tr>
+                    <tr>
+                        <td>- Minimisasi risiko overstock dan stockout</td>
+                    </tr>
+                    <tr>
+                        <td>- Akurasi forecasting dan peramalan kebutuhan</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Perencanaan yang baik dapat mengurangi biaya pembelian hingga 15% dan meningkatkan turnover rate stok sebesar 25%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses perencanaan dan penganggaran pembelian untuk semua kategori bahan bangunan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Perencanaan Strategis</h3>
+                                <p>Rencana pembelian tahunan dan triwulanan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <h3>Budgeting</h3>
+                                <p>Alokasi anggaran per kategori produk</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-warehouse"></i>
+                                <h3>Manajemen Stok</h3>
+                                <p>Perencanaan level stok optimal</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-search-dollar"></i>
+                                <h3>Analisis Kinerja</h3>
+                                <p>Monitoring dan evaluasi rencana vs realisasi</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Direktur:</strong> Approval rencana dan budget akhir</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Pembelian:</strong> Koordinator penyusunan rencana pembelian</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Staf Pembelian:</strong> Pengumpulan data dan analisis kebutuhan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Penjualan:</strong> Input forecast penjualan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manager Gudang:</strong> Data stok dan reorder point</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance:</strong> Penyusunan budget dan kontrol anggaran</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chess-board"></i>
+                                <h3>Rencana Pembelian</h3>
+                                <p>Dokumen strategis yang menguraikan kebutuhan pembelian dalam periode tertentu</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-balance-scale"></i>
+                                <h3>Budget Pembelian</h3>
+                                <p>Alokasi dana yang disetujui untuk aktivitas pembelian dalam periode tertentu</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-wave-square"></i>
+                                <h3>Turnover Rate</h3>
+                                <p>Rasio perputaran stok yang mengindikasikan efisiensi manajemen inventori</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-bullseye"></i>
+                                <h3>Reorder Point</h3>
+                                <p>Titik pemesanan ulang untuk menjaga kontinuitas stok</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PERENCANAAN DAN BUDGETING</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Analisis Data Historis</div>
+                    </div>
+                    <p>Mengkaji data penjualan 2 tahun terakhir, pola musiman, dan trend pasar</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Data yang dianalisis:</strong> Sales history, stock turnover, lead time supplier, dan market trend</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Forecast Penjualan</div>
+                    </div>
+                    <p>Memprediksi volume penjualan berdasarkan data historis dan proyeksi pasar</p>
+                    <ul>
+                        <li>Metode quantitative (statistik)</li>
+                        <li>Metode qualitative (market intelligence)</li>
+                        <li>Analisis faktor eksternal (ekonomi, kompetitor)</li>
+                        <li>Pertimbangan musiman (musim hujan/kemarau)</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Penentuan Kebutuhan Stok</div>
+                    </div>
+                    <p>Menghitung kebutuhan stok optimal dengan mempertimbangkan berbagai faktor</p>
+                    <div class="content-box">
+                        <p><strong>Rumus Perhitungan:</strong> (Forecast Penjualan × Safety Stock Factor) + Buffer Stock - Stok Awal</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Penyusunan Rencana Pembelian</div>
+                    </div>
+                    <p>Menyusun rencana pembelian detail per kategori produk dan periode</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Komponen Rencana:</strong> Kuantitas, nilai, timing pembelian, prioritas, dan target supplier</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Penganggaran (Budgeting)</div>
+                    </div>
+                    <p>Mengalokasikan anggaran berdasarkan rencana pembelian yang telah disusun</p>
+                    <ul>
+                        <li>Budget per kategori produk</li>
+                        <li>Alokasi per periode (bulanan/triwulanan)</li>
+                        <li>Cadangan untuk pembelian mendadak</li>
+                        <li>Budget untuk diskon dan promosi</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Review dan Approval</div>
+                    </div>
+                    <p>Proses review oleh manajemen dan approval oleh direktur</p>
+                    <div class="content-box">
+                        <p><strong>Tim Review:</strong> Manager Pembelian, Manager Penjualan, Finance, dan Direktur</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Implementasi dan Monitoring</div>
+                    </div>
+                    <p>Melaksanakan rencana yang telah disetujui dan memantau progress secara berkala</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Monitoring:</strong> Dilakukan mingguan dengan laporan variance analysis (rencana vs realisasi)</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Review dan Penyesuaian</div>
+                    </div>
+                    <p>Melakukan review triwulanan dan penyesuaian rencana berdasarkan kondisi aktual</p>
+                    <div class="content-box">
+                        <p><strong>Trigger penyesuaian:</strong> Perubahan market, variance >15%, perubahan strategi bisnis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KOMPONEN BUDGET SECTION -->
+        <div class="section">
+            <div class="section-title">## KOMPONEN BUDGET PEMBELIAN</div>
+            <div class="section-content">
+                <p>Struktur budget pembelian terdiri dari komponen-komponen berikut:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Komponen Budget</th>
+                            <th>Bobot</th>
+                            <th>Keterangan</th>
+                            <th>Contoh Alokasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Material Inti</strong></td>
+                            <td>60%</td>
+                            <td>Semen, besi beton, keramik, cat</td>
+                            <td><span class="score score-high">Rp 6M</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Material Pendukung</strong></td>
+                            <td>20%</td>
+                            <td>Paku, sekrup, lem, aksesoris</td>
+                            <td><span class="score score-medium">Rp 2M</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Barang Promosi</strong></td>
+                            <td>10%</td>
+                            <td>Item diskon, bundle package</td>
+                            <td><span class="score score-medium">Rp 1M</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cadangan Darurat</strong></td>
+                            <td>5%</td>
+                            <td>Pembelian mendadak, price increase</td>
+                            <td><span class="score score-low">Rp 500jt</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>New Product</strong></td>
+                            <td>5%</td>
+                            <td>Produk baru, varian baru</td>
+                            <td><span class="score score-low">Rp 500jt</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="content-box important">
+                <p><i class="fas fa-calculator"></i> <strong>Parameter Kinerja Budget:</strong></p>
+                <ul>
+                    <li><strong>Budget Utilization:</strong> 85-95% (Ideal: 90%)</li>
+                    <li><strong>Budget Variance:</strong> Maksimal ±10%</li>
+                    <li><strong>Stock Turnover:</strong> Minimal 6x per tahun</li>
+                    <li><strong>Service Level:</strong> Minimal 95%</li>
+                </ul>
+            </div>
+
+            <div class="content-box">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">Formulasi Perhitungan Kebutuhan:</h3>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                    <p><strong>Safety Stock = (Max Daily Sales × Max Lead Time) - (Average Daily Sales × Average Lead Time)</strong></p>
+                    <p><strong>Reorder Point = (Average Daily Sales × Average Lead Time) + Safety Stock</strong></p>
+                    <p><strong>Economic Order Quantity = √[(2 × Demand × Order Cost) / Holding Cost]</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses perencanaan dan budgeting:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>FORM-PB-101</h3>
+                                <p>Template Rencana Pembelian Tahunan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <h3>FORM-PB-102</h3>
+                                <p>Form Budget Pembelian</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>FORM-PB-103</h3>
+                                <p>Form Approval Rencana Pembelian</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-104</h3>
+                                <p>Laporan Monitoring vs Rencana</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-database"></i> <strong>Siklus Perencanaan:</strong></p>
+                    <ul>
+                        <li><strong>Rencana Tahunan:</strong> Disusun November, approved Desember</li>
+                        <li><strong>Review Triwulanan:</strong> Maret, Juni, September</li>
+                        <li><strong>Penyesuaian:</strong> Dilakukan jika variance >15%</li>
+                        <li><strong>Arsip:</strong> Disimpan 3 tahun</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Budget Accuracy:</strong> ≥90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stock Availability:</strong> ≥95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stock Turnover:</strong> ≥6x per tahun</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Order Fulfillment Rate:</strong> ≥98%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost Saving vs Budget:</strong> ≥5%</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Penjualan</th>
+                        <th width="25%">Finance Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-001 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

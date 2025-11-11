@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Manajemen Database Supplier - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">MANAJEMEN DATABASE SUPPLIER - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-020</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses manajemen database supplier guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Akurasi dan kelengkapan data supplier dalam sistem terpusat</td>
+                    </tr>
+                    <tr>
+                        <td>Ketersediaan informasi supplier yang real-time dan dapat diandalkan</td>
+                    </tr>
+                    <tr>
+                        <td>Keamanan data dan kepatuhan terhadap regulasi privasi data</td>
+                    </tr>
+                    <tr>
+                        <td>Efisiensi dalam proses pencarian dan seleksi supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Kemudahan dalam monitoring dan evaluasi kinerja supplier</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Database supplier yang terkelola dengan baik dapat meningkatkan efisiensi proses procurement hingga 40% dan mengurangi risiko akibat data yang tidak akurat hingga 60%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh aspek pengelolaan database supplier dari berbagai kategori:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-database"></i>
+                                <h3>Master Data</h3>
+                                <p>Data dasar supplier dan informasi legal</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Performance Data</h3>
+                                <p>Data kinerja dan evaluasi supplier</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-contract"></i>
+                                <h3>Contract Data</h3>
+                                <p>Data kontrak dan perjanjian kerja sama</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>Compliance Data</h3>
+                                <p>Data kepatuhan dan sertifikasi</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Database Administrator:</strong> Maintenance sistem dan technical support</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Quality Officer:</strong> Validasi dan pembersihan data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Master Data Specialist:</strong> Entry dan update data supplier</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IT Security Officer:</strong> Keamanan data dan akses kontrol</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance Officer:</strong> Audit data dan kepatuhan regulasi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Department Users:</strong> Pengguna data untuk operasional harian</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-server"></i>
+                                <h3>Supplier Master Data</h3>
+                                <p>Data inti supplier yang menjadi referensi utama</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-sync-alt"></i>
+                                <h3>Data Governance</h3>
+                                <p>Kerangka kerja pengelolaan dan kualitas data</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-broom"></i>
+                                <h3>Data Cleansing</h3>
+                                <p>Proses pembersihan dan koreksi data</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-archive"></i>
+                                <h3>Data Archiving</h3>
+                                <p>Penyimpanan data historis yang tidak aktif</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES MANAJEMEN DATABASE SUPPLIER</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Data Collection dan Entry</div>
+                    </div>
+                    <p>Mengumpulkan dan memasukkan data supplier baru ke dalam sistem</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Data sources:</strong> Registration forms, qualification documents, legal certificates, performance records</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Data Validation dan Verification</div>
+                    </div>
+                    <p>Memvalidasi keakuratan dan kelengkapan data yang dimasukkan</p>
+                    <ul>
+                        <li>Legal document verification</li>
+                        <li>Data completeness check</li>
+                        <li>Format consistency validation</li>
+                        <li>Duplicate data identification</li>
+                        <li>Cross-reference verification</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Data Classification dan Categorization</div>
+                    </div>
+                    <p>Mengklasifikasikan supplier berdasarkan kriteria yang ditetapkan</p>
+                    <div class="content-box">
+                        <p><strong>Classification criteria:</strong> Business type, product category, performance tier, risk level, geographic location</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Data Quality Monitoring</div>
+                    </div>
+                    <p>Memantau kualitas data secara berkala dan melakukan koreksi</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Quality metrics:</strong> Accuracy rate, completeness index, timeliness, consistency score, uniqueness ratio</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Regular Data Updates</div>
+                    </div>
+                    <p>Memperbarui data supplier secara berkala berdasarkan perubahan</p>
+                    <ul>
+                        <li>Performance data updates</li>
+                        <li>Contract renewal information</li>
+                        <li>Legal status changes</li>
+                        <li>Contact information updates</li>
+                        <li>Product portfolio changes</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Data Security Management</div>
+                    </div>
+                    <p>Mengelola keamanan data dan kontrol akses pengguna</p>
+                    <div class="content-box">
+                        <p><strong>Security measures:</strong> Access control, data encryption, audit trails, backup procedures, disaster recovery</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Data Archiving dan Retention</div>
+                    </div>
+                    <p>Mengarsipkan data historis sesuai kebijakan retensi</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Archiving criteria:</strong> Inactive suppliers, completed contracts, historical performance data, obsolete information</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Reporting dan Analytics</div>
+                    </div>
+                    <p>Menyediakan laporan dan analisis data untuk pengambilan keputusan</p>
+                    <div class="content-box">
+                        <p><strong>Reporting outputs:</strong> Supplier directory, performance dashboards, risk analysis, spend analytics, compliance reports</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STRUKTUR DATA SECTION -->
+        <div class="section">
+            <div class="section-title">## STRUKTUR DATA DAN FIELD MAPPING</div>
+            <div class="section-content">
+                <p>Struktur data supplier dan field requirements dalam sistem database:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Data Category</th>
+                            <th>Mandatory Fields</th>
+                            <th>Validation Rules</th>
+                            <th>Update Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Company Information</strong></td>
+                            <td>Company Name, NPWP, Legal Status</td>
+                            <td><span class="score score-high">Auto-format, Duplicate Check</span></td>
+                            <td>Annual</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contact Details</strong></td>
+                            <td>Primary Contact, Email, Phone</td>
+                            <td><span class="score score-high">Email Format, Phone Validation</span></td>
+                            <td>Quarterly</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Legal Documents</strong></td>
+                            <td>SIUP, TDP, Akta Perusahaan</td>
+                            <td><span class="score score-medium">Document Expiry Check</span></td>
+                            <td>Annual</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Product/Service Data</strong></td>
+                            <td>Product Categories, Capabilities</td>
+                            <td><span class="score score-medium">Standardized Categories</span></td>
+                            <td>Semi-annual</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance Metrics</strong></td>
+                            <td>Quality Score, Delivery Score</td>
+                            <td><span class="score score-high">Auto-calculate, Trend Analysis</span></td>
+                            <td>Monthly</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Financial Information</strong></td>
+                            <td>Bank Details, Payment Terms</td>
+                            <td><span class="score score-medium">Encrypted Storage</span></td>
+                            <td>Annual</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-database"></i> <strong>Data Quality Standards:</strong></p>
+                    <ul>
+                        <li><strong>Accuracy:</strong> ≥ 98% data accuracy rate</li>
+                        <li><strong>Completeness:</strong> ≥ 95% mandatory fields filled</li>
+                        <li><strong>Timeliness:</strong> ≤ 2 days data update delay</li>
+                        <li><strong>Consistency:</strong> ≥ 97% data format consistency</li>
+                        <li><strong>Uniqueness:</strong> 0% duplicate supplier records</li>
+                        <li><strong>Validity:</strong> 100% data meets business rules</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Data Access Matrix:</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>Administrator Level:</strong> Full access - Data entry, update, delete, system configuration</p>
+                        <p><strong>Manager Level:</strong> Read/Write access - Data viewing, limited updates, reporting</p>
+                        <p><strong>User Level:</strong> Read-only access - Data viewing, search, basic reporting</p>
+                        <p><strong>Guest Level:</strong> Restricted access - Limited data viewing with approval</p>
+                        <p><strong>External User:</strong> No direct access - Data provided through controlled interfaces</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses manajemen database supplier:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-database"></i>
+                                <h3>FORM-PB-2001</h3>
+                                <p>Supplier Data Entry Form</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>FORM-PB-2002</h3>
+                                <p>Data Quality Audit Checklist</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-sync-alt"></i>
+                                <h3>FORM-PB-2003</h3>
+                                <p>Data Update Request Form</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>FORM-PB-2004</h3>
+                                <p>Database Health Report</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-archive"></i> <strong>Data Retention Policy:</strong></p>
+                    <ul>
+                        <li><strong>Active Supplier Data:</strong> Maintained indefinitely while active</li>
+                        <li><strong>Inactive Supplier Data:</strong> Archived for 7 years after last transaction</li>
+                        <li><strong>Performance History:</strong> Retained for 5 years</li>
+                        <li><strong>Contract Documents:</strong> Archived for 10 years after expiry</li>
+                        <li><strong>Financial Records:</strong> Retained for 10 years for tax purposes</li>
+                        <li><strong>Audit Trails:</strong> Maintained permanently for compliance</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Data Accuracy Rate:</strong> ≥ 98%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Completeness Index:</strong> ≥ 95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Update Timeliness:</strong> ≤ 2 working days</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Duplicate Record Rate:</strong> ≤ 0.1%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>System Availability:</strong> ≥ 99.5% uptime</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User Satisfaction Score:</strong> ≥ 90%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Security Compliance:</strong> 100% audit pass rate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backup Success Rate:</strong> 100% completed on schedule</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Database Administrator</th>
+                        <th width="25%">IT Security Officer</th>
+                        <th width="25%">Purchasing Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-020 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

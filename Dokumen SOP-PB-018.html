@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Pengembangan dan Relasi Supplier - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PENGEMBANGAN DAN RELASI SUPPLIER - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-018</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses pengembangan dan pengelolaan relasi supplier guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Terbangunnya hubungan kemitraan yang saling menguntungkan dengan supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Peningkatan kapabilitas dan kinerja supplier secara berkelanjutan</td>
+                    </tr>
+                    <tr>
+                        <td>Optimalisasi value chain melalui kolaborasi dan inovasi bersama supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Pengurangan risiko supply chain melalui pengembangan kapasitas supplier</td>
+                    </tr>
+                    <tr>
+                        <td>Pencapaian competitive advantage melalui strategic supplier partnership</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Program pengembangan supplier yang efektif dapat meningkatkan kinerja supply chain hingga 35% dan menghasilkan cost savings hingga 20% melalui collaborative improvement.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh aktivitas pengembangan dan pengelolaan relasi dengan berbagai kategori supplier:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chess-king"></i>
+                                <h3>Strategic Partners</h3>
+                                <p>Supplier dengan dampak bisnis tinggi dan hubungan jangka panjang</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Growth Partners</h3>
+                                <p>Supplier dengan potensi pengembangan dan ekspansi bisnis</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-gem"></i>
+                                <h3>Core Suppliers</h3>
+                                <p>Supplier untuk produk inti dengan volume tinggi</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-rocket"></i>
+                                <h3>Innovation Partners</h3>
+                                <p>Supplier dengan kemampuan inovasi dan teknologi tinggi</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Supplier Relationship Director:</strong> Strategic direction dan oversight</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Development Manager:</strong> Program planning dan execution</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Category Managers:</strong> Segment-specific development initiatives</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality Development Team:</strong> Technical capability enhancement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supply Chain Analysts:</strong> Performance monitoring dan improvement tracking</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Innovation Coordinators:</strong> Collaborative R&D initiatives</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>Strategic Alliance</h3>
+                                <p>Kemitraan strategis dengan sharing risiko dan keuntungan</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-cogs"></i>
+                                <h3>Capability Development</h3>
+                                <p>Program peningkatan kapabilitas teknis dan operasional supplier</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-lightbulb"></i>
+                                <h3>Joint Innovation</h3>
+                                <p>Kolaborasi inovasi produk dan proses dengan supplier</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-pie"></i>
+                                <h3>Value Engineering</h3>
+                                <p>Optimasi value chain melalui collaborative cost reduction</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PENGEMBANGAN DAN RELASI SUPPLIER</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Supplier Segmentation dan Profiling</div>
+                    </div>
+                    <p>Mengelompokkan supplier berdasarkan strategic importance dan development potential</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Segmentation criteria:</strong> Spend volume, criticality, innovation capability, relationship maturity, growth potential</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Gap Analysis dan Needs Assessment</div>
+                    </div>
+                    <p>Mengidentifikasi kesenjangan kapabilitas dan kebutuhan pengembangan</p>
+                    <ul>
+                        <li>Technical capability assessment</li>
+                        <li>Quality system evaluation</li>
+                        <li>Operational efficiency analysis</li>
+                        <li>Innovation potential mapping</li>
+                        <li>Business maturity review</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Development Roadmap Planning</div>
+                    </div>
+                    <p>Menyusun peta jalan pengembangan yang disesuaikan dengan kategori supplier</p>
+                    <div class="content-box">
+                        <p><strong>Roadmap components:</strong> Development objectives, initiatives timeline, resource allocation, success metrics, governance structure</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Joint Goal Setting dan Alignment</div>
+                    </div>
+                    <p>Menetapkan tujuan bersama dan menyelaraskan ekspektasi dengan supplier</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Alignment areas:</strong> Business objectives, performance targets, innovation agenda, risk management, value creation</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Implementation of Development Initiatives</div>
+                    </div>
+                    <p>Melaksanakan program pengembangan sesuai roadmap yang telah disepakati</p>
+                    <ul>
+                        <li>Technical training dan knowledge transfer</li>
+                        <li>Process improvement projects</li>
+                        <li>Quality system enhancement</li>
+                        <li>Technology adoption support</li>
+                        <li>Capacity building programs</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Collaborative Innovation Projects</div>
+                    </div>
+                    <p>Melaksanakan proyek inovasi bersama untuk menciptakan value yang unik</p>
+                    <div class="content-box">
+                        <p><strong>Innovation focus areas:</strong> Product development, process innovation, cost optimization, sustainability initiatives, digital transformation</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Performance Monitoring dan Review</div>
+                    </div>
+                    <p>Memantau kemajuan dan melakukan review berkala terhadap program pengembangan</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Review mechanisms:</strong> Quarterly business reviews, performance dashboards, milestone tracking, benefit realization analysis</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Relationship Maturity Assessment</div>
+                    </div>
+                    <p>Menilai tingkat kematangan hubungan dan mengidentifikasi area pengembangan selanjutnya</p>
+                    <div class="content-box">
+                        <p><strong>Maturity dimensions:</strong> Strategic alignment, operational integration, innovation collaboration, risk sharing, value co-creation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STRATEGI PENGEMBANGAN SECTION -->
+        <div class="section">
+            <div class="section-title">## STRATEGI DAN PROGRAM PENGEMBANGAN</div>
+            <div class="section-content">
+                <p>Program pengembangan yang disesuaikan dengan tingkat kematangan hubungan supplier:</p>
+                
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Tingkat Kematangan</th>
+                            <th>Focus Area</th>
+                            <th>Development Programs</th>
+                            <th>Expected Outcomes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Transactional</strong></td>
+                            <td>Basic Compliance</td>
+                            <td><span class="score score-low">Quality Training, Process Standardization</span></td>
+                            <td>Consistent Quality, On-time Delivery</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cooperative</strong></td>
+                            <td>Operational Excellence</td>
+                            <td><span class="score score-medium">Lean Training, Cost Reduction Projects</span></td>
+                            <td>Cost Efficiency, Process Improvement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Collaborative</strong></td>
+                            <td>Value Creation</td>
+                            <td><span class="score score-high">Joint Planning, Technology Transfer</span></td>
+                            <td>Innovation, Market Advantage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Strategic</strong></td>
+                            <td>Business Integration</td>
+                            <td><span class="score score-high">Co-development, Risk Sharing</span></td>
+                            <td>Competitive Advantage, Growth</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transformational</strong></td>
+                            <td>Ecosystem Leadership</td>
+                            <td><span class="score score-high">Industry Leadership, Digital Integration</span></td>
+                            <td>Market Leadership, Disruption</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-chart-bar"></i> <strong>Investment Allocation by Supplier Tier:</strong></p>
+                    <ul>
+                        <li><strong>Strategic Partners (Tier 1):</strong> 50% of development budget - Deep collaboration dan co-investment</li>
+                        <li><strong>Preferred Partners (Tier 2):</strong> 30% of development budget - Targeted capability enhancement</li>
+                        <li><strong>Approved Suppliers (Tier 3):</strong> 15% of development budget - Basic compliance dan quality improvement</li>
+                        <li><strong>Emerging Suppliers (Tier 4):</strong> 5% of development budget - Foundational training dan assessment</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Key Development Initiatives:</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>Technical Excellence Program:</strong> Quality system certification, technical training, equipment upgrade support</p>
+                        <p><strong>Operational Improvement Program:</strong> Lean manufacturing, process optimization, digital transformation</p>
+                        <p><strong>Innovation Partnership Program:</strong> Joint R&D, new product development, technology scouting</p>
+                        <p><strong>Sustainability Development Program:</strong> Green manufacturing, carbon footprint reduction, circular economy</p>
+                        <p><strong>Digital Capability Program:</strong> Supply chain integration, data analytics, IoT implementation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses pengembangan dan relasi supplier:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-road"></i>
+                                <h3>FORM-PB-1801</h3>
+                                <p>Supplier Development Roadmap</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-handshake"></i>
+                                <h3>FORM-PB-1802</h3>
+                                <p>Partnership Agreement Template</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-1803</h3>
+                                <p>Development Program Dashboard</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-lightbulb"></i>
+                                <h3>FORM-PB-1804</h3>
+                                <p>Innovation Project Charter</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-database"></i> <strong>Retensi Dokumen Pengembangan Supplier:</strong></p>
+                    <ul>
+                        <li><strong>Development Roadmaps:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Partnership Agreements:</strong> Disimpan 10 tahun setelah berakhir</li>
+                        <li><strong>Program Progress Reports:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Innovation Project Documents:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Investment Approval Records:</strong> Disimpan 10 tahun</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                    <table class="content-table">
+                        <tr>
+                            <td><strong>Supplier Development Program Completion:</strong> ≥ 90% on-time</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability Improvement Index:</strong> ≥ 15% year-over-year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Innovation Project Success Rate:</strong> ≥ 70%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relationship Satisfaction Score:</strong> ≥ 85%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Value Creation from Collaboration:</strong> ≥ 12% of total spend</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Strategic Partnership Ratio:</strong> ≥ 25% of supply base</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Development ROI:</strong> ≥ 3:1 return on investment</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supplier-led Innovation Initiatives:</strong> ≥ 5 per tahun</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Retail Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-018 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>

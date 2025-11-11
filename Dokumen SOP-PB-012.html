@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Pemeriksaan Kualitas Barang (QC) - Retail Bahan Bangunan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .header-table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .doc-info {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+        
+        .section-title {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: var(--primary);
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .content-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .content-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .grid-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .person-card i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .person-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .person-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .process-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .validation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .validation-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .validation-table th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .validation-name {
+            height: 60px;
+            border-bottom: none;
+        }
+        
+        .validation-date {
+            height: 40px;
+        }
+        
+        .content-box {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid var(--secondary);
+            font-size: 14px;
+        }
+        
+        .content-box.warning {
+            border-left-color: var(--warning);
+            background: #fff9e6;
+        }
+        
+        .content-box.important {
+            border-left-color: var(--accent);
+            background: #fff4e6;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .score-high {
+            background: #e8f5e8;
+            color: var(--success);
+        }
+        
+        .score-medium {
+            background: #fff4e6;
+            color: var(--warning);
+        }
+        
+        .score-low {
+            background: #ffe6e6;
+            color: var(--danger);
+        }
+        
+        .criteria-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .criteria-table th {
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .criteria-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .criteria-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        /* Print Button */
+        .print-button-container {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+        
+        .print-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .print-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                border: none;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .print-button-container {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                background: #f0f0f0 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box {
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.warning {
+                background: #fff9e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .content-box.important {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-high {
+                background: #e8f5e8 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-medium {
+                background: #fff4e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-low {
+                background: #ffe6e6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .criteria-table th {
+                background: var(--primary) !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td colspan="2">
+                    <div class="logo-container">
+                        <img src="https://grandmitra.com/wp-content/uploads/2024/09/gm-1536x328.png" alt="GrandMitra Logo" class="logo">
+                        <div class="header-text">
+                            <div class="header-title">STANDARD OPERATING PROCEDURE</div>
+                            <div class="header-subtitle">PEMERIKSAAN KUALITAS BARANG (QC) - RETAIL BAHAN BANGUNAN</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="doc-info"><strong>No. Dokumen:</strong> SOP-PB-012</div>
+                    <div class="doc-info"><strong>Tgl Berlaku:</strong> 1 Januari 2026</div>
+                </td>
+                <td width="50%">
+                    <div class="doc-info"><strong>Revisi:</strong> 01</div>
+                    <div class="doc-info"><strong>Halaman:</strong> 1/1</div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- TUJUAN SECTION -->
+        <div class="section">
+            <div class="section-title">## TUJUAN</div>
+            <div class="section-content">
+                <p>Prosedur ini bertujuan untuk menstandarisasikan proses pemeriksaan kualitas barang guna memastikan:</p>
+                <table class="content-table">
+                    <tr>
+                        <td>Barang yang diterima memenuhi standar kualitas yang ditetapkan</td>
+                    </tr>
+                    <tr>
+                        <td>Konsistensi kualitas produk yang dijual kepada pelanggan</td>
+                    </tr>
+                    <tr>
+                        <td>Pencegahan penerimaan barang cacat atau tidak sesuai spesifikasi</td>
+                    </tr>
+                    <tr>
+                        <td>Kepuasan pelanggan melalui penyediaan produk berkualitas</td>
+                    </tr>
+                    <tr>
+                        <td>Pengurangan biaya akibat barang reject dan retur</td>
+                    </tr>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Penting:</strong> Pemeriksaan kualitas yang efektif dapat mengurangi tingkat retur hingga 60% dan meningkatkan kepuasan pelanggan hingga 45%.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RUANG LINGKUP SECTION -->
+        <div class="section">
+            <div class="section-title">## RUANG LINGKUP</div>
+            <div class="section-content">
+                <p>Prosedur ini mencakup seluruh proses pemeriksaan kualitas untuk berbagai jenis bahan bangunan:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-ruler-combined"></i>
+                                <h3>Dimensi & Ukuran</h3>
+                                <p>Pemeriksaan akurasi ukuran dan dimensi produk</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-palette"></i>
+                                <h3>Finish & Warna</h3>
+                                <p>Konsistensi warna, tekstur, dan finishing produk</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-vial"></i>
+                                <h3>Material & Komposisi</h3>
+                                <p>Kualitas material dan komposisi bahan baku</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-cogs"></i>
+                                <h3>Fungsi & Performa</h3>
+                                <p>Uji fungsi dan performa produk sesuai spesifikasi</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Penanggung Jawab:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>QC Supervisor:</strong> Koordinasi tim QC dan approval final</td>
+                    </tr>
+                    <tr>
+                        <td><strong>QC Inspector:</strong> Pemeriksaan fisik dan pengujian barang</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lab Technician:</strong> Pengujian laboratorium (jika diperlukan)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Warehouse Staff:</strong> Support dalam handling barang sample</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Purchasing Officer:</strong> Koordinasi dengan supplier untuk quality issue</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Production Manager:</strong> Review standar kualitas produk</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DEFINISI SECTION -->
+        <div class="section">
+            <div class="section-title">## DEFINISI</div>
+            <div class="section-content">
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-check-circle"></i>
+                                <h3>AQL Standard</h3>
+                                <p>Acceptable Quality Level - Tingkat kualitas yang dapat diterima</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>QC Report</h3>
+                                <p>Laporan hasil pemeriksaan kualitas barang</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-vial"></i>
+                                <h3>Sample Testing</h3>
+                                <p>Pengujian sample barang secara acak</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-times-circle"></i>
+                                <h3>Non-Conformance</h3>
+                                <p>Barang yang tidak memenuhi standar kualitas</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- ALUR PROSES SECTION -->
+        <div class="section">
+            <div class="section-title">## ALUR PROSES PEMERIKSAAN KUALITAS BARANG</div>
+            <div class="section-content">
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Penerimaan Sample untuk QC</div>
+                    </div>
+                    <p>Warehouse menyerahkan sample barang dari setiap batch untuk pemeriksaan QC</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Sampling Method:</strong> Random sampling berdasarkan AQL standard, minimum 10% dari total batch</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Pemeriksaan Visual</div>
+                    </div>
+                    <p>Melakukan pemeriksaan visual terhadap kondisi fisik barang</p>
+                    <ul>
+                        <li>Cacat permukaan (scratch, dent, stain)</li>
+                        <li>Konsistensi warna dan finishing</li>
+                        <li>Kelengkapan part dan aksesori</li>
+                        <li>Kondisi packaging dan labeling</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Pengukuran Dimensi</div>
+                    </div>
+                    <p>Mengukur dimensi dan ukuran produk sesuai spesifikasi teknis</p>
+                    <div class="content-box">
+                        <p><strong>Alat ukur:</strong> Caliper, micrometer, measuring tape, jig fixture, template gauge</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Pengujian Fungsi</div>
+                    </div>
+                    <p>Melakukan pengujian fungsi untuk produk yang memerlukan</p>
+                    <div class="content-box important">
+                        <p><i class="fas fa-exclamation-circle"></i> <strong>Jenis pengujian:</strong> Uji tekanan, uji torsi, uji ketahanan, uji water resistance, uji electrical safety</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Pengujian Material</div>
+                    </div>
+                    <p>Melakukan pengujian material dan komposisi (jika diperlukan)</p>
+                    <ul>
+                        <li>Uji komposisi kimia</li>
+                        <li>Uji kekuatan material</li>
+                        <li>Uji ketahanan korosi</li>
+                        <li>Uji aging dan durability</li>
+                    </ul>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Dokumentasi Hasil QC</div>
+                    </div>
+                    <p>Mencatat hasil pemeriksaan dalam QC Inspection Report</p>
+                    <div class="content-box">
+                        <p><strong>Data yang dicatat:</strong> Item code, batch number, hasil pengujian, foto evidence, status (Pass/Reject), rekomendasi</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Approval QC Supervisor</div>
+                    </div>
+                    <p>QC Supervisor meninjau dan memberikan approval final</p>
+                    <div class="content-box warning">
+                        <p><i class="fas fa-info-circle"></i> <strong>Kriteria approval:</strong> Semua parameter memenuhi standar, defect rate ≤ AQL, dokumentasi lengkap</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Tindakan Lanjutan</div>
+                    </div>
+                    <p>Melakukan tindakan berdasarkan hasil pemeriksaan QC</p>
+                    <div class="content-box">
+                        <p><strong>Tindakan:</strong> Release untuk penjualan (PASS), Reject dan retur ke supplier (FAIL), Hold untuk pemeriksaan lebih lanjut (HOLD)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STANDAR KUALITAS SECTION -->
+        <div class="section">
+            <div class="section-title">## STANDAR KUALITAS DAN TOLERANSI</div>
+            <div class="section-content">
+                <p>Standar kualitas minimum yang harus dipenuhi untuk berbagai kategori produk:</p>
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>Kategori Produk</th>
+                            <th>Parameter Kualitas</th>
+                            <th>Toleransi</th>
+                            <th>AQL Standard</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Keramik & Granit</strong></td>
+                            <td>Dimensi, warping, color consistency</td>
+                            <td><span class="score score-high">±1.5mm</span></td>
+                            <td>Level II (2.5%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cat & Coating</strong></td>
+                            <td>Viscosity, color match, coverage</td>
+                            <td><span class="score score-medium">±5%</span></td>
+                            <td>Level I (1.5%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pipa & Fitting</strong></td>
+                            <td>Diameter, wall thickness, pressure rating</td>
+                            <td><span class="score score-high">±2%</span></td>
+                            <td>Level II (2.5%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alat Listrik</strong></td>
+                            <td>Electrical safety, function test, certification</td>
+                            <td><span class="score score-low">0% defect</span></td>
+                            <td>Level S-4 (0.65%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sanitary Ware</strong></td>
+                            <td>Surface finish, function, leak test</td>
+                            <td><span class="score score-medium">±3%</span></td>
+                            <td>Level II (2.5%)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="content-box important">
+                    <p><i class="fas fa-clock"></i> <strong>Waktu Pemeriksaan QC:</strong></p>
+                    <ul>
+                        <li><strong>Barang Fast Moving:</strong> Maksimal 4 jam setelah penerimaan</li>
+                        <li><strong>Barang Regular:</strong> Maksimal 8 jam kerja</li>
+                        <li><strong>Barang Complex:</strong> Maksimal 24 jam (termasuk lab test)</li>
+                        <li><strong>Barang Project Critical:</strong> Prioritas (maksimal 2 jam)</li>
+                        <li><strong>Barang Import:</strong> 48 jam (termasuk customs clearance)</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">Kriteria Penolakan Barang:</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>Major Defect:</strong> Cacat yang mempengaruhi fungsi dan keamanan produk (Auto REJECT)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Minor Defect:</strong> Cacat kosmetik yang tidak mempengaruhi fungsi (toleransi sesuai AQL)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Critical Defect:</strong> Cacat yang dapat menyebabkan bahaya (Auto REJECT + Blacklist supplier)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Documentation Defect:</strong> Ketidaksesuaian dokumen dan labeling (Hold until resolved)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DOKUMEN SECTION -->
+        <div class="section">
+            <div class="section-title">## DOKUMEN TERKAIT</div>
+            <div class="section-content">
+                <p>Dokumen-dokumen yang terkait dengan proses pemeriksaan kualitas barang:</p>
+                
+                <table class="grid-table">
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>FORM-PB-1201</h3>
+                                <p>QC Inspection Report</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-file-excel"></i>
+                                <h3>FORM-PB-1202</h3>
+                                <p>Quality Control Checklist</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-times-circle"></i>
+                                <h3>FORM-PB-1203</h3>
+                                <p>Non-Conformance Report</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="person-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>FORM-PB-1204</h3>
+                                <p>Quality Performance Dashboard</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="content-box warning">
+                    <p><i class="fas fa-database"></i> <strong>Retensi Dokumen QC:</strong></p>
+                    <ul>
+                        <li><strong>QC Inspection Reports:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Lab Test Results:</strong> Disimpan 7 tahun</li>
+                        <li><strong>Non-Conformance Reports:</strong> Disimpan 5 tahun</li>
+                        <li><strong>Supplier Quality Records:</strong> Disimpan 3 tahun</li>
+                        <li><strong>Quality Certificates:</strong> Disimpan permanen</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: var(--primary); margin: 15px 0 10px;">KPI (Key Performance Indicator):</h3>
+                <table class="content-table">
+                    <tr>
+                        <td><strong>First Pass Yield:</strong> ≥ 95%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>QC Processing Time:</strong> ≤ 8 jam</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Defect Rate:</strong> ≤ 2.5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supplier Quality Score:</strong> ≥ 85%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Complaint Rate:</strong> ≤ 0.5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>QC Documentation Accuracy:</strong> ≥ 98%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Non-Conformance Resolution:</strong> ≤ 24 jam</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality Improvement Projects:</strong> ≥ 4 per tahun</td>
+                    </tr>
+                </table>
+                
+                <!-- Validation Section -->
+                <table class="validation-table">
+                    <tr>
+                        <th colspan="4">VALIDASI</th>
+                    </tr>
+                    <tr>
+                        <th width="25%">Manager Pembelian</th>
+                        <th width="25%">Manager Finance</th>
+                        <th width="25%">General Manager</th>
+                        <th width="25%">Direktur</th>
+                    </tr>
+                    <tr>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                        <td class="validation-name"></td>
+                    </tr>
+                    <tr>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                        <td class="validation-date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Print Button -->
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Cetak Seluruh Dokumen
+            </button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 GrandMitra - Supermarket Bahan Bangunan. All rights reserved.</p>
+            <p>Dokumen SOP-PB-012 | Revisi: 01 | Berlaku sejak: 1 Januari 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak dokumen
+        function printDocument() {
+            window.print();
+        }
+        
+        // Tambahkan event listener untuk tombol cetak
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', printDocument);
+            }
+        });
+    </script>
+</body>
+</html>
